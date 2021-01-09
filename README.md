@@ -5,3 +5,5 @@
 
 ## General info
 Our app will be a clone of OfferUp and is a project for our AD320 class. 
+
+##Aaron's Edit
