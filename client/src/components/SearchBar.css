@@ -1,0 +1,10 @@
+.search {
+    display: inline, flex;
+    margin: auto;
+    float: none;
+}
+
+.button {
+    float: none;
+    margin-left: 10px;
+}
