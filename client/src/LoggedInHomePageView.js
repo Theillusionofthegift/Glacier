@@ -1,19 +1,20 @@
 import LogoBar from './components/LogoBar'
-import FeaturedItemGroup from './components/FeaturedItemGroup'
+import Product from './components/ProductGroup'
 import CatDropDown from './components/DropDown'
-import './LoginPage.css'
+import './LoggedInHomePageView.css'
+import messagingIcon from './images/conversation.png'
 
 function App() {
     return (
         <div>
             <LogoBar />
             <CatDropDown />
-            <div className="wrapper">
-                <FeaturedItemGroup />
-                <FeaturedItemGroup />
-                <FeaturedItemGroup />
-                <FeaturedItemGroup />
+            <div className="product">
+                <Product />      
+                <Product />
+                <Product />
             </div>
+            <img className="messagingIcon" src={messagingIcon} alt="messaging icon"/>
         </div>
     )
 }

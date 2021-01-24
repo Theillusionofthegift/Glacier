@@ -1,0 +1,10 @@
+.messagingIcon {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    max-width: 5%;
+}
+
+.product {
+    clear: both;
+}
