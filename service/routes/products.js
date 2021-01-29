@@ -15,7 +15,15 @@ productsRouter.route('/')
 
 productsRouter.route('/:id')
     .get((req, res, next) => {
-        res.sendStatus(501);
+        const match = products.filter((param) => {
+            return req.params['id'] === params.id;
+        })
+        if (match.length === 1) {
+            res.send(match[0]);
+        } else {
+            res.sendStatus(400);
+        }
+
     })
     .put((req, res, next) => {
         res.sendStatus(501);
