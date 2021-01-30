@@ -19,7 +19,7 @@ productsRouter.route('/')
             //if found then item is a duplicate and shouldnt be created
             res.status(409);
         } else {
-            //if not found than create product
+            //if not found then create product
             res.sendStatus(201);
         }
     });
