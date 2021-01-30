@@ -9,27 +9,57 @@ productsRouter.route('/')
         res.json(Data.productList);
     })
     .post((req, res, next) => {
-        //error
-        next("An error");
+        const match = Data.productList.filter((param) => {
+            let j = express.json(req.body);
+            console.log(j.id);
+            return j.id === param.id;
+            
+        })
+        if (match.length === 1) {
+            //if found then item is a duplicate and shouldnt be created
+            res.status(409);
+        } else {
+            //if not then send not found status code
+            res.sendStatus(201);
+        }
     });
 
 productsRouter.route('/:id')
     .get((req, res, next) => {
-        const match = products.filter((param) => {
-            return req.params['id'] === params.id;
+        const match = Data.productList.filter((param) => {
+            return req.params['id'] === param.id;
         })
         if (match.length === 1) {
-            res.send(match[0]);
+            //if found then send the match to the client with status code
+            res.status(200).send(match[0]);
         } else {
-            res.sendStatus(400);
+            //if not then send not found status code
+            res.sendStatus(404);
         }
-
     })
-    .put((req, res, next) => {
-        res.sendStatus(501);
+    .put((req, res, next) => { 
+        const search = Data.productList.filter((param) =>{
+            return req.params['id'] === param.id;
+        })
+        if (search.length != 0) {
+            //if found then update that product 
+            res.sendStatus(204);
+        } else {
+            //if not then send not found status code
+            res.sendStatus(404);
+        }
     })
     .delete((req, res, next) => {
-        res.sendStatus(501);
+        const search = Data.productList.filter((param) =>{
+            return req.params['id'] === param.id;
+        })
+        if (search.length != 0) {
+            //if found then delete
+            res.sendStatus(204);
+        } else {
+            //if not then send not found status code
+            res.sendStatus(404);
+        }
     });
 
 module.exports = productsRouter;
