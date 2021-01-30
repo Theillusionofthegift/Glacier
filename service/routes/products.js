@@ -15,7 +15,7 @@ productsRouter.route('/')
             return j.id === param.id;
             
         })
-        if (search.length === 1) {
+        if (search.length != 0) {
             //if found then item is a duplicate and shouldnt be created
             res.status(409);
         } else {
