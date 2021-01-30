@@ -9,13 +9,13 @@ productsRouter.route('/')
         res.json(Data.productList);
     })
     .post((req, res, next) => {
-        const match = Data.productList.filter((param) => {
+        const search = Data.productList.filter((param) => {
             let j = express.json(req.body);
             console.log(j.id);
             return j.id === param.id;
             
         })
-        if (match.length === 1) {
+        if (search.length === 1) {
             //if found then item is a duplicate and shouldnt be created
             res.status(409);
         } else {
