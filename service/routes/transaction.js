@@ -1,3 +1,4 @@
+const e = require('express');
 const express = require('express');
 const transactionRouter = express.Router();
 
@@ -63,8 +64,19 @@ transactionsRouter.route('/:id')
     })
 
     .delete((req, res, next) => {
-        res.sendStatus(501);
-    });
+        const searchResult = Data.transactionList.filter((t) => {
+            return req.params['id'] === t.id;
+        })
 
+        if (searchResult.length != 0) {
+            // if matching transaction if found, 
+            // update transaction and return OK status code 
+            res.sendStatus(204);
+        } else {
+            // if matching transaction not found, 
+            // return NOT FOUND status code
+            res.sendStatus(404);
+        }
+    });
 
 module.exports = transactionRouter;
