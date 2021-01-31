@@ -1,20 +1,19 @@
-const e = require('express');
 const express = require('express');
-const transactionRouter = express.Router();
+const transactionsRouter = express.Router();
 
-const Data = require('../data/transactionList');
+const Data = require('../data/mockData');
 
-transactionRouter.route('/')
+transactionsRouter.route('/')
 
     .get((req, res, next) => {
-        res.json(Data.transactionsList);
+        res.json(Data.transactionList);
     })
 
     .post((req, res, next) => {
         const searchResult = Data.transactionList.filter((t) => {
             let j = express.json(req.body);
             console.log(j.id);
-            return j.id === params.id;
+            return j.id === t.id;
         })
         
         if (searchResult.length != 0) {
@@ -79,4 +78,4 @@ transactionsRouter.route('/:id')
         }
     });
 
-module.exports = transactionRouter;
+module.exports = transactionsRouter;
