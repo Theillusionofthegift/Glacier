@@ -1,16 +1,16 @@
 const express = require('express');
-const transactionsRouter = express.Router();
+const transactionRouter = express.Router();
 
-const {transaction} = require('../data/transactionList');
+const Data = require('../data/transactionList');
 
-transactionsRouter.route('/')
+transactionRouter.route('/')
 
     .get((req, res, next) => {
         res.json(Data.transactionsList);
     })
 
     .post((req, res, next) => {
-        const searchResult = transaction.filter((t) => {
+        const searchResult = Data.transactionList.filter((t) => {
             let j = express.json(req.body);
             console.log(j.id);
             return j.id === params.id;
@@ -30,7 +30,7 @@ transactionsRouter.route('/')
 transactionsRouter.route('/:id')
 
     .get((req, res, next) => {
-        const matchingTransaction = transaction.filter((t) => {
+        const matchingTransaction = Data.transactionList.filter((t) => {
             return req.params['id'] === t.id;
         })
 
@@ -47,7 +47,7 @@ transactionsRouter.route('/:id')
     })
 
     .put((req, res, next) => {
-        const searchResult = transaction.filter((t) => {
+        const searchResult = Data.transactionList.filter((t) => {
             return req.params['id'] === t.id;
         })
 
