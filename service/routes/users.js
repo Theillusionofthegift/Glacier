@@ -9,21 +9,22 @@ userRoutes.route('/')
     {
         res.json(Data.userList);
     })
-    .post((req, res, next) => 
-    {
-        const s = Data.userList.filter((param) => {
-            let i = express.json(req.body);
-            return i.id === param.id;
+
+    .post((req, res, next) => {
+
+        const search = Data.userList.filter((param) => {
+            return req.body.id === param.id;
         })
 
-        if(s.length != 0) 
-        {
+        if (search.length == 0) {
+            //if not found then create user
+            res.sendStatus(201);
+        } else {
+            //if found then item is a duplicate and shouldnt be created
             res.status(409);
         }
-        else 
-        {
-            res.sendStatus(201);
-        }
+
+        next("User Already Exists")
     });
 
 

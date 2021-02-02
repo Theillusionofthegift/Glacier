@@ -9,19 +9,20 @@ productsRouter.route('/')
         res.json(Data.productList);
     })
     .post((req, res, next) => {
+
         const search = Data.productList.filter((param) => {
-            let j = express.json(req.body);
-            console.log(j.id);
-            return j.id === param.id;
-            
+            return req.body.id === param.id;
         })
-        if (search.length != 0) {
-            //if found then item is a duplicate and shouldnt be created
-            res.status(409);
-        } else {
+
+        if (search.length == 0) {
             //if not found then create product
             res.sendStatus(201);
+        } else {
+            //if found then item is a duplicate and shouldnt be created
+            res.status(409);
         }
+
+        next("Product Already Exists")
     });
 
 productsRouter.route('/:id')
@@ -36,6 +37,7 @@ productsRouter.route('/:id')
             //if not then send not found status code
             res.sendStatus(404);
         }
+        next("an error")
     })
     .put((req, res, next) => { 
         const search = Data.productList.filter((param) =>{
@@ -48,6 +50,7 @@ productsRouter.route('/:id')
             //if not then send not found status code
             res.sendStatus(404);
         }
+        next("an error")
     })
     .delete((req, res, next) => {
         const search = Data.productList.filter((param) =>{
@@ -60,6 +63,7 @@ productsRouter.route('/:id')
             //if not then send not found status code
             res.sendStatus(404);
         }
+        next("an error")
     });
 
 module.exports = productsRouter;

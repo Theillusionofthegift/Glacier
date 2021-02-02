@@ -7,6 +7,7 @@ const productsRouter = require('./routes/products');
 const transRouter = require('./routes/transactions');
 const usersRouter = require('./routes/users');
 
+app.use(express.json())
 app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/transactions', transRouter);

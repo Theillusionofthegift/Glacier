@@ -10,14 +10,16 @@ transactionsRouter.route('/')
     })
 
     .post((req, res, next) => {
-        if (req.body == undefined) {
+        if (req.body.id == undefined) {
             //if req body is empty then send bad request error code
             res.sendStatus(400);
-
+            
         } else {
             // create a new transaction and send CREATED status code
             res.sendStatus(201); 
         }
+
+        next("Request body cannot be empty!")
     });
 
 transactionsRouter.route('/:id')
