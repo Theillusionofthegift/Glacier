@@ -13,8 +13,7 @@ userRoutes.route('/')
     {
         const s = Data.userList.filter((param) => {
             let i = express.json(req.body);
-            console.log(i.user_id); 
-            return i.user_id === param.user_id;
+            return i.id === param.id;
         })
 
         if(s.length != 0) 
@@ -29,14 +28,14 @@ userRoutes.route('/')
 
 
 userRoutes.route('/:id')
-    .get((req, res, next) => cd De
+    .get((req, res, next) => 
     {
-        const m = Data.userList.filter((param) => {
-            return req.params['user_id'] === param.user_id;
+        const match = Data.userList.filter((param) => {
+            return req.params['id'] === param.id;
         })
 
 
-        if(m.length === 1) 
+        if(match.length === 1) 
         {
             res.status(200).send(match[0]);
         }
@@ -49,7 +48,7 @@ userRoutes.route('/:id')
     .put((req, res, next) => 
     {
         const s = Data.userList.filter((param) => {
-            return req.params['user_id'] === param.user_id;
+            return req.params['id'] === param.id;
         })
 
         if(s.length != 0) 
@@ -67,7 +66,7 @@ userRoutes.route('/:id')
     .delete((req, res, next) => 
     {
         const s = Data.userList.filter((param) => {
-            return req.params['user_id'] === param.user_id;
+            return req.params['id'] === param.id;
         })
 
         if(s.length != 0) 

@@ -10,18 +10,11 @@ transactionsRouter.route('/')
     })
 
     .post((req, res, next) => {
-        const searchResult = Data.transactionList.filter((t) => {
-            let j = express.json(req.body);
-            console.log(j.id);
-            return j.id === t.id;
-        })
-        
-        if (searchResult.length != 0) {
-            // if transaction already exists, 
-            // don't create a new transaction and send CONFLICT status code
-            res.sendStatus(409); 
+        if (req.body == undefined) {
+            //if req body is empty then send bad request error code
+            res.sendStatus(400);
+
         } else {
-            // if transaction not found, 
             // create a new transaction and send CREATED status code
             res.sendStatus(201); 
         }
