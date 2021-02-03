@@ -1,7 +1,7 @@
 const express = require('express');
 const productsRouter = express.Router();
 
-const Data = require('../data/productList');
+const Data = require('../data/mockData');
 
 
 productsRouter.route('/')
