@@ -1,7 +1,7 @@
 const express = require('express');
 const userRoutes = express.Router();
 
-const Data = require('../data/userList.js');
+const Data = require('../data/mockData.js');
 
 
 userRoutes.route('/')
