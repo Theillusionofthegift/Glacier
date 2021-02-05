@@ -1,16 +1,29 @@
 import { React } from 'react'
+import Navbar from 'react-bootstrap/Navbar'
+import Form from 'react-bootstrap/Form'
+import FormControl from 'react-bootstrap/FormControl'
+import Button from 'react-bootstrap/Button'
+import Nav from 'react-bootstrap/Nav'
 import logo from '../images/glacier.png'
-import Search from './SearchBar'
-import ButtonSet from './ButtonSet'
-import './LogoBar.css'
 
 export default function LogoBar(props) {
   return (
-    <div className="header">
-      <img className="logo" src={logo} alt="Glacier Logo"/>
-      <h1 className="title">Glacier</h1>
-      <Search />
-      <ButtonSet />
-    </div>
+    <>
+      <Navbar bg="primary" variant="dark">
+        <Navbar.Brand href="#home" className='px-5'>
+          <img alt="" src = {logo} width="30" height="30" className="d-inline-block align-top"></img> {' '} Glacier
+        </Navbar.Brand>
+        <Form inline className="mx-auto">
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <Button variant="outline-light">Search</Button>
+        </Form>
+        <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
+          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="#features">Log In</Nav.Link>
+          <Nav.Link href="#pricing">Sign Up</Nav.Link>
+        </Nav>
+
+      </Navbar>
+    </>
   )
 }
