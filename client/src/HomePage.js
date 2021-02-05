@@ -10,7 +10,7 @@ function App() {
         <LogoBar />
         <CatDropDown />
       </div>
-      <div className="product">
+      <div className= "product">
         <Product />      
         <Product />
         <Product />
