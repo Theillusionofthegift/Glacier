@@ -10,7 +10,7 @@ export default function LogoBar(props) {
   return (
     <>
       <Navbar bg="primary" variant="dark">
-        <Navbar.Brand href="#home" className='px-5'>
+        <Navbar.Brand href="/" className='px-5'>
           <img alt="" src = {logo} width="30" height="30" className="d-inline-block align-top"></img> {' '} Glacier
         </Navbar.Brand>
         <Form inline className="mx-auto">
@@ -18,9 +18,9 @@ export default function LogoBar(props) {
           <Button variant="outline-light">Search</Button>
         </Form>
         <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Log In</Nav.Link>
-          <Nav.Link href="#pricing">Sign Up</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/Login">Log In</Nav.Link>
+          <Nav.Link href="/Signup">Sign Up</Nav.Link>
         </Nav>
 
       </Navbar>
