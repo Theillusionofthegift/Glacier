@@ -1,7 +1,7 @@
 import './HomePage.css';
-import LogoBar from './components/LogoBar'
-import CatDropDown from './components/DropDown'
-import Product from './components/ProductGroup'
+import LogoBar from '../components/LogoBar'
+import CatDropDown from '../components/DropDown'
+import Product from '../components/ProductGroup'
 
 function App() {
   return (

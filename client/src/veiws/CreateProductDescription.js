@@ -1,7 +1,7 @@
 import {React} from 'react'
 import './product.css'
 import item from './images/item.png'
-import LogoBar from './components/LogoBar'
+import LogoBar from '../components/LogoBar'
 
 export default function CreateProductDescription(props){
     return(
