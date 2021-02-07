@@ -2,11 +2,13 @@
 const express = require("express");
 const app = express();
 const port = 4000;
+const cors = require('cors');
 
 const productsRouter = require('./routes/products');
 const transRouter = require('./routes/transactions');
 const usersRouter = require('./routes/users');
 
+app.use(cors());
 app.use(express.json())
 app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/users', usersRouter);
