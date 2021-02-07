@@ -1,6 +1,6 @@
 import './HomePage.css';
-import CatDropDown from '../components/DropDown'
-import Product from '../components/ProductGroup'
+import CatDropDown from '../components/navbar/DropDown'
+import Product from '../components/products/ProductProvider'
 
 function HomePage() {
   return (
@@ -10,8 +10,6 @@ function HomePage() {
       </div>
       <div className= "product">
         <Product />      
-        <Product />
-        <Product />
       </div>
     </div>
   );
