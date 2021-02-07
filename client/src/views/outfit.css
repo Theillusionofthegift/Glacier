@@ -1,0 +1,19 @@
+.outfit{
+    top:50%;
+    left:50%;
+    position:absolute;
+    transform: translateX(-60%);
+}
+
+.title{
+    width: 54%;
+    padding: 20px;
+    background-color:red;
+    border: solid;
+}
+
+.image{
+    width:150px;
+    left:45%;
+    position:absolute;
+}
