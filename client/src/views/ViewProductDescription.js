@@ -10,15 +10,24 @@ export default function ViewProductDescription(props) {
         <div>
             <div className="view">
                 <Carousel>
-                    <CarouselItem>
-                        <img src={product} alt='product'/>
-                    </CarouselItem>
-                    <CarouselItem>
-                        <img src={product} alt='product'/>
-                    </CarouselItem>
-                    <CarouselItem>
-                        <img src={product} alt='product'/>
-                    </CarouselItem>
+                    <Carousel.Item>
+                        <img src={product} alt='productView1'/>
+                        <Carousel.Caption>
+                            <h3>First View</h3>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img src={product} alt='productView2'/>
+                        <Carousel.Caption>
+                            <h3>Second View</h3>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img src={product} alt='productView3'/>
+                        <Carousel.Caption>
+                            <h3>Third View</h3>
+                        </Carousel.Caption>
+                    </Carousel.Item>
                 </Carousel>
                 <Button type="button">Send Message!</Button>
             </div>
