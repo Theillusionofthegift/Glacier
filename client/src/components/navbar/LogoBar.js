@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
-import logo from '../images/glacier.png'
+import logo from '../../images/glacier.png'
 
 export default function LogoBar(props) {
   return (
@@ -18,9 +18,8 @@ export default function LogoBar(props) {
           <Button variant="outline-light">Search</Button>
         </Form>
         <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
-          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/Sell">Sell</Nav.Link>
           <Nav.Link href="/Login">Log In</Nav.Link>
-          <Nav.Link href="/Signup">Sign Up</Nav.Link>
         </Nav>
 
       </Navbar>
