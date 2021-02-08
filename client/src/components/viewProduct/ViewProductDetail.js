@@ -4,13 +4,13 @@ import { useParams } from 'react-router-dom';
 
 import ViewProduct from './ViewProduct';
 
-export default function ViewProductDetail(props) {
+export default function ViewProductDetail() {
   const [ viewProduct, setViewProduct ] = useState(null);
 
   const { id } = useParams();
   useEffect(() => {
     const config = {
-      url: `http://localhost:4000/v1/product/${id}`,
+      url: `http://localhost:4000/api/v1/products/${id}`,
       method: 'GET',
       headers: { "Content-Type": "application/json" },
     }
@@ -21,5 +21,5 @@ export default function ViewProductDetail(props) {
     })
   },);
 
-  return <ViewProduct viewProduct={viewProduct} />
+  return <ViewProduct product = {viewProduct} />
 }

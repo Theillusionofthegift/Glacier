@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LogoBar from "./components/LogoBar";
 import LoginPage from './components/Login'
 import HomePage from './views/HomePage';
-import ViewProductPage from './views/ViewProductPage'
+import ViewProductDetail from './components/viewProduct/ViewProductDetail'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <LoginPage />
         </Route>
         <Route path="/product/:id">
-          <ViewProductPage />
+          <ViewProductDetail />
         </Route>
         <Route path="/">
           <HomePage />
