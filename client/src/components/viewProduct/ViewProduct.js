@@ -48,13 +48,15 @@ function ViewProduct(props) {
                 
             </div>
             <div className="basicDescription">
-                <h2>Price $ </h2>
+                <h2>Price $ {props.viewProduct.price}</h2>
                 <div className="messageButton">
                     <Button type="button">Send Message!</Button>
                 </div>
             </div>
             <div className="detailedDescription">
-                <p>Long Description Here</p>
+                <p>Product Name {props.viewProduct.name}</p>
+                <p>Long Description Here {props.viewProduct.description}</p>
+
 
             </div>
         </div>

@@ -1,5 +1,5 @@
 import './ViewProductPage.css';
-import ViewProduct from '../components/viewProduct/ViewProductProvider'
+import ViewProduct from '../components/viewProduct/ViewProductDetail'
 
 function ViewProductPage() {
     return (
