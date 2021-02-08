@@ -1,4 +1,17 @@
-.view{
+.basicDescription{
     display:flex;
     justify-content:center;
+    margin: 50px;
+}
+
+.detailedDescription{
+    display:flex;
+    justify-content:center;
+    margin: 50px;
+}
+
+.carousel{
+    display:flex;
+    justify-content:center;
+    margin-top: 20px;
 }
