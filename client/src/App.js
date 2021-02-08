@@ -4,6 +4,7 @@ import LogoBar from "./components/navbar/LogoBar";
 import LoginPage from './components/Login'
 import HomePage from './views/HomePage';
 import CreateProduct from './views/CreateProductDescription'
+import MessageVeiw from './views/MessageView'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
     <BrowserRouter>
       <LogoBar />
       <Switch>
-      <Route path="/Signup">
+      <Route path="/message">
+        <MessageVeiw />
         </Route>
       <Route path="/Login">
           <LoginPage />
