@@ -10,8 +10,8 @@ import './outfit.css';
 
 export default function CreateProductDescription(props){
     return(
-        <div>
-            <h1 className="title">Sell Your Item Now! Right Now!!</h1>
+        <div className="wrapper">
+            <h1 className="title">Sell Your Item Now!</h1>
             <img className="image" src={product} alt='product'/>
             <div className="outfit">
                 <InputGroup className="mb-3">
