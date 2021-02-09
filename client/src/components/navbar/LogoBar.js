@@ -4,10 +4,12 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
+import {useAuth0} from '@auth0/auth0-react';
+import AuthenticationButton from '../../components/AuthenticationButton'
 import logo from '../../images/glacier.png'
 
 export default function LogoBar(props) {
-  return (
+  return ( 
     <>
       <Navbar bg="primary" variant="dark">
         <Navbar.Brand href="/" className='px-5'>
@@ -17,10 +19,14 @@ export default function LogoBar(props) {
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-light">Search</Button>
         </Form>
+
         <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
+          <Nav.Link href="/">Home</Nav.Link>
+          <AuthenticationButton />
+
           <Nav.Link href="/Sell">Sell</Nav.Link>
-          <Nav.Link href="/Login">Log In</Nav.Link>
         </Nav>
+
 
       </Navbar>
     </>
