@@ -21,7 +21,6 @@ function App() {
         <Route path="/product/:id">
           <ViewProductDetail />
         </Route>
-        <Route path="/">
       <Route path="/Sell">
           <CreateProduct />
       </Route>
