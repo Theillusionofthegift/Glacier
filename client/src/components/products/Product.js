@@ -16,7 +16,7 @@ function Product(props) {
     </Card.Text>
       </Card.Body>
       <Card.Body>
-        <Card.Link href="#">Message</Card.Link>
+        <Card.Link href="/message">Message</Card.Link>
         <Card.Link href={`/product/${props.products.id}`}>Product Description</Card.Link>
       </Card.Body>
     </Card>
