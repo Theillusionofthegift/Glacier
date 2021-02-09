@@ -4,9 +4,8 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
-import logo from '../images/glacier.png'
 import {useAuth0} from '@auth0/auth0-react';
-import AuthenticationButton from '../components/AuthenticationButton'
+import AuthenticationButton from '../../components/AuthenticationButton'
 import logo from '../../images/glacier.png'
 
 export default function LogoBar(props) {
