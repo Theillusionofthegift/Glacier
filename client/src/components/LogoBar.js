@@ -23,7 +23,6 @@ export default function LogoBar(props) {
 
         <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/Signup">Sign Up</Nav.Link>
           <AuthenticationButton />
 
         </Nav>
