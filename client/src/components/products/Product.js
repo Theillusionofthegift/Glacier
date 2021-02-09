@@ -1,5 +1,4 @@
 import { React } from 'react'
-import './ProductDisplay.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Card from 'react-bootstrap/Card'
 import logo from '../../images/product.png'
