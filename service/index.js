@@ -17,7 +17,7 @@ const mongoose = require('mongoose');
 
 const user = process.env.MONGO_USER;
 const password = process.env.MONGO_PASS;
-const mongoDB = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@cluster0.qkr4a.mongodb.net/Glacier?retryWrites=true&w=majority`;
+const mongoDB = `mongodb+srv://${user}:${password}@cluster0.qkr4a.mongodb.net/Glacier?retryWrites=true&w=majority`;
 mongoose
   .connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(
