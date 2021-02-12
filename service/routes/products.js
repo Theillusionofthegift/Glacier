@@ -2,43 +2,35 @@ const express = require('express');
 const productsRouter = express.Router();
 
 const Data = require('../data/mockData');
+const Product = require('../models/product')
 
 
 productsRouter.route('/')
     .get((req, res, next) => {
-        res.json(Data.productList);
+        Product.find({}, (err, products) => {
+            if (err) {next("Something Went Wrong!")}
+            else { res.send(products)}
+        })
     })
     .post((req, res, next) => {
-
-        const search = Data.productList.filter((param) => {
-            return req.body.id === param.id;
-        })
-
-        if (search.length == 0) {
-            //if not found then create product
-            res.sendStatus(201);
-        } else {
-            //if found then item is a duplicate and shouldnt be created
-            res.status(409);
+        if (err) {next("Something Went Wrong!")}
+        if(req.body) {
+    
         }
 
-        next("Product Already Exists")
     });
 
 productsRouter.route('/:id')
     .get((req, res, next) => {
-        const match = Data.productList.filter((param) => {
-            return req.params['id'] === param.id;
-        })
-        if (match.length === 1) {
-            //if found then send the match to the client with status code
-            res.status(200).send(match[0]);
-        } else {
-            //if not then send not found status code
-            res.sendStatus(404);
-        }
-        next("an error")
+        Product.findById(req.params.id, (err, products) => {
+            if (err) { next(err) }
+            // if event is not null, it has been found
+            else if (products) { res.send(products) }
+            // on the other hand, if it is null...
+            else { res.sendStatus(404) }
+          })
     })
+    
     .put((req, res, next) => { 
         const search = Data.productList.filter((param) =>{
             return req.params['id'] === param.id;
