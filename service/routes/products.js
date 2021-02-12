@@ -28,30 +28,14 @@ productsRouter.route('/:id')
     })
     
     .put((req, res, next) => { 
-        const search = Data.productList.filter((param) =>{
-            return req.params['id'] === param.id;
+        const options = {validate: true};
+        Product.findByIdAndUpdate(req.params.id, req.body,options, (err, product) => {
+            if (err) {next('Something Went Wrong!')}
+            else {res.status(200).send(product) }
         })
-        if (search.length != 0) {
-            //if found then update that product 
-            res.sendStatus(204);
-        } else {
-            //if not then send not found status code
-            res.sendStatus(404);
-        }
-        next("an error")
     })
     .delete((req, res, next) => {
-        const search = Data.productList.filter((param) =>{
-            return req.params['id'] === param.id;
-        })
-        if (search.length != 0) {
-            //if found then delete
-            res.sendStatus(204);
-        } else {
-            //if not then send not found status code
-            res.sendStatus(404);
-        }
-        next("an error")
+
     });
 
 module.exports = productsRouter;
