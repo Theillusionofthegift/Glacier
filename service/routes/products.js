@@ -3,6 +3,7 @@ const productsRouter = express.Router();
 
 const Data = require('../data/mockData');
 const Product = require('../models/product')
+const productController = require('../controllers/productController')
 
 
 productsRouter.route('/')
@@ -12,13 +13,8 @@ productsRouter.route('/')
             else { res.send(products)}
         })
     })
-    .post((req, res, next) => {
-        if (err) {next("Something Went Wrong!")}
-        if(req.body) {
-    
-        }
+    .post(productController.createProduct);
 
-    });
 
 productsRouter.route('/:id')
     .get((req, res, next) => {
