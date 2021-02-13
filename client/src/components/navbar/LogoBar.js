@@ -12,7 +12,7 @@ export default function LogoBar(props) {
   return ( 
     <>
       <Navbar bg="primary" variant="dark">
-        <Navbar.Brand href="/" className='px-5'>
+        <Navbar.Brand as={Link} to="/" className='px-5'>
           <img alt="" src = {logo} width="30" height="30" className="d-inline-block align-top"></img> {' '} Glacier
         </Navbar.Brand>
         <Form inline className="mx-auto">

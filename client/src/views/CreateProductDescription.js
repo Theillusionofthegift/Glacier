@@ -20,6 +20,7 @@ export default function CreateProduct() {
 
     const [productFormValues, setProductFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
+    const { user } = useAuth0();   
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -40,7 +41,7 @@ export default function CreateProduct() {
             data: {
                 prodName: productFormValues.prodName,
                 price: productFormValues.price,
-                seller: productFormValues.seller,
+                seller: user.email,
                 description: productFormValues.description,
                 categories: productFormValues.categories,
             },
