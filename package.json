@@ -2,7 +2,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm ./client/start",
-    "service": "mpn ./service/start",
+    "service": "npm ./service/start",
     "start": "concurrently \"npm client\" \"npm service""
   },
   "dependencies": {
