@@ -2,6 +2,7 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 import image from '../../images/product.jpg';
+import {Link} from 'react-router-dom'
 import './ViewProduct.css';
 
 function ViewProduct(props) {
@@ -50,7 +51,7 @@ function ViewProduct(props) {
             <div className="basicDescription">
                 <h2>{props.product.name} ${props.product.price} </h2>
                 <div className="messageButton">
-                    <Button type="button" href='/message'>Send Message!</Button>
+                    <Button type="button" as={Link} to='/message'>Send Message!</Button>
                 </div>
             </div>
             <div className="detailedDescription">
