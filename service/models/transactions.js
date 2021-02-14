@@ -6,7 +6,7 @@ const transactionsSchema = new mongoose.Schema({
     seller: String,
     buyer: String,
     saleDate: { type: Date, default: Date.now }
-    });
+});
 
 
 const Transaction = mongoose.model('transactions', transactionsSchema);
