@@ -6,11 +6,11 @@ const types = {
 }
 
 const userSchema = new mongoose.Schema({
-    userName:  {type: String, required: true},
     userType: {
       type: String,
       default: types.USER,
       enum:[types.USER, types.ADMIN]},
+    userName:  {type: String, required: true},
     email: {type: String, required: true},
     firstName: String,
     lastName: String,

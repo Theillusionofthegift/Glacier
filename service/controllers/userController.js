@@ -12,6 +12,8 @@ exports.createUser = (req, res, next) => {
     // make sure email isn't blank
     if (req.body.email.trim().length === 0) {
         res.status(400).send({error:"Email cannot be blank"});
+    } else if (req.body.email != /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) {
+        res.status(400).send({error:"Please enter a valid email address"});
     }
 
     const user = {

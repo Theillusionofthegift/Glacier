@@ -10,7 +10,7 @@ const cors = require('cors');
 
 const productsRouter = require('./routes/products');
 const transRouter = require('./routes/transactions');
-const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/usersRouter');
 
 // Setting up mongoose connection
 const mongoose = require('mongoose');

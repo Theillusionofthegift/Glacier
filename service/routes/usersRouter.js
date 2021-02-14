@@ -2,7 +2,8 @@ const express = require('express');
 const userRoutes = express.Router();
 
 const Data = require('../data/mockData');
-
+const User = require('../models/product')
+const userController = require('../controllers/userController')
 
 userRoutes.route('/')
     .get((req, res, next) => 
