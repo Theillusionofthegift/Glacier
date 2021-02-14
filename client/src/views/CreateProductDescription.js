@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { Redirect } from "react-router-dom";
-import {useAuth0} from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
-import {InputGroup,FormControl,Button,Form} from 'react-bootstrap';
+import { InputGroup, FormControl, Button, Form } from 'react-bootstrap';
 import product from '../images/product.jpg';
 import './outfit.css';
 
@@ -20,7 +20,10 @@ export default function CreateProduct() {
 
     const [productFormValues, setProductFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
-    const { user } = useAuth0();   
+    const { user} = useAuth0();
+
+
+
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -41,7 +44,7 @@ export default function CreateProduct() {
             data: {
                 prodName: productFormValues.prodName,
                 price: productFormValues.price,
-                seller: user.email,
+                seller: user.sub,
                 description: productFormValues.description,
                 categories: productFormValues.categories,
             },
@@ -56,6 +59,7 @@ export default function CreateProduct() {
                 console.log(`We should really handle the error: ${err}`);
             });
     };
+
 
     if (success) {
         return <Redirect to="/" />;
@@ -104,7 +108,7 @@ export default function CreateProduct() {
                             name="description"
                             value={productFormValues.description}
                             onChange={handleInputChange}
-                            />
+                        />
                     </InputGroup>
 
                     <InputGroup className="mb-3">
