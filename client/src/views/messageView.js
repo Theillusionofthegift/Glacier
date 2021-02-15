@@ -60,13 +60,13 @@ function MessageView() {
         <Container className="pt-5">
             <MessageProvider />
             <InputGroup className="mb-3">
-                <FormControl>
-                    placeholder=Your Message Here...
-                    aria-label=message 
-                    aria-describedby=basic-addon2
-                    name=message
+                <FormControl
+                    placeholder="Your Message Here..."
+                    aria-label="message" 
+                    aria-describedby="basic-addon2"
+                    name="message"
                     onChange={handleInputChange}
-                </FormControl>
+                />
                 <InputGroup.Append>
                     <Button 
                     variant="outline-secondary"
