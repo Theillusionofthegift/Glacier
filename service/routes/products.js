@@ -40,7 +40,7 @@ productsRouter.route('/:id')
         })
     })
     .delete((req, res, next) => {
-        User.findByIdAndDelete(req.params.id, (err, user) => {
+        Product.findByIdAndDelete(req.params.id, (err, user) => {
             if (err) { next(err) }
             else if (user) {
                 res.sendStatus(204);
