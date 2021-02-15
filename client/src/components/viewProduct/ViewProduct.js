@@ -49,7 +49,7 @@ function ViewProduct(props) {
                 
             </div>
             <div className="basicDescription">
-                <h2>{props.product.name} ${props.product.price} </h2>
+                <h2>{props.product.prodName} ${props.product.price} </h2>
                 <div className="messageButton">
                     <Button type="button" as={Link} to='/message'>Send Message!</Button>
                 </div>
