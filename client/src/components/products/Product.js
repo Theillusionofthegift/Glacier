@@ -11,7 +11,7 @@ function Product(props) {
     <Card style={{ width: '18rem' }} className= "mx-3">
       <Card.Img variant="top" src={logo} />
       <Card.Body>
-        <Card.Title>{props.products.name}  ${props.products.price}</Card.Title>
+        <Card.Title>{props.products.prodName}  ${props.products.price}</Card.Title>
         <Card.Text>
           {props.products.description}
     </Card.Text>
