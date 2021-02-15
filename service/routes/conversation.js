@@ -1,19 +1,34 @@
 const express = require('express');
 const conversationRouter = express.Router();
-
-const conversationController = require('../controllers/conversationController');
-const conversation = require('../models/conversations');
+const Conversation = require('../models/conversations');
 
 conversationRouter.route('/:id')
     .get((req, res, next)=>{
-        conversation.find(req.params.id, (err,conversation)=>{
+        Conversation.findById(req.params.id, (err,conversation)=>{
             if (err){next(err)}
             // found the conversation
-            else if(products){res.send(conversation)}
+            else if(conversation){res.send(conversation)}
             else{res.sendStatus(404)}
         })
     })
 
-    .post((req, res, next)=>{
-        const search =
+    .post((req, res, next) =>{
+        const options = { validate: true };
+        Conversation.findById(req.params.id, (err,conversation)=>{
+            if (err){next(err)}
+            else if (conversation) {
+                conversation.messages.push(req.body)
+                Conversation.findByIdAndUpdate(conversation._id, conversation, options, (err, convo) => {
+                    if (err) {
+                        next('Something Went Wrong!')
+                    } else {
+                       res.sendStatus(201);
+                    }
+                })
+            } else {
+                res.sendStatus(404);
+            }
+        })
     })
+
+module.exports = conversationRouter;
