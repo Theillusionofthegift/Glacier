@@ -5,7 +5,7 @@ import LogoBar from "./components/navbar/LogoBar";
 import HomePage from './views/HomePage';
 import ViewProductDetail from './components/viewProduct/ViewProductDetail'
 import CreateProduct from './views/CreateProductDescription'
-import MessageView from './views/messageView'
+import MessageView from './views/MessageView'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <LogoBar />
       <Switch>
-        <Route path="/message">
+        <Route path="/conversation/:id">
           <MessageView />
         </Route>
         <Route path="/product/:id">
