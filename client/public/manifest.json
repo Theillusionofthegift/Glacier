@@ -1,6 +1,8 @@
 {
+
   "short_name": "Glacier",
   "name": "Glacier",
+
   "icons": [
     {
       "src": "favicon.ico",

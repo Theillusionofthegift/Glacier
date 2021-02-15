@@ -1,10 +1,11 @@
+
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LogoBar from "./components/navbar/LogoBar";
-import LoginPage from './components/Login'
 import HomePage from './views/HomePage';
+import ViewProductDetail from './components/viewProduct/ViewProductDetail'
 import CreateProduct from './views/CreateProductDescription'
-import MessageVeiw from './views/MessageView'
+import MessageView from './views/messageView'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -12,16 +13,16 @@ function App() {
     <BrowserRouter>
       <LogoBar />
       <Switch>
-      <Route path="/message">
-        <MessageVeiw />
+        <Route path="/message">
+          <MessageView />
         </Route>
-      <Route path="/Login">
-          <LoginPage />
+        <Route path="/product/:id">
+          <ViewProductDetail />
         </Route>
-      <Route path="/Sell">
+        <Route path="/Sell">
           <CreateProduct />
-      </Route>
-      <Route path="/">
+        </Route>
+        <Route path="/">
           <HomePage />
         </Route>
       </Switch>
@@ -30,3 +31,4 @@ function App() {
 }
 
 export default App;
+
