@@ -6,46 +6,30 @@ const User = require('../models/product')
 const userController = require('../controllers/userController')
 
 userRoutes.route('/')
-    .get((req, res, next) => 
-    {
-        res.json(Data.userList);
-    })
-
-    .post((req, res, next) => {
-
-        const search = Data.userList.filter((param) => {
-            return req.body.id === param.id;
+    .get((req, res, next) => {
+        User.find({}, (err, users) => {
+            if(err) {
+                next("Something Went Wrong!")
+            } else {
+                res.send(users)
+            }
         })
-
-        if (search.length == 0) {
-            //if not found then create user
-            res.sendStatus(201);
-        } else {
-            //if found then item is a duplicate and shouldnt be created
-            res.status(409);
-        }
-
-        next("User Already Exists")
-    });
-
+    })
+    .post(userController.createUser);
 
 userRoutes.route('/:id')
-    .get((req, res, next) => 
-    {
-        const match = Data.userList.filter((param) => {
-            return req.params['id'] === param.id;
+    .get((req, res, next) => {
+        User.findById(req.params.id, (err, users) => {
+            if(err) {
+                next(err)
+            } else if (users) {
+                // if user id found, return user
+                res.send(users)
+            } else {
+                // user id not found
+                res.sendStatus(404) 
+            }
         })
-
-
-        if(match.length === 1) 
-        {
-            res.status(200).send(match[0]);
-        }
-        else 
-        {
-            res.sendStatus(404);
-        }
-
     })
     .put((req, res, next) => 
     {
@@ -83,4 +67,4 @@ userRoutes.route('/:id')
     });
 
 
-module.exports = userRoutes;
+module.exports = usersRouter;
