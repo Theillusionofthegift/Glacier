@@ -2,25 +2,19 @@ const express = require('express');
 const transactionsRouter = express.Router();
 
 const Data = require('../data/mockData');
+const Transaction = require('../models/transactions');
+const transactionController = require('../controllers/transactionController');
+
+
 
 transactionsRouter.route('/')
-
     .get((req, res, next) => {
-        res.json(Data.transactionList);
+        Transaction.find({}, (err, transactions) => {
+            if(err) { next("Something went wrong") }
+            else { res.send(transactions) }
+        })
     })
-
-    .post((req, res, next) => {
-        if (req.body.id == undefined) {
-            //if req body is empty then send bad request error code
-            res.sendStatus(400);
-            
-        } else {
-            // create a new transaction and send CREATED status code
-            res.sendStatus(201); 
-        }
-
-        next("Request body cannot be empty!")
-    });
+    .post(transactionController.createTransaction);
 
 transactionsRouter.route('/:id')
 
