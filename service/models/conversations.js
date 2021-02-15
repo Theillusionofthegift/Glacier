@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const chatMessageSchema = new mongoose.Schema({
   user: String,        
-  timestamp: Date,      
+  timestamp: { type: Date, default: Date.now },   
   message: String,     
 });
 
@@ -11,6 +11,6 @@ const conversationSchema = new mongoose.Schema({
   messages: [chatMessageSchema] 
 });
 
-const Conversation = mongoose.Model('Conversation', conversationSchema);
+const Conversation = mongoose.model('Conversation', conversationSchema);
 
 module.exports = Conversation;

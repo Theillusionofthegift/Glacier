@@ -11,9 +11,11 @@ const cors = require('cors');
 const productsRouter = require('./routes/products');
 const transRouter = require('./routes/transactions');
 const usersRouter = require('./routes/users');
+const conversationRouter = require('./routes/conversation');
 
 // Setting up mongoose connection
 const mongoose = require('mongoose');
+const Conversation = require("./models/conversations");
 
 const user = process.env.MONGO_USER;
 const password = process.env.MONGO_PASS;
@@ -38,6 +40,7 @@ app.use(express.json())
 app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/transactions', transRouter);
+app.use('/api/v1/conversation', conversationRouter);
 
 
 app.listen(port, () => {
