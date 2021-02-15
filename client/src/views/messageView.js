@@ -1,17 +1,17 @@
-import React, { useState } from "react"
-import { useAuth0 } from '@auth0/auth0-react'
-import Container from 'react-bootstrap/Container'
-import axios from "axios";
-import MessageProvider from '../components/messages/MessageProvider'
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
-import Button from 'react-bootstrap/Button'
+import React, { useState } from react
+import { useAuth0 } from '@auth0auth0-react'
+import Container from 'react-bootstrapContainer'
+import axios from axios;
+import MessageProvider from '..componentsmessagesMessageProvider'
+import InputGroup from 'react-bootstrapInputGroup'
+import FormControl from 'react-bootstrapFormControl'
+import Button from 'react-bootstrapButton'
 
 function MessageView() {
 
     const defaultMessageValues = {
-        user: "",
-        message: ""
+        user: "" ,
+        message: "" 
     };
 
     const [messageValues, setMessageValues] = useState(defaultMessageValues);
@@ -35,13 +35,13 @@ function MessageView() {
         event.preventDefault();
         const { id } = useParams();
         const requestConfig = {
-            url: `http://localhost:4000/api/v1/conversations/${id}`,
-            method: "post",
-            headers: { "Content-Type": "application/json" },
+            url: `httplocalhost:4000/api/v1/conversations/${id}`,
+            method: post,
+            headers: { "Content-Type": "application-json" },
             data: {
                 user: user.sub,
                 message: messageValues.message
-            },
+            }
         };
 
         axios(requestConfig)
@@ -50,7 +50,7 @@ function MessageView() {
                 console.log(`Item Created ${response.data}`);
             })
             .catch((err) => {
-                console.log(`We should really handle the error: ${err}`);
+                console.log(`We should really handle the error ${err}`);
             });
     };
 
@@ -60,13 +60,13 @@ function MessageView() {
         <Container className="pt-5">
             <MessageProvider />
             <InputGroup className="mb-3">
-                <FormControl
-                    placeholder="Your Message Here..."
-                    aria-label="message "
-                    aria-describedby="basic-addon2"
-                    name="message"
+                <FormControl>
+                    placeholder=Your Message Here...
+                    aria-label=message 
+                    aria-describedby=basic-addon2
+                    name=message
                     onChange={handleInputChange}
-                />
+                </FormControl>
                 <InputGroup.Append>
                     <Button 
                     variant="outline-secondary"
