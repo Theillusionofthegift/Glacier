@@ -1,8 +1,7 @@
 const express = require('express');
 const userRoutes = express.Router();
 
-const Data = require('../data/mockData');
-const User = require('../models/product')
+const User = require('../models/users')
 const userController = require('../controllers/userController')
 
 userRoutes.route('/')
@@ -31,39 +30,31 @@ userRoutes.route('/:id')
             }
         })
     })
-    .put((req, res, next) => 
-    {
-        const s = Data.userList.filter((param) => {
-            return req.params['id'] === param.id;
+    .put((req, res, next) => {
+        const options = {validate: true};
+        User.findByIdAndUpdate(req.params.id, req.body, options, (err, user) => {
+            if(err) {
+                // if user id not found, sent message
+                next('Something Went Wrong!')
+            } else {
+                // if user id found, send user
+                User.findById(req.params.id, (err, user) => {
+                    res.send(user)
+                })
+            }
         })
-
-        if(s.length != 0) 
-        {
-            //update the user
-            res.sendStatus(204);
-        }
-        else 
-        {
-            //the user is not found send appropriate status
-            res.sendStatus(404);
-        }
-
     })
-    .delete((req, res, next) => 
-    {
-        const s = Data.userList.filter((param) => {
-            return req.params['id'] === param.id;
+    .delete((req, res, next) => {
+        User.findByIdAndDelete(req.params.id, (err, user) => {
+            if(err) {
+                next(err)
+            } else if (user) {
+                res.sendStatus(204);
+            } else {
+                // if user id not found, send message
+                res.status(404).send({error: `Couldn't find user with id ${req.params.id}`};
+            }
         })
-
-        if(s.length != 0) 
-        {
-            //if the user is found then delete it
-            res.sendStatus(204);
-        }
-        else 
-        {
-            res.sendStatus(404);
-        }
     });
 
 
