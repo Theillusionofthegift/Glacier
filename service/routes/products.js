@@ -1,7 +1,5 @@
 const express = require('express');
 const productsRouter = express.Router();
-
-const Data = require('../data/mockData');
 const Product = require('../models/product')
 const productController = require('../controllers/productController')
 
