@@ -43,7 +43,7 @@ productsRouter.route('/:id')
             else if (user) {
                 res.sendStatus(204);
             } else {
-                res.status(404).send({ error: `Couldn't find user with id ${req.params.id}` });
+                res.status(404).send({ error: `Couldn't find product with id ${req.params.id}` });
             }
         });
     })
