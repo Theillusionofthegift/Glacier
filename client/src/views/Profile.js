@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
 import { InputGroup, FormControl, Button, Form } from 'react-bootstrap';
-import profile from '../images/product.png';
+import profile from '../images/userProfile.jpg';
 import './outfit.css';
 
 const defaultFormValues = {
