@@ -78,7 +78,6 @@ export default function CreateProfile() {
                         />
                     </InputGroup>
 
-
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text>First Name</InputGroup.Text>
