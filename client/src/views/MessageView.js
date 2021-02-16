@@ -1,11 +1,12 @@
 import React, { useState } from "react"
-import { useAuth0 } from '@auth0auth0-react'
-import Container from 'react-bootstrapContainer'
+import { useAuth0, withAuth0 } from "@auth0/auth0-react"
+import Container from 'react-bootstrap/Container'
 import axios from "axios";
-import MessageProvider from '..componentsmessagesMessageProvider'
-import InputGroup from 'react-bootstrapInputGroup'
-import FormControl from 'react-bootstrapFormControl'
-import Button from 'react-bootstrapButton'
+import {useParams} from 'react-router-dom'
+import MessageProvider from '../components/messages/MessageProvider'
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+import Button from 'react-bootstrap/Button'
 
 function MessageView() {
 
@@ -28,15 +29,15 @@ function MessageView() {
             ...messageValues,
             [name]: value,
         });
-        console.log(productFormValues);
+        console.log(messageValues);
     };
 
+    const { id } = useParams();
     const handleSubmit = (event) => {
         event.preventDefault();
-        const { id } = useParams();
         const requestConfig = {
             url: `httplocalhost:4000/api/v1/conversations/${id}`,
-            method: post,
+            method: "post",
             headers: { "Content-Type": "application-json" },
             data: {
                 user: user.sub,
@@ -80,4 +81,4 @@ function MessageView() {
     );
 }
 
-export default MessageView;
+export default withAuth0(MessageView);
