@@ -1,7 +1,7 @@
-import React, { useState } from react
+import React, { useState } from "react"
 import { useAuth0 } from '@auth0auth0-react'
 import Container from 'react-bootstrapContainer'
-import axios from axios;
+import axios from "axios";
 import MessageProvider from '..componentsmessagesMessageProvider'
 import InputGroup from 'react-bootstrapInputGroup'
 import FormControl from 'react-bootstrapFormControl'
