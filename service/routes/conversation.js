@@ -1,4 +1,4 @@
-import conversationController from '../controller/conversationController'
+const conversationContoller = require( '../controllers/conversationController')
 const express = require('express');
 const conversationRouter = express.Router();
 const Conversation = require('../models/conversations');
