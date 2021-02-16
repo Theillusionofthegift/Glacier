@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LogoBar from "./components/navbar/LogoBar";
-import HomePage from './views/HomePage';
+import HomePage from './views/Profile';
 import ViewProductDetail from './components/viewProduct/ViewProductDetail'
 import CreateProduct from './views/CreateProductDescription'
 import MessageView from './views/MessageView'
