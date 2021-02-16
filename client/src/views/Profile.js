@@ -33,7 +33,7 @@ export default function CreateProfile() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const requestConfig = {
-            url: "http://localhost:4000/api/v1/users",
+            url: "http://localhost:4000/api/v1/userRouter",
             method: "post",
             headers: { "Content-Type": "application/json" },
             data: {
