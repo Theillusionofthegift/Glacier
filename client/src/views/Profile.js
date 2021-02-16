@@ -33,13 +33,13 @@ export default function CreateProfile() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const requestConfig = {
-            url: "http://localhost:4000/api/v1/userRouter",
+            url: "http://localhost:4000/api/v1/users",
             method: "post",
             headers: { "Content-Type": "application/json" },
             data: {
                 auth0Id: user.sub,
                 userName: profileFormValues.userName,
-                email: profileFormValues.email,
+                email: user.email,
                 firstName: profileFormValues.firstName,
                 lastName: profileFormValues.lastName,
                 bio: profileFormValues.bio,
@@ -74,20 +74,6 @@ export default function CreateProfile() {
                             aria-describedby="basic-addon1"
                             name="userName"
                             value={profileFormValues.userName}
-                            onChange={handleInputChange}
-                        />
-                    </InputGroup>
-
-                    <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>Email</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl
-                            placeholder="Email"
-                            aria-label="Email"
-                            aria-describedby="basic-addon1"
-                            name="email"
-                            value={profileFormValues.email}
                             onChange={handleInputChange}
                         />
                     </InputGroup>
