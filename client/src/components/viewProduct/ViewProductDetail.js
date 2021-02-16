@@ -10,7 +10,7 @@ export default function ViewProductDetail() {
   const { id } = useParams();
   useEffect(() => {
     const config = {
-      url: `http://localhost:4000/api/v1/products/${id}`,
+      url: `http://localhost:4000/api/v1/productRouter/${id}`,
       method: 'GET',
       headers: { "Content-Type": "application/json" },
     }

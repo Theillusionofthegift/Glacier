@@ -8,10 +8,10 @@ require('dotenv').config({ path: '.env' });
 const morgan = require('morgan');
 const cors = require('cors');
 
-const productsRouter = require('./routes/products');
-const transRouter = require('./routes/transactions');
-const usersRouter = require('./routes/users');
-const conversationRouter = require('./routes/conversation');
+const productsRouter = require('./routes/productRouter');
+const transRouter = require('./routes/transactionRouter');
+const usersRouter = require('./routes/userRouter');
+const conversationRouter = require('./routes/conversationRouter');
 
 // Setting up mongoose connection
 const mongoose = require('mongoose');
@@ -37,10 +37,10 @@ app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json())
 
-app.use('/api/v1/products', productsRouter);
-app.use('/api/v1/users', usersRouter);
-app.use('/api/v1/transactions', transRouter);
-app.use('/api/v1/conversation', conversationRouter);
+app.use('/api/v1/productRouter', productsRouter);
+app.use('/api/v1/userRouter', usersRouter);
+app.use('/api/v1/transactionRouter', transRouter);
+app.use('/api/v1/conversationRouter', conversationRouter);
 
 
 app.listen(port, () => {
