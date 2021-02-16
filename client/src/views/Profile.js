@@ -7,6 +7,7 @@ import profile from '../images/userProfile.jpg';
 import './outfit.css';
 
 const defaultFormValues = {
+    auto0Id: "",
     userName: "",
     email: "",
     firstName: "",
@@ -17,7 +18,7 @@ const defaultFormValues = {
 export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
-    const { user} = useAuth0();
+    const {user} = useAuth0();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -36,6 +37,7 @@ export default function CreateProfile() {
             method: "post",
             headers: { "Content-Type": "application/json" },
             data: {
+                auth0Id: user.sub,
                 userName: profileFormValues.userName,
                 email: profileFormValues.email,
                 firstName: profileFormValues.firstName,
