@@ -20,7 +20,7 @@ exports.createUser = (req, res, next) => {
         res.status(400).send({error:"Please enter a valid email address"});
     } else {
         const user = {
-            auth0ID: req.body.id,
+            auth0Id: req.body.auth0Id,
             userName: req.body.userName,
             email: req.body.email,
             firstName: req.body.firstName,
