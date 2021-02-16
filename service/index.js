@@ -8,10 +8,10 @@ require('dotenv').config({ path: '.env' });
 const morgan = require('morgan');
 const cors = require('cors');
 
-const productsRouter = require('./routes/products');
-const transRouter = require('./routes/transactions');
-const usersRouter = require('./routes/users');
-const conversationRouter = require('./routes/conversation');
+const productsRouter = require('./routes/productsRouter');
+const transRouter = require('./routes/transactionsRouter');
+const usersRouter = require('./routes/usersRouter');
+const conversationRouter = require('./routes/conversationRouter');
 
 // Setting up mongoose connection
 const mongoose = require('mongoose');
