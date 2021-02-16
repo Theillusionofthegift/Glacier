@@ -39,7 +39,7 @@ export default function CreateProfile() {
             data: {
                 auth0Id: user.sub,
                 userName: profileFormValues.userName,
-                email: profileFormValues.email,
+                email: user.email,
                 firstName: profileFormValues.firstName,
                 lastName: profileFormValues.lastName,
                 bio: profileFormValues.bio,
@@ -78,19 +78,6 @@ export default function CreateProfile() {
                         />
                     </InputGroup>
 
-                    <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>Email</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl
-                            placeholder="Email"
-                            aria-label="Email"
-                            aria-describedby="basic-addon1"
-                            name="email"
-                            value={profileFormValues.email}
-                            onChange={handleInputChange}
-                        />
-                    </InputGroup>
 
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
