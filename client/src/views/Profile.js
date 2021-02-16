@@ -14,7 +14,7 @@ const defaultFormValues = {
     bio: "",
 };
 
-export default function CreateProduct() {
+export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
     const { user} = useAuth0();
