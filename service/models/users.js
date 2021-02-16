@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     dateJoined: { type: Date, default: Date.now },
-    active: {type: Boolean, required: true},
+    active: {type: Boolean, default: true},
     bio: String
   });
 
