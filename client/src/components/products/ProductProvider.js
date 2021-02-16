@@ -29,7 +29,7 @@ class ProductProvider extends React.Component {
     console.log("[ProductProvider] componentDidMount, great for making the first network calls");
 
     const requestConfig = {
-      url: "http://localhost:4000/api/v1/productRouter/",
+      url: "http://localhost:4000/api/v1/products/",
       method: "get",
       headers: { "Content-Type": "application/json"}
     };
