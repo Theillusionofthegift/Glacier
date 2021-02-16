@@ -25,6 +25,7 @@ export default function LogoBar(props) {
           <AuthenticationButton />
 
           <Nav.Link as={Link} to="/Sell">Sell</Nav.Link>
+          <Nav.Link as={Link} to="/Profile">Profile</Nav.Link>
         </Nav>
 
 
