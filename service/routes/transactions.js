@@ -19,52 +19,13 @@ transactionsRouter.route('/')
 transactionsRouter.route('/:id')
 
     .get((req, res, next) => {
-        const matchingTransaction = Data.transactionList.filter((t) => {
-            return req.params['id'] === t.id;
-        })
-
-        if (matchingTransaction.length === 1) {
-            // if matching transaction if found, 
-            // return transaction and OK status code
-            res.send(matchingTransaction[0]); 
-            res.sendStatus(200);
-        } else {
-            // if matching transaction not found, 
-            // return NOT FOUND status code
-            res.sendStatus(404);
-        }
+        Transaction.findById(req.params.id, (err, transactions) => {
+            if(err) { next("Something went wrong") }
+            else if (transactions) { res.send(transactions) }
+            else {res.sendStatus(404);}
     })
-
-    .put((req, res, next) => {
-        const searchResult = Data.transactionList.filter((t) => {
-            return req.params['id'] === t.id;
-        })
-
-        if (searchResult.length != 0) {
-            // if matching transaction if found, 
-            // update transaction and return OK status code
-            res.sendStatus(204);
-        } else {
-            // if matching transaction not found, 
-            // return NOT FOUND status code
-            res.sendStatus(404);
-        }
-    })
-
-    .delete((req, res, next) => {
-        const searchResult = Data.transactionList.filter((t) => {
-            return req.params['id'] === t.id;
-        })
-
-        if (searchResult.length != 0) {
-            // if matching transaction if found, 
-            // update transaction and return OK status code 
-            res.sendStatus(204);
-        } else {
-            // if matching transaction not found, 
-            // return NOT FOUND status code
-            res.sendStatus(404);
-        }
     });
+
+    //We dont want to update or delete transactions at this time!
 
 module.exports = transactionsRouter;
