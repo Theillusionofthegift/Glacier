@@ -1,85 +1,60 @@
 const express = require('express');
-const userRoutes = express.Router();
+const usersRouter = express.Router();
 
-const Data = require('../data/mockData');
+const User = require('../models/users')
+const userController = require('../controllers/userController')
 
-
-userRoutes.route('/')
-    .get((req, res, next) => 
-    {
-        res.json(Data.userList);
+usersRouter.route('/')
+    .get((req, res, next) => {
+        User.find({}, (err, users) => {
+            if(err) {
+                next("Something Went Wrong!")
+            } else {
+                res.send(users)
+            }
+        })
     })
+    .post(userController.createUser);
 
-    .post((req, res, next) => {
-
-        const search = Data.userList.filter((param) => {
-            return req.body.id === param.id;
+usersRouter.route('/:id')
+    .get((req, res, next) => {
+        User.findById(req.params.id, (err, users) => {
+            if(err) {
+                next(err)
+            } else if (users) {
+                // if user id found, return user
+                res.send(users)
+            } else {
+                // user id not found
+                res.sendStatus(404) 
+            }
         })
-
-        if (search.length == 0) {
-            //if not found then create user
-            res.sendStatus(201);
-        } else {
-            //if found then item is a duplicate and shouldnt be created
-            res.status(409);
-        }
-
-        next("User Already Exists")
-    });
-
-
-userRoutes.route('/:id')
-    .get((req, res, next) => 
-    {
-        const match = Data.userList.filter((param) => {
-            return req.params['id'] === param.id;
-        })
-
-
-        if(match.length === 1) 
-        {
-            res.status(200).send(match[0]);
-        }
-        else 
-        {
-            res.sendStatus(404);
-        }
-
     })
-    .put((req, res, next) => 
-    {
-        const s = Data.userList.filter((param) => {
-            return req.params['id'] === param.id;
+    .put((req, res, next) => {
+        const options = {validate: true};
+        User.findByIdAndUpdate(req.params.id, req.body, options, (err, user) => {
+            if(err) {
+                // if user id not found, send message
+                next('Something Went Wrong!')
+            } else {
+                // if user id found, send user
+                User.findById(req.params.id, (err, user) => {
+                    res.send(user)
+                })
+            }
         })
-
-        if(s.length != 0) 
-        {
-            //update the user
-            res.sendStatus(204);
-        }
-        else 
-        {
-            //the user is not found send appropriate status
-            res.sendStatus(404);
-        }
-
     })
-    .delete((req, res, next) => 
-    {
-        const s = Data.userList.filter((param) => {
-            return req.params['id'] === param.id;
+    .delete((req, res, next) => {
+        User.findByIdAndDelete(req.params.id, (err, user) => {
+            if(err) {
+                next(err)
+            } else if (user) {
+                // if user id is found, delete user and send status
+                res.sendStatus(204);
+            } else {
+                // if user id not found, send message
+                res.status(404).send({error: `Couldn't find user with that id ${req.params.id}`});
+            }
         })
-
-        if(s.length != 0) 
-        {
-            //if the user is found then delete it
-            res.sendStatus(204);
-        }
-        else 
-        {
-            res.sendStatus(404);
-        }
-    });
-
-
-module.exports = userRoutes;
+    })
+module.exports = usersRouter;
