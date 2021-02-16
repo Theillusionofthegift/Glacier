@@ -8,10 +8,10 @@ require('dotenv').config({ path: '../.env' });
 
 const mockData = require('./mockData');
 
-const Product = require('../models/product');
+const Conversation = require('../models/conversations');
 
-mockData.productList.forEach((product) => {
-  Product.create(product).catch(err => console.log(err));
+mockData.conversations.forEach((convo) => {
+  Conversation.create(convo).catch(err => console.log(err));
 });
 
 const user = process.env.MONGO_USER;
