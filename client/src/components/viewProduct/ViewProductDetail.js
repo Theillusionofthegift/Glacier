@@ -8,9 +8,7 @@ export default function ViewProductDetail() {
   const [ viewProduct, setEvent ] = useState(null);
 
   const { id } = useParams();
-  console.log('this is being called before useEffect');
   useEffect(() => {
-    console.log('useEffect is being called inside useEffect');
     const config = {
       url: `http://localhost:4000/api/v1/products/${id}`,
       method: 'GET',
