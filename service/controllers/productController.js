@@ -1,4 +1,3 @@
-const dateFns = require("date-fns");
 
 const Product = require("../models/product");
 

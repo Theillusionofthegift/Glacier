@@ -1,0 +1,28 @@
+.outfit{
+    top:50%;
+    left:50%;
+    position:absolute;
+    transform: translateX(-60%);
+}
+
+.title{
+    width: 50%;;
+    padding: 20px;
+    background-color:#011A38;
+    margin: auto;
+    color: white;
+    text-align: center;
+}
+
+.image{
+    width: 20%;
+    display: block;
+    align-content: center;
+    margin: auto;
+    padding: 20px;
+}
+
+.wrapper {
+    width: 75%;
+    margin: auto;
+}

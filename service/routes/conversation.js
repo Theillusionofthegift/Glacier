@@ -1,8 +1,14 @@
+const conversationContoller = require( '../controllers/conversationController')
 const express = require('express');
 const conversationRouter = express.Router();
 const Conversation = require('../models/conversations');
 
+
+conversationRouter.route('/')
+    .post(conversationContoller.createConversation)
+
 conversationRouter.route('/:id')
+     //find Conversation by _id
     .get((req, res, next)=>{
         Conversation.findById(req.params.id, (err,conversation)=>{
             if (err){next(err)}
@@ -11,7 +17,7 @@ conversationRouter.route('/:id')
             else{res.sendStatus(404)}
         })
     })
-
+    //add new message to the conversation via post.
     .post((req, res, next) =>{
         const options = { validate: true };
         Conversation.findById(req.params.id, (err,conversation)=>{
