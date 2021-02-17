@@ -32,7 +32,7 @@ class MessageProvider extends Component {
     console.log("[ProductProvider] componentDidMount, great for making the first network calls");
     const { id } = this.props.match.params;
     const requestConfig = {
-      url: `http://localhost:4000/api/v1/conversation/6029e765fb25eb4b341255a1`,
+      url: `http://localhost:4000/api/v1/conversation/${id}`,
       method: "get",
       headers: { "Content-Type": "application/json"}
     };
@@ -40,7 +40,7 @@ class MessageProvider extends Component {
     axios(requestConfig)
       .then((response) => {
         this.setState({
-          messages: response.data.mesages,
+          messages: response.data.messages,
           users: response.data.users,
           loading: false,
         });

@@ -17,7 +17,7 @@ function Product(props) {
     </Card.Text>
       </Card.Body>
       <Card.Body>
-      <Card.Link as={Link} to="/conversation/">Message</Card.Link>
+      <Card.Link as={Link} to="/conversation/6029e765fb25eb4b341255a1">Message</Card.Link>
         <Card.Link as={Link} to={`/product/${props.products._id}`}>Product Description</Card.Link>
       </Card.Body>
     </Card>

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 function Message(props) {
     return (
-        <Card>
+        <Card className="mb-2">
             <Card.Header as="h5">{props.user}</Card.Header>
             <Card.Body>
                 <Card.Text>
