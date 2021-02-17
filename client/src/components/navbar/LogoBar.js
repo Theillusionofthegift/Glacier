@@ -7,8 +7,10 @@ import Nav from 'react-bootstrap/Nav'
 import {Link} from 'react-router-dom'
 import AuthenticationButton from '../../components/AuthenticationButton'
 import logo from '../../images/glacier.png'
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function LogoBar(props) {
+  const { isAuthenticated } = useAuth0();
   return ( 
     <>
       <Navbar bg="primary" variant="dark">
@@ -23,8 +25,8 @@ export default function LogoBar(props) {
         <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <AuthenticationButton />
-
-          <Nav.Link as={Link} to="/Sell">Sell</Nav.Link>
+          { isAuthenticated ? <Nav.Link as={Link} to="/Sell">Sell</Nav.Link> : ''}
+          { isAuthenticated ? <Nav.Link as={Link} to="/Profile">Profile</Nav.Link> : '' }
         </Nav>
 
 
