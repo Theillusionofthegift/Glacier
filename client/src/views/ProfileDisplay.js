@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const ProfileDisplay = () => {
     const { user, isLoading } = useAuth0();
-    const userProf = "";
+    let userProf = "";
     const requestConfig = {
         url: `http://localhost:4000/api/v1/users/${user.sub}`,
         method: "get",
@@ -15,7 +15,7 @@ const ProfileDisplay = () => {
     axios(requestConfig)
         .then((response) => {
             console.log(`User Exists`);
-            userProf = response;
+            userProf = response.data;
         })
         .catch((err) => {
             console.log(`We should really handle the error: ${err}`);
@@ -27,8 +27,8 @@ const ProfileDisplay = () => {
 
     return (
         <Container >
-            <img src={user.picture} alt={userProf.name} />
-            <h2>User Name: {userProf.name}</h2>
+            <img src={user.picture} alt={userProf.userName} />
+            <h2>User Name: {userProf.userName}</h2>
             <p>Name: {userProf.lastName}, {userProf.firstName}</p>
             <p>User Email: {userProf.email}</p>
             <p>User Auth Id: {userProf.auth0id}</p>

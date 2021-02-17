@@ -4,14 +4,12 @@ import ProfileDisplay from './ProfileDisplay';
 import useDBstatus from "../components/hooks/isInDB";
 import { useAuth0 } from '@auth0/auth0-react'
 
-const AuthenticationButton = () => {
-    const { isAuthenticated } = useAuth0();
+const Profile = () => {
+
     const { user } = useAuth0()
     const exists = useDBstatus(user.sub)
 
-    if (isAuthenticated) {
-        exists ? <ProfileDisplay /> : <ProfileCreate />
-    }
+    return exists ? <ProfileDisplay /> : <ProfileCreate />
 };
 
-export default AuthenticationButton;
+export default Profile;

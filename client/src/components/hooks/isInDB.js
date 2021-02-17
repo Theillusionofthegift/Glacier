@@ -12,8 +12,12 @@ export default function useDBstatus(Auth0ID) {
 
     axios(requestConfig)
         .then((response) => {
-            setdoesExist(true);
-            console.log(`User Exists`);
+            if (response.status == 200) {
+                setdoesExist(true);
+                console.log(`User Exists`);
+            } else {
+                console.log('User Not Found')
+            }
         })
         .catch((err) => {
             console.log(`We should really handle the error: ${err}`);
