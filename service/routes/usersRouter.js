@@ -18,7 +18,7 @@ usersRouter.route('/')
 
 usersRouter.route('/:id')
     .get((req, res, next) => {
-        User.findById(req.params.id, (err, users) => {
+        User.find({auth0Id: req.params.id}, (err, users) => {
             if(err) {
                 next(err)
             } else if (users) {
