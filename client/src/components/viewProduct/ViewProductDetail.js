@@ -19,7 +19,7 @@ export default function ViewProductDetail() {
     }).catch((err) => {
       console.log('error in ViewProductDetail useEffect');
     })
-  }, []);
+  }, [id]);
 
   if (viewProduct) {
     return <ViewProduct product = {viewProduct} />

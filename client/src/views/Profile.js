@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect} from "react"
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
 import Container from 'react-bootstrap/Container'
@@ -15,29 +15,30 @@ const defaultFormValues = {
     bio: "",
 };
 
-let userProf = "";
 export default function Profile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [exists, setExists] = useState(false);
     const [userProf, setUserProf] = useState([]);
     const { user } = useAuth0();
 
+    useEffect(() => {
+        const requestConfig = {
+            url: `http://localhost:4000/api/v1/users/${user.sub}`,
+            method: "get",
+            headers: { "Content-Type": "application/json" },
+        };
     
-    const requestConfig = {
-        url: `http://localhost:4000/api/v1/users/${user.sub}`,
-        method: "get",
-        headers: { "Content-Type": "application/json" },
-    };
+        axios(requestConfig)
+            .then((response) => {
+                console.log(`User Exists`);
+                setExists(true);
+                setUserProf(response.data)
+            })
+            .catch((err) => {
+                console.log(`We should really handle the error: ${err}`);
+            });    
+      }, [user.sub]);
 
-    axios(requestConfig)
-        .then((response) => {
-            console.log(`User Exists`);
-            setExists(true);
-            setUserProf(response.data)
-        })
-        .catch((err) => {
-            console.log(`We should really handle the error: ${err}`);
-        });
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -76,7 +77,7 @@ export default function Profile() {
 
     if (exists) {
         return (
-            <Container >
+            <Container className="mt-3" >
                 <img src={user.picture} alt={userProf.userName} />
                 <h2>User Name: {userProf.userName}</h2>
                 <p>Name: {userProf.lastName}, {userProf.firstName}</p>

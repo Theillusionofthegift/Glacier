@@ -16,7 +16,6 @@ function MessageView() {
     };
 
     const [messageValues, setMessageValues] = useState(defaultMessageValues);
-    const [success, setSuccess] = useState(false);
     const { user} = useAuth0();
 
 
@@ -47,7 +46,6 @@ function MessageView() {
 
         axios(requestConfig)
             .then((response) => {
-                setSuccess(true);
                 console.log(`Item Created ${response.data}`);
             })
             .catch((err) => {
