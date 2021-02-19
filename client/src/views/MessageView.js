@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useAuth0, withAuth0 } from "@auth0/auth0-react"
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
 import Container from 'react-bootstrap/Container'
 import axios from "axios";
 import { useParams } from 'react-router-dom'
@@ -7,6 +7,8 @@ import MessageProvider from '../components/messages/MessageProvider'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
+
+
 
 function MessageView() {
 
@@ -77,4 +79,6 @@ function MessageView() {
     );
 }
 
-export default MessageView;
+export default withAuthenticationRequired(MessageView, {
+    returnTo: () => `/conversation/`,
+  });

@@ -1,15 +1,30 @@
 import React from "react";
+import Button from 'react-bootstrap/Button'
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
   return (
-    <button
-      className="ml-auto"
-      onClick={() => loginWithRedirect()}
+    <>
+    <Button
+      className="mx-1"
+      variant="primary"
+      onClick={() => {
+        loginWithRedirect();
+      }}
     >
-      Log In
-    </button>
+      Login
+    </Button>
+    <Button
+      className="mx-1"
+      variant="primary"
+      onClick={() => {
+        loginWithRedirect({ screen_hint: 'signup' });
+      }}
+    >
+      Sign Up
+    </Button>
+  </>
   );
 };
 
