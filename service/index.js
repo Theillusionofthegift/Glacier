@@ -1,5 +1,6 @@
 // import express from 'express'
 const express = require("express");
+
 const app = express();
 const port = 4000;
 
@@ -15,7 +16,6 @@ const conversationRouter = require('./routes/conversationRouter');
 
 // Setting up mongoose connection
 const mongoose = require('mongoose');
-const Conversation = require("./models/conversations");
 
 const user = process.env.MONGO_USER;
 const password = process.env.MONGO_PASS;
@@ -42,7 +42,6 @@ app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/transactions', transRouter);
 app.use('/api/v1/conversation', conversationRouter);
 
-
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-  });
+  console.log(`Example app listening at http://localhost:${port}`);
+});
