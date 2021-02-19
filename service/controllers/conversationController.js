@@ -1,25 +1,23 @@
-const dateFns = require("date-fns");
+import { create } from '../models/conversations';
 
-const Conversation = require("../models/conversations");
+function createConversation(req, res, next) {
+  // Check to see if conversation has users in the users array
+  if (req.body.users.length === 0) {
+    res.status(400).send({ error: 'Conversation must have users!!' });
+  }
 
-exports.createConversation=(req, res, next)=>{
-    
-    //Check to see if conversation has users in the users array
-    if(req.body.users.length == 0){
-        res.status(400).send({error:"Conversation must have users!!"})
-    }
+  const conversation = {
+    users: req.body.users,
+    messages: req.body.messages,
+  };
 
-    const conversation = {
-        users: req.body.users,
-        messages: req.body.messages,
-    };
+  create(conversation)
+    .then((convo) => {
+      res.send({ conversationId: convo._id });
+    })
+    .catch((err) => {
+      next(err);
+    });
+}
 
-    Conversation.create(conversation)
-        .then((conversation)=>{
-            res.send({conversationId: conversation._id});
-        })
-        .catch((err)=>{
-            console.log(err);
-            next(err);
-        });
-};
+export default createConversation;
