@@ -8,6 +8,7 @@ import ViewProductDetail from './components/viewProduct/ViewProductDetail'
 import CreateProduct from './views/CreateProductDescription'
 import MessageView from './views/MessageView'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ProfileView from "./views/ProfileView";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <ProfileCreate />
         </Route>
         <Route path="/Profile">
-          <>User Profile</>
+          <ProfileView />
         </Route>
         <Route path="/">
           <HomePage />
