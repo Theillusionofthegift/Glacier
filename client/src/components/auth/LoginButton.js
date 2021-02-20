@@ -19,7 +19,10 @@ const LoginButton = () => {
       className="mx-1"
       variant="primary"
       onClick={() => {
-        loginWithRedirect({ screen_hint: 'signup' });
+        loginWithRedirect({ 
+          screen_hint: 'signup',
+          redirect_uri: 'https://localhost:3000/users/new'
+        });
       }}
     >
       Sign Up
