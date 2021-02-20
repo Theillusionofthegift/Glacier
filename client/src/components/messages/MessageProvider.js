@@ -39,7 +39,7 @@ class MessageProvider extends Component {
     axios(requestConfig)
       .then((response) => {
         this.setState({
-          messages: response.data.mesages,
+          messages: response.data.messages,
           users: response.data.users,
           loading: false,
         });

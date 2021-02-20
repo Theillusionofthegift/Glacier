@@ -1,17 +1,18 @@
 
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {Switch, Route } from "react-router-dom";
 import LogoBar from "./components/navbar/LogoBar";
 import HomePage from './views/HomePage';
 import ViewProductDetail from './components/viewProduct/ViewProductDetail'
 import CreateProduct from './views/CreateProductDescription'
 import MessageView from './views/MessageView'
-import Profile from './views/Profile'
+import ProfileCreate from './views/ProfileCreate'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ProfileView from "./views/ProfileView";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <LogoBar />
       <Switch>
         <Route path="/conversation/:id">
@@ -23,14 +24,17 @@ function App() {
         <Route path="/Sell">
           <CreateProduct />
         </Route>
+        <Route path='/users/new'>
+          <ProfileCreate />
+        </Route>
         <Route path="/Profile">
-        <Profile />
+          <ProfileView />
         </Route>
         <Route path="/">
           <HomePage />
         </Route>
       </Switch>
-    </BrowserRouter>
+      </>
   );
 }
 

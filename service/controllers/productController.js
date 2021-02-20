@@ -1,19 +1,17 @@
+const Product = require('../models/product');
 
-const Product = require("../models/product");
-
-exports.createProduct= (req, res, next) => {
-
+exports.createProduct = (req, res, next) => {
   // make sure price is greater than zero
-  if (req.body.price <= 0 || req.body.price == undefined) { 
-      res.status(400).send({error:"Price must be greater than zero"});
+  if (req.body.price <= 0 || req.body.price === undefined) {
+    res.status(400).send({ error: 'Price must be greater than zero' });
   }
-  // make sure the product Name isnt blank 
-  if(req.body.prodName.trim().length === 0) {
-      res.status(400).send({error:"Product name connot be blank!"});
+  // make sure the product Name isnt blank
+  if (req.body.prodName.trim().length === 0) {
+    res.status(400).send({ error: 'Product name connot be blank!' });
   }
 
-  const categories = req.body.categories;
-  const categoriesArr = categories.split(",");
+  const { categories } = req.body.categories;
+  const categoriesArr = categories.split(',');
 
   const product = {
     prodName: req.body.prodName,
@@ -24,11 +22,10 @@ exports.createProduct= (req, res, next) => {
   };
 
   Product.create(product)
-    .then((product) => {
-      res.send({ productId: product._id });
+    .then((product1) => {
+      res.send({ productId: product1._id });
     })
     .catch((err) => {
-      console.log(err);
       next(err);
     });
 };

@@ -5,7 +5,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
 import {Link} from 'react-router-dom'
-import AuthenticationButton from '../../components/AuthenticationButton'
+import AuthenticationButton from '../../components/auth/AuthenticationButton'
 import logo from '../../images/glacier.png'
 import { useAuth0 } from "@auth0/auth0-react";
 

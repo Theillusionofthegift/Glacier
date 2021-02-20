@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 import image from '../../images/product.jpg';
 import {Link} from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 import './ViewProduct.css';
 
 function ViewProduct(props) {
+    const { isAuthenticated } = useAuth0();
     return(
         <div className="container">
             <div className="carousel">
@@ -51,7 +53,7 @@ function ViewProduct(props) {
             <div className="basicDescription">
                 <h2>{props.product.prodName} ${props.product.price} </h2>
                 <div className="messageButton">
-                    <Button type="button" as={Link} to='/message'>Send Message!</Button>
+                    {isAuthenticated ? <Button type="button" as={Link} to='/conversation/6029e765fb25eb4b341255a1'>Send Message!</Button> : "" }
                 </div>
             </div>
             <div className="detailedDescription">

@@ -7,7 +7,7 @@ export default function ProductList(props) {
     const messages = props.messages
     return (
         <Container>
-            {messages.map((message) => (<Message key={message.id} message={message} />))}
+            {messages.map((message,index) => (<Message key={index} message={message.message} user={message.user} />))}
         </Container>
     );
 }
