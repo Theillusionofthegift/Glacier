@@ -17,9 +17,9 @@ export default function Profile(props) {
                     src={user.image}
                 />
                 <Figure.Caption>
-                    UserName: {props.user.userName}
-                    Full Name: {props.user.lastName}, {props.user.firstName}
-                    Email: {user.email}
+                    <h1>UserName: {props.user.userName}</h1>
+                    <h1>Full Name: {props.user.lastName}, {props.user.firstName}</h1>
+                    <h1>Email: {user.email}</h1>
                 </Figure.Caption>
             </Figure>
         </Container>
