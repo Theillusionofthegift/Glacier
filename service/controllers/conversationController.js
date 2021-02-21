@@ -8,7 +8,7 @@ exports.createConversation = (req, res, next) => {
 
   const conversation = {
     users: req.body.users,
-    messages: req.body.messages,
+    messages: {},
   };
 
   Conversation.create(conversation)

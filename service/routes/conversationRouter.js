@@ -6,7 +6,17 @@ const conversationRouter = express.Router();
 const Conversation = require('../models/conversations');
 
 conversationRouter.route('/')
-  .post(conversationContoller.createConversation);
+  .post((req, res, next) => {
+    const options = {validate: true }
+    Conversation.find({ users: req.body.users }, options,(err, convo) => {
+      if (err) { next(err); }
+      else if (convo.length > 0) {
+        res.status(200).send(convo);
+      } else {
+        return conversationContoller.createConversation;
+      }
+    });
+  });
 
 conversationRouter.route('/:id')
   // find Conversation by _id
