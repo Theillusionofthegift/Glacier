@@ -1,14 +1,30 @@
 const express = require('express');
-
 const usersRouter = express.Router();
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 const User = require('../models/users');
 const userController = require('../controllers/userController');
+
+// A middleware function that checks to see if a token is valid for us.
+const jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: 'https://dev-0rn1lib.us.auth0.com/',
+  }),
+  audience: 'glacier.com',
+  issuer: 'https://dev-0rn1lib.us.auth0.com/',
+  algorithms: ['RS256'],
+});
+usersRouter.use(jwtCheck);
 
 usersRouter.route('/')
   .get((req, res, next) => {
     User.find({}, (err, users) => {
-      if (err) { next('Something Went Wrong!'); } 
-      else { res.send(users); }
+      if (err) {
+        next('Something Went Wrong!');
+      } else { res.send(users); }
     });
   })
 
