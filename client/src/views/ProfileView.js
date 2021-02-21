@@ -4,7 +4,7 @@ import axios from 'axios';
 import Profile from '../components/profile/Profile'
 
 export default function ProfileView() {
-  const [ Profile, setProfile ] = useState(null);
+  const [ profile, setProfile ] = useState({});
   const {user} = useAuth0();
   
   useEffect( () => {
@@ -16,12 +16,12 @@ export default function ProfileView() {
       axios(config).then((response) => {
         setProfile(response.data)
       }).catch((err) => {
-        console.log('error in ProfileView useEffect');
+        console.log(`error in ProfileView useEffect ${user.sub}`);
       })
-  },[user.sub])
+  },)
   
-  if (Profile) {
-    return <Profile user = {Profile} />
+  if (profile) {
+    return <Profile user= {profile} />
   } else {
     return <div>Loading...</div>
   }

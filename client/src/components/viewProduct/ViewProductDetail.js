@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import ViewProduct from './ViewProduct';
 
 export default function ViewProductDetail() {
-  const [ viewProduct, setEvent ] = useState(null);
+  const [ viewProduct, setProduct ] = useState(null);
 
   const { id } = useParams();
   useEffect(() => {
@@ -15,11 +15,11 @@ export default function ViewProductDetail() {
       headers: { "Content-Type": "application/json" },
     }
     axios(config).then((response) => {
-      setEvent(response.data)
+      setProduct(response.data)
     }).catch((err) => {
       console.log('error in ViewProductDetail useEffect');
     })
-  }, []);
+  }, [id]);
 
   if (viewProduct) {
     return <ViewProduct product = {viewProduct} />

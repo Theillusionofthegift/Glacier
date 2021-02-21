@@ -40,7 +40,7 @@ app.use(express.json())
 app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/transactions', transRouter);
-app.use('/api/v1/conversation', conversationRouter);
+app.use('/api/v1/conversations', conversationRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
