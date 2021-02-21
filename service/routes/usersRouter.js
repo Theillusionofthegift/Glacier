@@ -29,15 +29,7 @@ usersRouter.route('/')
     });
   })
 
-  .post((req, res, next) => {
-    const { permissions } = req.user;
-    if (permissions.includes('manage:users')) {
-      next();
-    } else {
-      // user does not have admin priviledges
-      res.sendStatus(403);
-    }
-  }, userController.createUser);
+  .post(userController.createUser);
 
 usersRouter.route('/:id')
   .get((req, res, next) => {
@@ -53,15 +45,22 @@ usersRouter.route('/:id')
   })
 
   .put((req, res, next) => {
-    const options = {validate: true};
-    User.findByIdAndUpdate(req.params.id, req.body, options, (err, user) => {
-      if (err) { next('Something Went Wrong!'); }
-      else {
-        User.findById(req.params.id, (err, user) => {
-          res.send(user);
-        });
-      }
-    });
+    const { permissions } = req.user;
+    if (req.user.id === req.params.id || permissions.includes('manage:users')) {
+      const options = { validate: true };
+      User.findByIdAndUpdate(req.params.id, req.body, options, (err, user) => {
+        if (err) {
+          next('Something Went Wrong!');
+        } else {
+          User.findById(req.params.id, (err, user) => {
+            res.send(user);
+          });
+        }
+      });
+    } else {
+      // user is not owner of the account or does not have admin priviledges
+      res.sendStatus(403);
+    }
   })
 
   .delete((req, res, next) => {
