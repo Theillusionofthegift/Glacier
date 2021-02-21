@@ -1,5 +1,6 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
+import {Button,
+        Container } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 import image from '../../images/product.jpg';
 import {Link} from 'react-router-dom'
@@ -9,8 +10,8 @@ import './ViewProduct.css';
 function ViewProduct(props) {
     const { isAuthenticated } = useAuth0();
     return(
-        <div className="container">
-            <div className="carousel">
+        <Container>
+            <Container>
                 <Carousel>
                     <Carousel.Item>
                         <img src={image} alt='productView1'/>
@@ -49,18 +50,18 @@ function ViewProduct(props) {
                     </Carousel.Item>
                 </Carousel>
                 
-            </div>
+            </Container>
             <div className="basicDescription">
                 <h2>{props.product.prodName} ${props.product.price} </h2>
                 <div className="messageButton">
-                    {isAuthenticated ? <Button type="button" as={Link} to='/conversation/6029e765fb25eb4b341255a1'>Send Message!</Button> : "" }
+                    {isAuthenticated ? <Button as={Link} to={{ pathname:'/conversation/', state:{ seller: props.product.seller}}}> Send Message!</Button> : "" }
                 </div>
-            </div>
+                </div>
             <div className="detailedDescription">
                 <p>{props.product.description}</p>
 
             </div>
-        </div>
+        </Container>
     );
 }
 

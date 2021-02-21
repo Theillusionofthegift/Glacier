@@ -15,7 +15,7 @@ function App() {
     <>
       <LogoBar />
       <Switch>
-        <Route path="/conversation/:id">
+        <Route path="/conversation/">
           <MessageView />
         </Route>
         <Route path="/product/:id">
