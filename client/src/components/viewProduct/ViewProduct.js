@@ -54,7 +54,7 @@ function ViewProduct(props) {
             <div className="basicDescription">
                 <h2>{props.product.prodName} ${props.product.price} </h2>
                 <div className="messageButton">
-                    {isAuthenticated ? <Button as={Link} to={{ pathname:'/conversation/', state:{ seller: props.product.seller}}}> Send Message!</Button> : "" }
+                    {isAuthenticated ? <Link to={{ pathname:'/conversation/', state:{ seller: props.product.seller}}}> Send Message!</Link> : "" }
                 </div>
                 </div>
             <div className="detailedDescription">

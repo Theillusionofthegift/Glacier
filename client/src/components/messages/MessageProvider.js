@@ -9,7 +9,7 @@ export default function MessageProvider(props) {
       users: [],
       messages: [],
     };
-    const seller = props.location.state.seller;
+  const seller = props.location.state;
   
   const [ messages, setMessage ] = useState(messDefault);
   const [ loading, setLoading ] = useState(true);
