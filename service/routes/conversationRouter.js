@@ -11,7 +11,12 @@ conversationRouter.route('/')
     Conversation.find({ users: req.body.users }, options,(err, convo) => {
       if (err) { next(err); }
       else if (convo.length > 0) {
-        res.status(200).send(convo);
+        Conversation.findById(req.params.id, (err, conversation) => {
+          if (err) { next(err); }
+          // found the conversation
+          if (conversation) { res.send(conversation); }
+          else { res.sendStatus(404); }
+        });
       } else {
         return conversationContoller.createConversation;
       }

@@ -35,7 +35,7 @@ function MessageView() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const requestConfig = {
-            url: `http://localhost:4000/api/v1/conversation/${id}`,
+            url: `http://localhost:4000/api/v1/conversations/${id}`,
             method: "post",
             headers: { "Content-Type": "application-json" },
             data: {

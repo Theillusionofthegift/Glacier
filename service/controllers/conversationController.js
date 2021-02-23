@@ -13,9 +13,14 @@ exports.createConversation = (req, res, next) => {
 
   Conversation.create(conversation)
     .then((convo) => {
-      res.send({ conversationId: convo._id });
-    })
-    .catch((err) => {
-      next(err);
+      Conversation.findById(req.params.id, (err, conversation) => {
+        if (err) { next(err); }
+        // found the conversation
+        if (conversation) { res.send(conversation); }
+        else { res.sendStatus(404); }
+      })
+        .catch((err) => {
+          next(err);
+        });
     });
 };
