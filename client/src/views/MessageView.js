@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
 import Container from 'react-bootstrap/Container'
 import axios from "axios";
-import { useParams } from 'react-router-dom'
-import MessageProvider from '../components/messages/MessageProvider'
+import { useLocation } from 'react-router-dom'
+import MessageList from '../components/messages/MessageList'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
@@ -20,6 +20,9 @@ function MessageView() {
     };
 
     const [messageValues, setMessageValues] = useState(defaultMessageValues);
+    const [messages, setMessages ] = useState({});
+    const [loading, setLoading ] = useState(true);
+    const location = useLocation();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -31,13 +34,25 @@ function MessageView() {
         console.log(messageValues);
     };
 
-    const { id } = useParams();
+    useEffect(() => {
+        const config = {
+          url: `http://localhost:4000/api/v1/conversations/?seller=${location.state.seller}&buyer=${user.sub}`,
+          method: 'GET',
+        }
+        axios(config).then((response) => {
+          setMessages(response.data)
+          setLoading(false);
+        }).catch((err) => {
+          console.log('error in ViewProductDetail useEffect');
+        })
+      }, [location.state.seller, user.sub]);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const requestConfig = {
-            url: `http://localhost:4000/api/v1/conversations/${id}`,
+            url: `http://localhost:4000/api/v1/conversations/${messages._id}`,
             method: "post",
-            headers: { "Content-Type": "application-json" },
+            headers: { "Content-Type": "application/json" },
             data: {
                 user: messageValues.user,
                 message: messageValues.message
@@ -53,30 +68,33 @@ function MessageView() {
             });
     };
 
+    if(loading) {
+        return <div>Loading...</div>
+    } else {
+        return (
+            <Container className="pt-5">
+                <MessageList messages={messages}/>
+                <InputGroup className="mt-3">
+                    <FormControl
+                        placeholder="Your Message Here..."
+                        aria-label="message"
+                        aria-describedby="basic-addon2"
+                        name="message"
+                        onChange={handleInputChange}
+                    />
+                    <InputGroup.Append>
+                        <Button
+                            variant="outline-secondary"
+                            type="submit"
+                            onClick={handleSubmit}
+                        >
+                            Send</Button>
+                    </InputGroup.Append>
+                </InputGroup>
+            </Container>
+        );
+    }
 
-
-    return (
-        <Container className="pt-5">
-            <MessageProvider />
-            <InputGroup className="mt-3">
-                <FormControl
-                    placeholder="Your Message Here..."
-                    aria-label="message"
-                    aria-describedby="basic-addon2"
-                    name="message"
-                    onChange={handleInputChange}
-                />
-                <InputGroup.Append>
-                    <Button
-                        variant="outline-secondary"
-                        type="submit"
-                        onClick={handleSubmit}
-                    >
-                        Send</Button>
-                </InputGroup.Append>
-            </InputGroup>
-        </Container>
-    );
 }
 
 export default withAuthenticationRequired(MessageView, {
