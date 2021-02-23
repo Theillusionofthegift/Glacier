@@ -11,7 +11,7 @@ import UpdateButtonSet from './UpdateButtonSet'
 export default function Profile(props) {
     const {user} = useAuth0();
 
-    if(props._id) {
+    if(props.user._id) {
     return (
         <Container className="mt-3">
             <Image src={user.picture} fluid />
