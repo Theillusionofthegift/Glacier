@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 
 const usersRouter = express.Router();
@@ -14,8 +16,6 @@ usersRouter.route('/')
       } else { res.send(users); }
     });
   })
-
-  .post(userController.createUser);
 
 usersRouter.route('/:id')
   .get((req, res, next) => {
@@ -59,18 +59,30 @@ const jwtCheck = jwt({
 usersRouter.use(jwtCheck);
 
 // after the JWT middleware runs, the request object is decorated with user information
+usersRouter.route('/')
+  .post((req, res, next) => {
+    const { permissions } = req.user;
+    if (permissions.includes('manage:users')) {
+      next();
+    } else {
+      // user does not have admin priviledges
+      res.sendStatus(403);
+    }
+  }, userController.createUser) 
+
 usersRouter.route('/:id')
+
   .put((req, res, next) => {
     const { permissions } = req.user;
-    console.log(req.user.id);
-    console.log(req.params.id);
-    if (permissions.includes('manage:users')) {
+    console.log(req.user);
+    if (req.user.user_id === req.params.user.Auth0Id /*permissions.includes('manage:users')*/) {
       const options = { validate: true };
-      User.findByIdAndUpdate(req.params.id, req.body, options, (err, user) => {
+      
+      User.find({ auth0Id: req.params.id }, (err, id) => {
         if (err) {
           next('Something Went Wrong!');
         } else {
-          User.findById(req.params.id, (err, user) => {
+          User.findByIdAndUpdate(id, options, (err, user) => {
             res.send(user);
           });
         }

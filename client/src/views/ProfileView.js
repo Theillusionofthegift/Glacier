@@ -13,11 +13,15 @@ export default function ProfileView() {
       const authToken = await getAccessTokenSilently();
       console.log('auth token ', authToken);
       }
-      getToken();
+    const token = getToken();
+    console.log(token);
     const config = {
         url: `http://localhost:4000/api/v1/users/${user.sub}`,
         method: 'GET',
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+        },
+
       }
       axios(config).then((response) => {
         setProfile(response.data)
