@@ -62,7 +62,9 @@ usersRouter.use(jwtCheck);
 usersRouter.route('/:id')
   .put((req, res, next) => {
     const { permissions } = req.user;
-    if (req.user.id === req.params.id || permissions.includes('manage:users')) {
+    console.log(req.user.id);
+    console.log(req.params.id);
+    if (permissions.includes('manage:users')) {
       const options = { validate: true };
       User.findByIdAndUpdate(req.params.id, req.body, options, (err, user) => {
         if (err) {
