@@ -1,19 +1,15 @@
 const Conversation = require('../models/conversations');
 
 exports.createConversation = (req, res, next) => {
-  // Check to see if conversation has users in the users array
-  if (req.body.users.length === 0) {
-    res.status(400).send({ error: 'Conversation must have users!!' });
-  }
 
   const conversation = {
-    users: req.body.users,
+    users: [req.query.seller, req.query.buyer],
     messages: {},
   };
 
   Conversation.create(conversation)
     .then((convo) => {
-      Conversation.findById(req.params.id, (err, conversation) => {
+      Conversation.findById( convo, (err, conversation) => {
         if (err) { next(err); }
         // found the conversation
         if (conversation) { res.send(conversation); }
@@ -23,4 +19,21 @@ exports.createConversation = (req, res, next) => {
           next(err);
         });
     });
+};
+
+exports.findConversation = (req, res, next) => {
+  const options = { validate: true }
+  Conversation.find({ users: [req.query.seller, req.query.buyer] }, options, (err, convo) => {
+    if (err) { next(err); }
+    else if (convo.length > 0) {
+      Conversation.findById(convo, (err, conversation) => {
+        if (err) { next(err); }
+        // found the conversation
+        if (conversation) { res.send(conversation); }
+        else { res.sendStatus(404); }
+      });
+    } else {
+      next();
+    }
+  });
 };
