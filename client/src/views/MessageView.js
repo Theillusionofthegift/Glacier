@@ -3,7 +3,7 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
 import Container from 'react-bootstrap/Container'
 import axios from "axios";
 import { useLocation } from 'react-router-dom'
-import MessageProvider from '../components/messages/MessageProvider'
+import MessageList from '../components/messages/MessageList'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
@@ -36,9 +36,8 @@ function MessageView() {
 
     useEffect(() => {
         const config = {
-          url: `http://localhost:4000/api/v1/products/?seller=${location.state.seller}&buyer=${user.sub}`,
+          url: `http://localhost:4000/api/v1/conversations/?seller=${location.state.seller}&buyer=${user.sub}`,
           method: 'GET',
-          headers: { "Content-Type": "application/json" },
         }
         axios(config).then((response) => {
           setMessages(response.data)
@@ -46,14 +45,14 @@ function MessageView() {
         }).catch((err) => {
           console.log('error in ViewProductDetail useEffect');
         })
-      }, [location.seller, user.sub]);
+      }, [location.state.seller, user.sub]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const requestConfig = {
             url: `http://localhost:4000/api/v1/conversations/${messages._id}`,
             method: "post",
-            headers: { "Content-Type": "application-json" },
+            headers: { "Content-Type": "application/json" },
             data: {
                 user: messageValues.user,
                 message: messageValues.message
@@ -74,7 +73,7 @@ function MessageView() {
     } else {
         return (
             <Container className="pt-5">
-                <MessageProvider messages={messages}/>
+                <MessageList messages={messages}/>
                 <InputGroup className="mt-3">
                     <FormControl
                         placeholder="Your Message Here..."
