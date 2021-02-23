@@ -7,6 +7,7 @@ import ViewProductDetail from './components/viewProduct/ViewProductDetail'
 import CreateProduct from './views/CreateProductDescription'
 import MessageView from './views/MessageView'
 import ProfileCreate from './views/ProfileCreate'
+import ProfileUpdate from './views/ProfileUpdate'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileView from "./views/ProfileView";
 
@@ -23,6 +24,9 @@ function App() {
         </Route>
         <Route path="/Sell">
           <CreateProduct />
+        </Route>
+        <Route path="/users/update">
+          <ProfileUpdate />
         </Route>
         <Route path='/users/new'>
           <ProfileCreate />

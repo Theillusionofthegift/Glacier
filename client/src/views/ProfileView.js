@@ -28,7 +28,7 @@ export default function ProfileView() {
       }).catch((err) => {
         console.log(`error in ProfileView useEffect ${user.sub}`);
       })
-  },)
+  },[])
   
   if (profile) {
     return <Profile user= {profile} />

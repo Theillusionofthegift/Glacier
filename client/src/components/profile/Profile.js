@@ -10,6 +10,8 @@ import UpdateButtonSet from './UpdateButtonSet'
 
 export default function Profile(props) {
     const {user} = useAuth0();
+
+    if(props.user._id) {
     return (
         <Container className="mt-3">
             <Image src={user.picture} fluid />
@@ -25,4 +27,7 @@ export default function Profile(props) {
             </Tabs>
         </Container>
     );
+    } else {
+        return <Container className='mx-auto'><h1 className="mx-auto">Profile Not Found!</h1></Container>
+    }
 }

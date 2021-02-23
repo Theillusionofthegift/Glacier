@@ -26,7 +26,7 @@ productsRouter.route('/:id')
     const options = { validate: true };
     Product.findByIdAndUpdate(req.params.id, req.body, options, (err, product) => {
       if (err) { next('Something Went Wrong!'); }
-      else { Product.findById(req.params.id, (err, prod) => {
+      else { Product.findById(product, (err, prod) => {
         if (err) { next(err) }
         res.send(prod);
       });
