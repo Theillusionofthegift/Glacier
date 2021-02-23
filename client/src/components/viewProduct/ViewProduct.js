@@ -11,38 +11,38 @@ function ViewProduct(props) {
     const { isAuthenticated } = useAuth0();
     return(
         <Container>
-            <Container>
-                <Carousel>
+            <Container className="mt-3">
+                <Carousel >
                     <Carousel.Item>
-                        <img src={image} alt='productView1'/>
+                        <img className="d-block w-50 mx-auto" src={image} alt='productView1'/>
                         <Carousel.Caption>
                             <h3>First View</h3>
                             <p>Short Description Here</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img src={image} alt='productView2'/>
+                        <img className="d-block w-50 mx-auto" src={image} alt='productView2'/>
                         <Carousel.Caption>
                             <h3>Second View</h3>
                             <p>Short Description Here</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img src={image} alt='productView3'/>
+                        <img className="d-block w-50 mx-auto" src={image} alt='productView3'/>
                         <Carousel.Caption>
                             <h3>Third View</h3>
                             <p>Short Description Here</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img src={image} alt='productView3'/>
+                        <img className="d-block w-50 mx-auto" src={image} alt='productView3'/>
                         <Carousel.Caption>
                             <h3>Fourth View</h3>
                             <p>Short Description Here</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img src={image} alt='productView3'/>
+                        <img className="d-block w-50 mx-auto" src={image} alt='productView3'/>
                         <Carousel.Caption>
                             <h3>Fifth View</h3>
                             <p>Short Description Here</p>
