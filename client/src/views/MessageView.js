@@ -45,13 +45,13 @@ function MessageView() {
         }).catch((err) => {
           console.log('error in ViewProductDetail useEffect');
         })
-      }, [location.state.seller, user.sub]);
+      }, [loading]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const requestConfig = {
             url: `http://localhost:4000/api/v1/conversations/${messages._id}`,
-            method: "post",
+            method: "POST",
             headers: { "Content-Type": "application/json" },
             data: {
                 user: messageValues.user,
@@ -62,18 +62,17 @@ function MessageView() {
         axios(requestConfig)
             .then((response) => {
                 console.log(`Item Created ${response.data}`);
+                setLoading(true);
             })
             .catch((err) => {
                 console.log(`We should really handle the error ${err}`);
             });
     };
 
-    if(loading) {
-        return <div>Loading...</div>
-    } else {
+
         return (
             <Container className="pt-5">
-                <MessageList messages={messages}/>
+                { loading ? <div>Loading...</div> : <MessageList messages={messages}/>}
                 <InputGroup className="mt-3">
                     <FormControl
                         placeholder="Your Message Here..."
@@ -93,7 +92,7 @@ function MessageView() {
                 </InputGroup>
             </Container>
         );
-    }
+    
 
 }
 

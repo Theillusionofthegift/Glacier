@@ -9,6 +9,7 @@ const productSchema = new mongoose.Schema({
   summary: String,
   description: String,
   categories: [String],
+  zipcode: { type: Number, required: true },
 });
 
 const Product = mongoose.model('product', productSchema);
