@@ -36,7 +36,7 @@ function MessageView() {
 
     useEffect(() => {
         const config = {
-          url: `http://localhost:4000/api/v1/products/?seller=${location.seller}&buyer=${user.sub}`,
+          url: `http://localhost:4000/api/v1/products/?seller=${location.state.seller}&buyer=${user.sub}`,
           method: 'GET',
           headers: { "Content-Type": "application/json" },
         }
@@ -70,7 +70,7 @@ function MessageView() {
     };
 
     if(loading) {
-        <div>Loading...</div>
+        return <div>Loading...</div>
     } else {
         return (
             <Container className="pt-5">
