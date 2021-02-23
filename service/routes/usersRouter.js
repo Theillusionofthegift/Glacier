@@ -28,24 +28,26 @@ usersRouter.route('/:id')
   })
 
   .put((req, res, next) => {
-    const options = {validate: true};
-    User.findByIdAndUpdate(req.params.id, req.body, options, (err, user) => {
-      if (err) { next('Something Went Wrong!'); }
-      else {
-        User.findById(req.params.id, (err, user) => {
-          res.send(user);
-        });
-      }
+    const options = { validate: true }
+    User.find({ auth0Id: req.params.id }, options, (err, id) => {
+      if (err) { next(err); }
+      User.findByIdAndUpdate(id, req.body, options, (err, user) => {
+        if (err) { next(err); }
+        else if (user) { res.send(user); }
+        else { res.sendStatus(404); }
+      });
     });
   })
 
   .delete((req, res, next) => {
-    User.findByIdAndDelete(req.params.id, (err, user) => {
+    const options = { validate: true }
+    User.find({ auth0Id: req.params.id }, options, (err, id) => {
       if (err) { next(err); }
-      else if (user) { res.sendStatus(204); }
-      else {
-        res.status(404).send({ error: `Couldn't find user with that id ${req.params.id}` });
-      }
+      User.findByIdAndDelete(id, (err, user) => {
+        if (err) { next(err); }
+        else if (user) { res.send(user); }
+        else { res.sendStatus(404); }
+      });
     });
   });
 
