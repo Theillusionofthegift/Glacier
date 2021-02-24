@@ -1,7 +1,6 @@
 const Conversation = require('../models/conversations');
 
 exports.createConversation = (req, res, next) => {
-
   const conversation = {
     users: [req.query.seller, req.query.buyer],
     messages: {},
