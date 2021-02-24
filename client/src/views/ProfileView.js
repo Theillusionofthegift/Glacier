@@ -6,7 +6,6 @@ import Profile from '../components/profile/Profile'
 export default function ProfileView() {
   const [ profile, setProfile ] = useState({});
   const {user, getAccessTokenSilently} = useAuth0();
-  console.log(user);
   
   useEffect( () => {
     async function getToken() {
@@ -14,7 +13,6 @@ export default function ProfileView() {
       console.log('auth token ', authToken);
       }
     const token = getToken();
-    console.log(token);
     const config = {
         url: `http://localhost:4000/api/v1/users/${user.sub}`,
         method: 'GET',
