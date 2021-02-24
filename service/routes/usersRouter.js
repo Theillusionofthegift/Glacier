@@ -72,7 +72,7 @@ usersRouter.use(jwtCheck);
 usersRouter.route('/')
   .post((req, res, next) => {
     const { permissions } = req.user;
-    if (req.user.Auth0Id ===  || permissions.includes('manage:users')) {
+    if (permissions.includes('manage:users')) {
       next();
     } else {
       // user does not have admin priviledges
