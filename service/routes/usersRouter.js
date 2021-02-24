@@ -23,13 +23,6 @@ usersRouter.route('/:id')
     User.find({ auth0Id: req.params.id }, options, (err, id) => {
       if (err) { next(err); }
       User.findById(id, (err, user) => {
-<<<<<<< HEAD
-        if (err) {
-          next(err);
-        } else if (user) {
-          res.send(user);
-        } else { res.sendStatus(404); }
-=======
         if (err) { next(err); }
         else if (user) { res.send(user); }
         else { res.sendStatus(404); }
@@ -45,22 +38,11 @@ usersRouter.route('/:id')
         if (err) { next(err); }
         else if (user) { res.send(user); }
         else { res.sendStatus(404); }
->>>>>>> main
       });
     });
   })
 
   .delete((req, res, next) => {
-<<<<<<< HEAD
-    User.findByIdAndDelete(req.params.id, (err, user) => {
-      if (err) {
-        next(err);
-      } else if (user) {
-        res.sendStatus(204);
-      } else {
-        res.status(404).send({ error: `Couldn't find user with that id ${req.params.id}` });
-      }
-=======
     const options = { validate: true }
     User.find({ auth0Id: req.params.id }, options, (err, id) => {
       if (err) { next(err); }
@@ -69,7 +51,6 @@ usersRouter.route('/:id')
         else if (user) { res.send(user); }
         else { res.sendStatus(404); }
       });
->>>>>>> main
     });
   });
 
@@ -103,8 +84,10 @@ usersRouter.route('/:id')
 
   .put((req, res, next) => {
     const { permissions } = req.user;
-    console.log(req.user);
-    if (req.user.user_id === req.params.user.Auth0Id /*permissions.includes('manage:users')*/) {
+    // TODO 
+    // make it so that if the Auth0Id of the logged in user and the account Auth0Id matches
+    // a user without the manage:users permissions can edit the user profile 
+    if (permissions.includes('manage:users')) {
       const options = { validate: true };
       
       User.find({ auth0Id: req.params.id }, (err, id) => {
@@ -117,7 +100,7 @@ usersRouter.route('/:id')
         }
       });
     } else {
-      // user is not owner of the account or does not have admin priviledges
+      // user does not have admin priviledges
       res.sendStatus(403);
     }
   });
