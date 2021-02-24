@@ -23,13 +23,6 @@ usersRouter.route('/:id')
     User.find({ auth0Id: req.params.id }, options, (err, id) => {
       if (err) { next(err); }
       User.findById(id, (err, user) => {
-<<<<<<< HEAD
-        if (err) {
-          next(err);
-        } else if (user) {
-          res.send(user);
-        } else { res.sendStatus(404); }
-=======
         if (err) { next(err); }
         else if (user) { res.send(user); }
         else { res.sendStatus(404); }
@@ -45,22 +38,11 @@ usersRouter.route('/:id')
         if (err) { next(err); }
         else if (user) { res.send(user); }
         else { res.sendStatus(404); }
->>>>>>> main
       });
     });
   })
 
   .delete((req, res, next) => {
-<<<<<<< HEAD
-    User.findByIdAndDelete(req.params.id, (err, user) => {
-      if (err) {
-        next(err);
-      } else if (user) {
-        res.sendStatus(204);
-      } else {
-        res.status(404).send({ error: `Couldn't find user with that id ${req.params.id}` });
-      }
-=======
     const options = { validate: true }
     User.find({ auth0Id: req.params.id }, options, (err, id) => {
       if (err) { next(err); }
@@ -69,7 +51,6 @@ usersRouter.route('/:id')
         else if (user) { res.send(user); }
         else { res.sendStatus(404); }
       });
->>>>>>> main
     });
   });
 
