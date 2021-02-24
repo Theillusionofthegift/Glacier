@@ -84,10 +84,8 @@ usersRouter.route('/:id')
 
   .put((req, res, next) => {
     const { permissions } = req.user;
-    // TODO 
-    // make it so that if the Auth0Id of the logged in user and the account Auth0Id matches
-    // a user without the manage:users permissions can edit the user profile 
-    if (permissions.includes('manage:users')) {
+    console.log(req.user);
+    if (req.user.user_id === req.params.user.Auth0Id /*permissions.includes('manage:users')*/) {
       const options = { validate: true };
       
       User.find({ auth0Id: req.params.id }, (err, id) => {
@@ -100,7 +98,7 @@ usersRouter.route('/:id')
         }
       });
     } else {
-      // user does not have admin priviledges
+      // user is not owner of the account or does not have admin priviledges
       res.sendStatus(403);
     }
   });
