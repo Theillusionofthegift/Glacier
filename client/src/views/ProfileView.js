@@ -5,13 +5,23 @@ import Profile from '../components/profile/Profile'
 
 export default function ProfileView() {
   const [ profile, setProfile ] = useState({});
-  const {user} = useAuth0();
+  const {user, getAccessTokenSilently} = useAuth0();
+  console.log(user);
   
   useEffect( () => {
+    async function getToken() {
+      const authToken = await getAccessTokenSilently();
+      console.log('auth token ', authToken);
+      }
+    const token = getToken();
+    console.log(token);
     const config = {
         url: `http://localhost:4000/api/v1/users/${user.sub}`,
         method: 'GET',
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+        },
+
       }
       axios(config).then((response) => {
         setProfile(response.data)
