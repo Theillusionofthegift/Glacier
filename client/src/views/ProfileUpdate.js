@@ -40,7 +40,7 @@ export default function CreateProfile() {
         event.preventDefault();
         const requestConfig = {
             url: `http://localhost:4000/api/v1/users/${user.sub}`,
-            method: "UPDATE",
+            method: "PUT",
             headers: { "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`, 
             },
