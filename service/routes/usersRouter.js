@@ -52,10 +52,10 @@ const jwtCheck = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: 'https://dev-0rn1lib.us.auth0.com/',
+    jwksUri: 'https://dev-0rn1lib4.us.auth0.com/.well-known/jwks.json',
   }),
   audience: 'glacier.com',
-  issuer: 'https://dev-0rn1lib.us.auth0.com/',
+  issuer: 'https://dev-0rn1lib4.us.auth0.com',
   algorithms: ['RS256'],
 });
 usersRouter.use(jwtCheck);
