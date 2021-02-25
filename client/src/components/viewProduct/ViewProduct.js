@@ -6,6 +6,7 @@ import image from '../../images/product.jpg';
 import {Link} from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
 import './ViewProduct.css';
+import MapView from '../../views/MapView';
 
 function ViewProduct(props) {
     const { isAuthenticated } = useAuth0();
@@ -61,6 +62,8 @@ function ViewProduct(props) {
                 <p>{props.product.description}</p>
 
             </div>
+
+            <MapView className="mx-auto"/>
         </Container>
     );
 }

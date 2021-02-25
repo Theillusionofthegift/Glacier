@@ -21,6 +21,7 @@ function Product(props) {
         <Card.Link as={Link} to={`/product/${props.products._id}`}>Product Description</Card.Link>
       </Card.Body>
     </Card>
+    
 
   );
   }

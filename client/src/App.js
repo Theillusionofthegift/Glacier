@@ -11,6 +11,7 @@ import ProfileUpdate from './views/ProfileUpdate'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileView from "./views/ProfileView";
 
+
 function App() {
   return (
     <>
@@ -38,7 +39,10 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
+   
+
       </>
+
   );
 }
 
