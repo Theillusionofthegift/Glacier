@@ -10,6 +10,7 @@ import ProfileCreate from './views/ProfileCreate'
 import ProfileUpdate from './views/ProfileUpdate'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileView from "./views/ProfileView";
+import MapView from './views/MapView';
 
 function App() {
   return (
@@ -38,7 +39,10 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
+      <MapView />
+
       </>
+
   );
 }
 
