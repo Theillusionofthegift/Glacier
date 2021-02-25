@@ -5,19 +5,13 @@ import Profile from '../components/profile/Profile'
 
 export default function ProfileView() {
   const [ profile, setProfile ] = useState({});
-  const {user, getAccessTokenSilently} = useAuth0();
+  const {user} = useAuth0();
   
   useEffect( () => {
-    async function getToken() {
-      const authToken = await getAccessTokenSilently();
-      console.log('auth token ', authToken);
-      }
-    const token = getToken();
     const config = {
         url: `http://localhost:4000/api/v1/users/${user.sub}`,
         method: 'GET',
         headers: { "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
         },
 
       }
@@ -26,7 +20,7 @@ export default function ProfileView() {
       }).catch((err) => {
         console.log(`error in ProfileView useEffect ${user.sub}`);
       })
-  },[])
+  })
   
   if (profile) {
     return <Profile user= {profile} />
