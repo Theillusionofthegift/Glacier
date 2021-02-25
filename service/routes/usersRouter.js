@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 
 const usersRouter = express.Router();
@@ -15,7 +13,7 @@ usersRouter.route('/')
         next('Something Went Wrong!');
       } else { res.send(users); }
     });
-  })
+  });
 
 usersRouter.route('/:id')
   .get((req, res, next) => {
@@ -23,33 +21,27 @@ usersRouter.route('/:id')
     User.find({ auth0Id: req.params.id }, options, (err, id) => {
       if (err) { next(err); }
       User.findById(id, (err, user) => {
-        if (err) { next(err); }
-        else if (user) { res.send(user); }
-        else { res.sendStatus(404); }
+        if (err) { next(err); } else if (user) { res.send(user); } else { res.sendStatus(404); }
       });
     });
   })
 
   .put((req, res, next) => {
-    const options = { validate: true }
+    const options = { validate: true };
     User.find({ auth0Id: req.params.id }, options, (err, id) => {
       if (err) { next(err); }
       User.findByIdAndUpdate(id, req.body, options, (err, user) => {
-        if (err) { next(err); }
-        else if (user) { res.send(user); }
-        else { res.sendStatus(404); }
+        if (err) { next(err); } else if (user) { res.send(user); } else { res.sendStatus(404); }
       });
     });
   })
 
   .delete((req, res, next) => {
-    const options = { validate: true }
+    const options = { validate: true };
     User.find({ auth0Id: req.params.id }, options, (err, id) => {
       if (err) { next(err); }
       User.findByIdAndDelete(id, (err, user) => {
-        if (err) { next(err); }
-        else if (user) { res.send(user); }
-        else { res.sendStatus(404); }
+        if (err) { next(err); } else if (user) { res.send(user); } else { res.sendStatus(404); }
       });
     });
   });
@@ -71,14 +63,15 @@ usersRouter.use(jwtCheck);
 // after the JWT middleware runs, the request object is decorated with user information
 usersRouter.route('/')
   .post((req, res, next) => {
-    const { permissions } = req.user;
+    const { permissions, sub } = req.user;
+    console.log(sub);
     if (permissions.includes('manage:users')) {
       next();
     } else {
       // user does not have admin priviledges
       res.sendStatus(403);
     }
-  }, userController.createUser) 
+  }, userController.createUser);
 
 usersRouter.route('/:id')
 

@@ -25,11 +25,11 @@ function App() {
         <Route path="/Sell">
           <CreateProduct />
         </Route>
+        <Route path="/users/new">
+          <ProfileCreate />
+        </Route>
         <Route path="/users/update">
           <ProfileUpdate />
-        </Route>
-        <Route path='/users/new'>
-          <ProfileCreate />
         </Route>
         <Route path="/Profile">
           <ProfileView />
