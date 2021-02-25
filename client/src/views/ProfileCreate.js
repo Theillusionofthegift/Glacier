@@ -25,6 +25,7 @@ export default function CreateProfile() {
         console.log('auth token ', authToken);
         }
     const token = getToken();
+    console.log(token);
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         console.log(`name ${name} and value ${value}`);

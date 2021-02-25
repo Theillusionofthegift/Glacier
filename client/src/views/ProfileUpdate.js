@@ -19,12 +19,14 @@ export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
     const {user, getAccessTokenSilently} = useAuth0();
+    console.log(user);
 
     async function getToken() {
         const authToken = await getAccessTokenSilently();
         console.log('auth token ', authToken);
         }
     const token = getToken();
+    console.log(token);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
