@@ -63,7 +63,7 @@ function ViewProduct(props) {
 
             </div>
 
-            <MapView />
+            <MapView className="mx-auto"/>
         </Container>
     );
 }
