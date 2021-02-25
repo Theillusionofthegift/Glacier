@@ -2,7 +2,7 @@ const express = require('express');
 
 const usersRouter = express.Router();
 const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
+const jwksRsa = require('jwks-rsa');
 const User = require('../models/users');
 const userController = require('../controllers/userController');
 
@@ -48,7 +48,7 @@ usersRouter.route('/:id')
 
 // A middleware function that checks to see if a token is valid for use.
 const jwtCheck = jwt({
-  secret: jwks.expressJwtSecret({
+  secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
