@@ -10,6 +10,7 @@ import ProfileCreate from './views/ProfileCreate'
 import ProfileUpdate from './views/ProfileUpdate'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileView from "./views/ProfileView";
+import ConversationView from "./views/ConversationView";
 
 
 function App() {
@@ -17,7 +18,10 @@ function App() {
     <>
       <LogoBar />
       <Switch>
-        <Route path="/conversation/">
+        <Route path="/conversations/all">
+          < ConversationView />
+        </Route>
+        <Route path="/conversations/">
           <MessageView />
         </Route>
         <Route path="/product/:id">

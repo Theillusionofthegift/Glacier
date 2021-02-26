@@ -17,7 +17,7 @@ function Product(props) {
     </Card.Text>
       </Card.Body>
       <Card.Body>
-        <Card.Link as={Link} to={{pathname:"/conversation", state: { seller: props.products.seller}}}>Message</Card.Link>
+        <Card.Link as={Link} to={{pathname:"/conversations", state: { seller: props.products.seller}}}>Message</Card.Link>
         <Card.Link as={Link} to={`/product/${props.products._id}`}>Product Description</Card.Link>
       </Card.Body>
     </Card>
