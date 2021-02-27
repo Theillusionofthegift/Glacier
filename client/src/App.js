@@ -19,7 +19,7 @@ function App() {
     <>
       <LogoBar />
       <Switch>
-        <Route path="/products/?search">
+        <Route path="/?search">
           <SearchView />
         </Route>
         <Route path="/conversations/all">

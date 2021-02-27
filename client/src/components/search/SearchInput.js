@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import {Link } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
 import {Form,
         FormControl,
@@ -23,9 +24,9 @@ const SearchInput = () => {
   }, [query, history])
 
   return (<Form inline className="mx-auto">
-    <FormControl type="text" placeholder="Search" className="mr-sm-2" value={query} onChange={onChange} />
-    <Button variant="outline-light">Search</Button>
-  </Form>)
+           <FormControl type="text" placeholder="Search" className="mr-sm-2" value={query} onChange={onChange} />
+           <Button variant="outline-light">Search</Button>
+          </Form>)
 }
 
 export default SearchInput
