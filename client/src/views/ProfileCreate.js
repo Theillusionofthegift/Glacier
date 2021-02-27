@@ -32,7 +32,9 @@ export default function CreateProfile() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         const authToken = await getAccessTokenSilently();
+        console.log( authToken)
         const requestConfig = {
             url: "http://localhost:4000/api/v1/users",
             method: "post",
