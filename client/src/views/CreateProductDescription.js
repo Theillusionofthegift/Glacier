@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
-import { InputGroup, FormControl, Button, Form, DropdownButton, Dropdown } from 'react-bootstrap';
+import { InputGroup, FormControl, Button, Form, } from 'react-bootstrap';
 import product from '../images/product.jpg';
 import './outfit.css';
 
@@ -11,7 +11,7 @@ const defaultFormValues = {
     price: "",
     seller: "",
     description: "",
-    categories: "",
+    category: "",
 };
 
 
@@ -46,7 +46,7 @@ export default function CreateProduct() {
                 price: productFormValues.price,
                 seller: user.sub,
                 description: productFormValues.description,
-                categories: productFormValues.categories,
+                category: productFormValues.category,
             },
         };
 
@@ -113,8 +113,9 @@ export default function CreateProduct() {
 
                     <Form.Group>
                         <Form.Control 
+                            placeholder="Category"
                             as="select"                         
-                            name="categories"
+                            name="category"
                             value={productFormValues.categories}
                             onChange={handleInputChange}>
                                 <option>Appliances</option>
