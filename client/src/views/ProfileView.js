@@ -7,6 +7,7 @@ export default function ProfileView() {
   const [ profile, setProfile ] = useState({});
   const {user, getAccessTokenSilently} = useAuth0();
   console.log(user);
+  const id = user.sub.split('|')
   
   useEffect( () => {
     async function getToken() {
@@ -16,7 +17,7 @@ export default function ProfileView() {
     const token = getToken();
     console.log(token);
     const config = {
-        url: `http://localhost:4000/api/v1/users/${user.sub}`,
+        url: `http://localhost:4000/api/v1/users/${id[1]}`,
         method: 'GET',
         headers: { "Content-Type": "application/json",
                   Authorization: `Bearer ${token}`,
