@@ -5,23 +5,9 @@ const Product = require('../models/product');
 const productController = require('../controllers/productController');
 
 productsRouter.route('/')
-  .get((req, res, next) => {
-    Product.find({}, (err, products) => {
-      if (err) { next('Something Went Wrong!'); } else { res.send(products); }
-    });
-  })
-  .post(productController.createProduct);
+  .get(productController.searchProduct)
 
-productsRouter.route('/?')
-  .get((req, res, next) => {
-    Product.find({ Categories: req.query.search }, (err, search) => {
-      if (err) {
-        next('Something Went Wrong!');
-      } else {
-        res.send(search);
-      }
-    });
-  });
+  .post(productController.createProduct);
 
 productsRouter.route('/:id')
   .get((req, res, next) => {

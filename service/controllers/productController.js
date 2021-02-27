@@ -29,3 +29,19 @@ exports.createProduct = (req, res, next) => {
       next(err);
     });
 };
+
+exports.searchProduct = (req, res, next) => {
+  if (req.query) {
+    Product.find({ category: req.query.search }, (err, search) => {
+      if (err) {
+        next('Something Went Wrong!');
+      } else {
+        res.send(search);
+      }
+    });
+  } else {
+    Product.find({}, (err, products) => {
+      if (err) { next('Something Went Wrong!'); } else { res.send(products); }
+    });
+  }
+};
