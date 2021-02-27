@@ -11,6 +11,7 @@ import ProfileUpdate from './views/ProfileUpdate'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileView from "./views/ProfileView";
 import ConversationView from "./views/ConversationView";
+import SearchView from './views/SearchView'
 
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
     <>
       <LogoBar />
       <Switch>
+        <Route path="/products/?search">
+          <SearchView />
+        </Route>
         <Route path="/conversations/all">
           < ConversationView />
         </Route>
@@ -27,7 +31,7 @@ function App() {
         <Route path="/product/:id">
           <ViewProductDetail />
         </Route>
-        <Route path="/Sell">
+        <Route path="/sell">
           <CreateProduct />
         </Route>
         <Route path="/users/new">
@@ -36,7 +40,7 @@ function App() {
         <Route path="/users/update">
           <ProfileUpdate />
         </Route>
-        <Route path="/Profile">
+        <Route path="/profile">
           <ProfileView />
         </Route>
         <Route path="/">
