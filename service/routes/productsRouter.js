@@ -12,10 +12,25 @@ productsRouter.route('/')
   })
   .post(productController.createProduct);
 
+productsRouter.route('/?')
+  .get((req, res, next) => {
+    Product.find({ Categories: req.query.search }, (err, search) => {
+      if (err) {
+        next('Something Went Wrong!');
+      } else {
+        res.send(search);
+      }
+    });
+  });
+
 productsRouter.route('/:id')
   .get((req, res, next) => {
     Product.findById(req.params.id, (err, products) => {
-      if (err) { next(err); } else if (products) { res.send(products); } else { res.sendStatus(404); }
+      if (err) { next(err); } else if (products) {
+        res.send(products);
+      } else {
+        res.sendStatus(404);
+      }
     });
   })
 
