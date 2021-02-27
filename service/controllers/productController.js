@@ -48,7 +48,7 @@ exports.searchProduct = (req, res, next) => {
       }
     });
   } else {
-    Product.find({}, (err, products) => {
+    Product.find({ available: true }, (err, products) => {
       if (err) { next('Something Went Wrong!'); } else { res.send(products); }
     });
   }
