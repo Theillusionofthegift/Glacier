@@ -111,67 +111,58 @@ export default function CreateProduct() {
                         />
                     </InputGroup>
 
-                    <InputGroup>
-                        <FormControl
-                            placeholder="Recipient's username"
-                            aria-label="Recipient's username"
-                            aria-describedby="basic-addon2"
+                    <Form.Group>
+                        <Form.Control 
+                            as="select"                         
                             name="categories"
                             value={productFormValues.categories}
-                            onChange={handleInputChange}
-                        />
-                        <DropdownButton
-                            as={InputGroup.Append}
-                            variant="outline-primary"
-                            title="Categories"
-                            id="input-categories-2"
-                        >
-                            <Dropdown.Item >Appliances</Dropdown.Item>
-                            <Dropdown.Item >Arts and crafts</Dropdown.Item>
-                            <Dropdown.Item >Audio Equipment</Dropdown.Item>
-                            <Dropdown.Item >Baby and kids</Dropdown.Item>
-                            <Dropdown.Item >Beauty and health</Dropdown.Item>
-                            <Dropdown.Item >Bicycles</Dropdown.Item>
-                            <Dropdown.Item >Boats and marine</Dropdown.Item>
-                            <Dropdown.Item >Books and magazines</Dropdown.Item>
-                            <Dropdown.Item >Business equipment</Dropdown.Item>
-                            <Dropdown.Item >Campers and RVs</Dropdown.Item>
-                            <Dropdown.Item >Cars and trucks</Dropdown.Item>
-                            <Dropdown.Item >CDs and DVDs</Dropdown.Item>
-                            <Dropdown.Item >Cell phones</Dropdown.Item>
-                            <Dropdown.Item >Clothing and shoes</Dropdown.Item>
-                            <Dropdown.Item >Collectibles</Dropdown.Item>
-                            <Dropdown.Item >Computer equipment</Dropdown.Item>
-                            <Dropdown.Item >Electronics</Dropdown.Item>
-                            <Dropdown.Item >Exercise</Dropdown.Item>
-                            <Dropdown.Item >Farming</Dropdown.Item>
-                            <Dropdown.Item >Furniture</Dropdown.Item>
-                            <Dropdown.Item >Games and toys</Dropdown.Item>
-                            <Dropdown.Item >Home and garden</Dropdown.Item>
-                            <Dropdown.Item >Household</Dropdown.Item>
-                            <Dropdown.Item >Jewelry and accessories</Dropdown.Item>
-                            <Dropdown.Item >Motorcycles</Dropdown.Item>
-                            <Dropdown.Item >Musical instruments</Dropdown.Item>
-                            <Dropdown.Item >Pet supplies</Dropdown.Item>
-                            <Dropdown.Item >Photography</Dropdown.Item>
-                            <Dropdown.Item >Software</Dropdown.Item>
-                            <Dropdown.Item >Sports and outdoors</Dropdown.Item>
-                            <Dropdown.Item >Tickets</Dropdown.Item>
-                            <Dropdown.Item >TVs</Dropdown.Item>
-                            <Dropdown.Item >Video equipment</Dropdown.Item>
-                            <Dropdown.Item >Video games</Dropdown.Item>
-                        </DropdownButton>
-                    </InputGroup>
-
-                        <div className="mb-3">
-                            <Form.File id="formcheck-api-regular">
-                                <Form.File.Label>Regular file input</Form.File.Label>
-                                <Form.File.Input />
-                            </Form.File>
-                        </div>
-                        <Button type="submit" onClick={handleSubmit}>Submit form</Button>
+                            onChange={handleInputChange}>
+                                <option>Appliances</option>
+                                <option>Arts and crafts</option>
+                                <option>Audio Equipment</option>
+                                <option>Baby and kids</option>
+                                <option>Beauty and health</option>
+                                <option>Bicycles</option>
+                                <option>Boats and marine</option>
+                                <option>Books and magazines</option>
+                                <option>Business equipment</option>
+                                <option>Campers and RVs</option>
+                                <option>Cars and trucks</option>
+                                <option>CDs and DVDs</option>
+                                <option>Cell phones</option>
+                                <option>Clothing and shoes</option>
+                                <option>Collectibles</option>
+                                <option>Computer equipment</option>
+                                <option>Electronics</option>
+                                <option>Exercise</option>
+                                <option>Farming</option>
+                                <option>Furniture</option>
+                                <option>Games and toys</option>
+                                <option>Home and garden</option>
+                                <option>Household</option>
+                                <option>Jewelry and accessories</option>
+                                <option>Motorcycles</option>
+                                <option>Musical instruments</option>
+                                <option>Pet supplies</option>
+                                <option>Photography</option>
+                                <option>Software</option>
+                                <option>Sports and outdoors</option>
+                                <option>Tickets</option>
+                                <option>TVs</option>
+                                <option>Video equipment</option>
+                                <option>Video games</option>
+                        </Form.Control>
+    
+                    </Form.Group>
+                    <div className="mb-3">
+                        <Form.File id="formcheck-api-regular">
+                            <Form.File.Label>Regular file input</Form.File.Label>
+                            <Form.File.Input />
+                        </Form.File>
+                    </div>
+                    <Button type="submit" onClick={handleSubmit}>Submit form</Button>
                 </div>
-                </div>
+            </div>
         )
     }
 }
