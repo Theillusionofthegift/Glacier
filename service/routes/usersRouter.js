@@ -6,7 +6,7 @@ const jwksRsa = require('jwks-rsa');
 const User = require('../models/users');
 const userController = require('../controllers/userController');
 
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: '.env' });
 
 const domain = process.env.REACT_APP_AUTH_0_DOMAIN;
 const audience = process.env.REACT_APP_AUTH_0_AUDIENCE;
