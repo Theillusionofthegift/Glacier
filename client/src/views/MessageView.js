@@ -34,11 +34,11 @@ function MessageView() {
         console.log(messageValues);
     };
 
-    const buyerId = user.sub.split(' ')
+    const buyerId = user.sub.split('|')
 
     useEffect(() => {
         const config = {
-          url: `http://localhost:4000/api/v1/conversations/?seller=${location.state.seller}&buyer=${buyerId[2]}`,
+          url: `http://localhost:4000/api/v1/conversations/?seller=${location.state.seller}&buyer=${buyerId[1]}`,
           method: 'GET',
         }
         axios(config).then((response) => {

@@ -24,11 +24,9 @@ usersRouter.route('/')
 usersRouter.route('/:id')
   .get((req, res, next) => {
     const options = { validate: true };
-    User.find({ auth0Id: req.params.id }, options, (err, id) => {
+    User.find({ auth0Id: req.params.id }, (err, id) => {
       if (err) { next(err); }
-      User.findById(id, (err, user) => {
-        if (err) { next(err); } else if (user) { res.send(user); } else { res.sendStatus(404); }
-      });
+      res.send(id);
     });
   })
 
