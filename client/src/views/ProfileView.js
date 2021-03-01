@@ -28,7 +28,7 @@ export default function ProfileView() {
       axios(config).then((response) => {
         setProfile(response.data[0])
       }).catch((err) => {
-        console.log(`error in ProfileView useEffect ${user.sub}`);
+        console.log(`error in ProfileView useEffect`);
       })
   },[])
   

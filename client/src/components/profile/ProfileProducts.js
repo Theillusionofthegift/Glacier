@@ -24,12 +24,12 @@ export default function ProfileProducts(props) {
 
 
     if (loading){
-        return <div>Lodaing...</div>
+        return <div></div>
     }  else {
         return (
             <Container className="mx-auto">
               <br />
-              <h1>Items your selling</h1>
+              <h1>Items you're selling</h1>
               <ProductList products={products} /> 
             </Container>
     );
