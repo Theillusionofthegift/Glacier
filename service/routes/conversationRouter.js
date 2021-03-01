@@ -7,7 +7,7 @@ const Conversation = require('../models/conversations');
 
 conversationRouter.route('/?')
 
-    .get(conversationContoller.findConversation, conversationContoller.createConversation);
+  .get(conversationContoller.findConversation, conversationContoller.createConversation);
 
 
 conversationRouter.route('/:id')

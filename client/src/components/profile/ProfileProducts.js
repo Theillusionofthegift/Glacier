@@ -1,6 +1,7 @@
 import React, { useState, useEffect}  from 'react'
 import ProductList from '../products/ProductList'
 import axios from 'axios'
+import { Container } from 'react-bootstrap';
 
 export default function ProfileProducts(props) {
     const [products, setProducts ] = useState(null);
@@ -8,7 +9,7 @@ export default function ProfileProducts(props) {
 
     useEffect(() => {
         const config = {
-          url: `http://localhost:4000/api/v1/products/${props.user.auth0Id}`,
+          url: `http://localhost:4000/api/v1/products/?seller=${props.user.auth0Id}`,
           method: 'GET',
           headers: { "Content-Type": "application/json" },
         }
@@ -26,11 +27,11 @@ export default function ProfileProducts(props) {
         return <div>Lodaing...</div>
     }  else {
         return (
-            <>
-              <br/>
+            <Container className="mx-auto">
+              <br />
               <h1>Items your selling</h1>
               <ProductList products={products} /> 
-            </>
+            </Container>
     );
     }
 

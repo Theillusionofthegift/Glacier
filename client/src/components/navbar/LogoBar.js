@@ -16,7 +16,6 @@ export default function LogoBar(props) {
           <img alt="" src = {logo} width="30" height="30" className="d-inline-block align-top"></img> {' '} Glacier
         </Navbar.Brand>
 
-        <SearchInput />
 
         <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
           <Nav.Link as={Link} to="/">Home</Nav.Link>

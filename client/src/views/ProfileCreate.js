@@ -64,7 +64,7 @@ export default function CreateProfile() {
         return <Redirect to="/" />;
     } else {
         return (
-            <div className="wrapper">
+            < >
                 <h1 className="title">Profile</h1>
                 <img className="image" src={profile} alt='profile' />
                 <div className="outfit">
@@ -132,7 +132,6 @@ export default function CreateProfile() {
                     </div>
                     <Button type="submit" onClick={handleSubmit}>Update</Button>
                 </div>
-            </div>
-        )
+            </>);
     }
 }
