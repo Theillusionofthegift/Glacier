@@ -18,7 +18,7 @@ const defaultFormValues = {
 export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
-    const {user} = useAuth0();
+    const {user, getAccessTokenSilently} = useAuth0();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -30,12 +30,16 @@ export default function CreateProfile() {
         console.log(profileFormValues);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const authToken = await getAccessTokenSilently();
+        console.log( authToken)
         const requestConfig = {
             url: "http://localhost:4000/api/v1/users",
             method: "post",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+                        Authorization: `Bearer ${authToken}` },
             data: {
                 auth0Id: user.sub,
                 userName: profileFormValues.userName,
@@ -60,7 +64,7 @@ export default function CreateProfile() {
         return <Redirect to="/" />;
     } else {
         return (
-            <div className="wrapper">
+            < >
                 <h1 className="title">Profile</h1>
                 <img className="image" src={profile} alt='profile' />
                 <div className="outfit">
@@ -128,7 +132,6 @@ export default function CreateProfile() {
                     </div>
                     <Button type="submit" onClick={handleSubmit}>Update</Button>
                 </div>
-            </div>
-        )
+            </>);
     }
 }

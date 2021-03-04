@@ -18,7 +18,8 @@ const defaultFormValues = {
 export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
-    const {user} = useAuth0();
+    const {user, } = useAuth0();
+
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;

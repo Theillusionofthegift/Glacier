@@ -21,7 +21,7 @@ const LoginButton = () => {
       onClick={() => {
         loginWithRedirect({ 
           screen_hint: 'signup',
-          redirect_uri: 'https://localhost:3000/users/new'
+          redirectUri: 'http://localhost:3000/users/new'
         });
       }}
     >

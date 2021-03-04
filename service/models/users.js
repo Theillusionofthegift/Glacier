@@ -6,7 +6,7 @@ const types = {
 };
 
 const userSchema = new mongoose.Schema({
-  auth0Id: { type: String, required: true },
+  auth0Id: { type: String, required: true, unique: true },
   userType: {
     type: String,
     default: types.USER,

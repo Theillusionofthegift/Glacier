@@ -10,36 +10,44 @@ import ProfileCreate from './views/ProfileCreate'
 import ProfileUpdate from './views/ProfileUpdate'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileView from "./views/ProfileView";
-import MapView from './views/MapView';
+import ConversationView from "./views/ConversationView";
+import SearchView from './views/SearchView'
+
 
 function App() {
   return (
     <>
       <LogoBar />
       <Switch>
-        <Route path="/conversation/">
+        <Route path="/?search">
+          <SearchView />
+        </Route>
+        <Route path="/conversations/all">
+          < ConversationView />
+        </Route>
+        <Route path="/conversations/">
           <MessageView />
         </Route>
         <Route path="/product/:id">
           <ViewProductDetail />
         </Route>
-        <Route path="/Sell">
+        <Route path="/sell">
           <CreateProduct />
+        </Route>
+        <Route path="/users/new">
+          <ProfileCreate />
         </Route>
         <Route path="/users/update">
           <ProfileUpdate />
         </Route>
-        <Route path='/users/new'>
-          <ProfileCreate />
-        </Route>
-        <Route path="/Profile">
+        <Route path="/profile">
           <ProfileView />
         </Route>
         <Route path="/">
           <HomePage />
         </Route>
       </Switch>
-      <MapView />
+   
 
       </>
 

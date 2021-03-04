@@ -29,3 +29,27 @@ exports.createProduct = (req, res, next) => {
       next(err);
     });
 };
+
+exports.searchProduct = (req, res, next) => {
+  if (req.query.search) {
+    Product.find({ category: req.query.search }, (err, search) => {
+      if (err) {
+        next('Something Went Wrong!');
+      } else {
+        res.send(search);
+      }
+    });
+  } else if (req.query.seller) {
+    Product.find({ seller: req.query.seller }, (err, search) => {
+      if (err) {
+        next('Something Went Wrong!');
+      } else {
+        res.send(search);
+      }
+    });
+  } else {
+    Product.find({ available: true }, (err, products) => {
+      if (err) { next('Something Went Wrong!'); } else { res.send(products); }
+    });
+  }
+};
