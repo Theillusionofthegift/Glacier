@@ -20,6 +20,12 @@ export default function CreateProfile() {
     const [success, setSuccess] = useState(false);
     const {user, getAccessTokenSilently} = useAuth0();
 
+    async function getToken() {
+        const authToken = await getAccessTokenSilently();
+        console.log('auth token ', authToken);
+        }
+    const token = getToken();
+    console.log(token);
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         console.log(`name ${name} and value ${value}`);
@@ -37,9 +43,11 @@ export default function CreateProfile() {
         console.log( authToken)
         const requestConfig = {
             url: "http://localhost:4000/api/v1/users",
-            method: "post",
+            method: "POST",
             headers: { "Content-Type": "application/json",
-                        Authorization: `Bearer ${authToken}` },
+                        Authorization: `Bearer ${token}`, 
+            },
+
             data: {
                 auth0Id: user.sub,
                 userName: profileFormValues.userName,

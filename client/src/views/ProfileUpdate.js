@@ -18,8 +18,15 @@ const defaultFormValues = {
 export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
-    const {user, } = useAuth0();
+    const {user, getAccessTokenSilently} = useAuth0();
+    console.log(user);
 
+    async function getToken() {
+        const authToken = await getAccessTokenSilently();
+        console.log('auth token ', authToken);
+        }
+    const token = getToken();
+    console.log(token);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -35,8 +42,10 @@ export default function CreateProfile() {
         event.preventDefault();
         const requestConfig = {
             url: `http://localhost:4000/api/v1/users/${user.sub}`,
-            method: "UPDATE",
-            headers: { "Content-Type": "application/json" },
+            method: "PUT",
+            headers: { "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`, 
+            },
             data: {
                 auth0Id: user.sub,
                 userName: profileFormValues.userName,
