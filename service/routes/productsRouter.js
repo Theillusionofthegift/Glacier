@@ -5,17 +5,18 @@ const Product = require('../models/product');
 const productController = require('../controllers/productController');
 
 productsRouter.route('/')
-  .get((req, res, next) => {
-    Product.find({}, (err, products) => {
-      if (err) { next('Something Went Wrong!'); } else { res.send(products); }
-    });
-  })
+  .get(productController.searchProduct)
+
   .post(productController.createProduct);
 
 productsRouter.route('/:id')
   .get((req, res, next) => {
     Product.findById(req.params.id, (err, products) => {
-      if (err) { next(err); } else if (products) { res.send(products); } else { res.sendStatus(404); }
+      if (err) { next(err); } else if (products) {
+        res.send(products);
+      } else {
+        res.sendStatus(404);
+      }
     });
   })
 

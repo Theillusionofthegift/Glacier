@@ -14,7 +14,7 @@ export default function Profile(props) {
     if(props.user._id) {
     return (
         <Container className="mt-3">
-            <Image src={user.picture} fluid />
+            <Image src={user.picture} alt="User Picture" fluid />
             <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
             <Tab eventKey="profile" title="Profile">
                 <h1>UserName: {props.user.userName}</h1>

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import Profile from '../components/profile/Profile'
+import ProfileProducts from '../components/profile/ProfileProducts';
 
 export default function ProfileView() {
   const [ profile, setProfile ] = useState({});
   const {user, getAccessTokenSilently} = useAuth0();
-  console.log(user);
+
+  const id = user.sub.split('|')
   
   useEffect( () => {
     async function getToken() {
@@ -16,7 +18,7 @@ export default function ProfileView() {
     const token = getToken();
     console.log(token);
     const config = {
-        url: `http://localhost:4000/api/v1/users/${user.sub}`,
+        url: `http://localhost:4000/api/v1/users/${id[1]}`,
         method: 'GET',
         headers: { "Content-Type": "application/json",
                   Authorization: `Bearer ${token}`,
@@ -24,14 +26,19 @@ export default function ProfileView() {
 
       }
       axios(config).then((response) => {
-        setProfile(response.data)
+        setProfile(response.data[0])
       }).catch((err) => {
-        console.log(`error in ProfileView useEffect ${user.sub}`);
+        console.log(`error in ProfileView useEffect`);
       })
   },[])
   
   if (profile) {
-    return <Profile user= {profile} />
+    return (
+      <> 
+            <Profile user= {profile} /> 
+            <ProfileProducts user={profile} />
+      </>
+        )
   } else {
     return <div>Loading...</div>
   }

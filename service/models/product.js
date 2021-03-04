@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema({
   available: { type: Boolean, default: true },
   summary: String,
   description: String,
-  categories: [String],
+  category: String,
   zipcode: { type: Number, required: true },
 });
 

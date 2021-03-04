@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
-import { InputGroup, FormControl, Button, Form } from 'react-bootstrap';
+import { InputGroup, FormControl, Button, Form, } from 'react-bootstrap';
 import product from '../images/product.jpg';
 import './outfit.css';
 
@@ -11,7 +11,7 @@ const defaultFormValues = {
     price: "",
     seller: "",
     description: "",
-    categories: "",
+    category: "",
 };
 
 
@@ -20,7 +20,7 @@ export default function CreateProduct() {
 
     const [productFormValues, setProductFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
-    const { user} = useAuth0();
+    const { user } = useAuth0();
 
 
 
@@ -46,7 +46,7 @@ export default function CreateProduct() {
                 price: productFormValues.price,
                 seller: user.sub,
                 description: productFormValues.description,
-                categories: productFormValues.categories,
+                category: productFormValues.category,
             },
         };
 
@@ -111,20 +111,50 @@ export default function CreateProduct() {
                         />
                     </InputGroup>
 
-                    <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Categories</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl
-                            placeholder="Categories"
-                            aria-label="Categories"
-                            aria-describedby="basic-addon1"
-                            name="categories"
+                    <Form.Group>
+                        <Form.Control 
+                            placeholder="Category"
+                            as="select"                         
+                            name="category"
                             value={productFormValues.categories}
-                            onChange={handleInputChange}
-                        />
-                    </InputGroup>
-
+                            onChange={handleInputChange}>
+                                <option>Appliances</option>
+                                <option>Arts and crafts</option>
+                                <option>Audio Equipment</option>
+                                <option>Baby and kids</option>
+                                <option>Beauty and health</option>
+                                <option>Bicycles</option>
+                                <option>Boats and marine</option>
+                                <option>Books and magazines</option>
+                                <option>Business equipment</option>
+                                <option>Campers and RVs</option>
+                                <option>Cars and trucks</option>
+                                <option>CDs and DVDs</option>
+                                <option>Cell phones</option>
+                                <option>Clothing and shoes</option>
+                                <option>Collectibles</option>
+                                <option>Computer equipment</option>
+                                <option>Electronics</option>
+                                <option>Exercise</option>
+                                <option>Farming</option>
+                                <option>Furniture</option>
+                                <option>Games and toys</option>
+                                <option>Home and garden</option>
+                                <option>Household</option>
+                                <option>Jewelry and accessories</option>
+                                <option>Motorcycles</option>
+                                <option>Musical instruments</option>
+                                <option>Pet supplies</option>
+                                <option>Photography</option>
+                                <option>Software</option>
+                                <option>Sports and outdoors</option>
+                                <option>Tickets</option>
+                                <option>TVs</option>
+                                <option>Video equipment</option>
+                                <option>Video games</option>
+                        </Form.Control>
+    
+                    </Form.Group>
                     <div className="mb-3">
                         <Form.File id="formcheck-api-regular">
                             <Form.File.Label>Regular file input</Form.File.Label>

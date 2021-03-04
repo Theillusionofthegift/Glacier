@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 
 const mapStyles = {
@@ -15,7 +15,6 @@ https://www.digitalocean.com/community/tutorials/how-to-integrate-the-google-map
 */
 
 export class MapContainer extends Component {
-
   render() {
     return (
       <Map
@@ -37,5 +36,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyByNIRbW8GfEOBWLtIiE8nDdySwZ1InxBM'
+  apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 })(MapContainer);
