@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import Loading from "../loading/Loading"
 import ProductList from "./ProductList";
 
 class ProductProvider extends React.Component {
@@ -13,7 +13,7 @@ class ProductProvider extends React.Component {
 
   renderLoading() {
     // workitem style loading banner
-    return <div>Loading ...</div>;
+    return <Loading />;
   }
 
   renderError() {

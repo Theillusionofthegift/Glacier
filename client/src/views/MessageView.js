@@ -7,6 +7,7 @@ import MessageList from '../components/messages/MessageList'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
+import Loading from '../components/loading/Loading'
 
 
 
@@ -74,7 +75,7 @@ function MessageView() {
 
         return (
             <Container className="pt-5">
-                { loading ? <div>Loading...</div> : <MessageList messages={messages}/>}
+                { loading ? <Loading /> : <MessageList messages={messages}/>}
                 <InputGroup className="mt-3">
                     <FormControl
                         placeholder="Your Message Here..."

@@ -3,6 +3,7 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
 import Container from 'react-bootstrap/Container'
 import axios from "axios";
 import ConversationsList from '../components/messages/ConversationsList'
+import Loading from '../components/loading/Loading'
 
 function ConversationView() {
     const { user } = useAuth0();
@@ -26,7 +27,7 @@ function ConversationView() {
 
         return (
             <Container className="pt-5">
-                { loading ? <div>Loading...</div> : <ConversationsList convos={conversations}/>}
+                { loading ? <Loading /> : <ConversationsList convos={conversations}/>}
             </Container>
         );
     
