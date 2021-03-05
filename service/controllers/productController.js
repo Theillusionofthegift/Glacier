@@ -10,21 +10,10 @@ exports.createProduct = (req, res, next) => {
     res.status(400).send({ error: 'Product name connot be blank!' });
   }
 
-<<<<<<< HEAD
   // make sure the product Zipcode isn't blank
   if (req.body.zipcode.trim().length === 0) {
     res.status(400).send({ error: 'Zipcode cannot be blank!' });
   }
-=======
-  const product = {
-    prodName: req.body.prodName,
-    seller: req.body.seller,
-    price: req.body.price,
-    description: req.body.description,
-    category: req.body.category,
-    zipcode: req.body.zipcode,
-  };
->>>>>>> main
 
   function zipcodeIsValid(zipcode) {
     return /^[0-9]{5}(?:-[0-9]{4})?$/.test(zipcode);
