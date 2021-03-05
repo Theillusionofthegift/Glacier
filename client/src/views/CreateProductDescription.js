@@ -5,6 +5,7 @@ import axios from "axios";
 import { InputGroup, FormControl, Button, Form, } from 'react-bootstrap';
 import product from '../images/product.jpg';
 import './outfit.css';
+import FileUploader from "../components/upload/FileUploader";
 
 const defaultFormValues = {
     prodName: "",
@@ -169,12 +170,8 @@ export default function CreateProduct() {
                         </Form.Control>
     
                     </Form.Group>
-                    <div className="mb-3">
-                        <Form.File id="formcheck-api-regular">
-                            <Form.File.Label>Regular file input</Form.File.Label>
-                            <Form.File.Input />
-                        </Form.File>
-                    </div>
+
+                    <FileUploader />
                     <Button type="submit" onClick={handleSubmit}>Submit form</Button>
                 </div>
             </div>
