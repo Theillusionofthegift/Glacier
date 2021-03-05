@@ -1,6 +1,7 @@
 import React, { useState, useEffect}  from 'react'
 import ProductList from '../products/ProductList'
 import axios from 'axios'
+import Loading from '../loading/Loading'
 import { Container } from 'react-bootstrap';
 
 export default function ProfileProducts(props) {
@@ -24,7 +25,7 @@ export default function ProfileProducts(props) {
 
 
     if (loading){
-        return <div></div>
+        return <Loading />
     }  else {
         return (
             <Container className="mx-auto">

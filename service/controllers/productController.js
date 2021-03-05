@@ -10,15 +10,12 @@ exports.createProduct = (req, res, next) => {
     res.status(400).send({ error: 'Product name connot be blank!' });
   }
 
-  const { categories } = req.body.categories;
-  const categoriesArr = categories.split(',');
-
   const product = {
     prodName: req.body.prodName,
     seller: req.body.seller,
     price: req.body.price,
     description: req.body.description,
-    categories: categoriesArr,
+    category: req.body.category,
   };
 
   Product.create(product)
