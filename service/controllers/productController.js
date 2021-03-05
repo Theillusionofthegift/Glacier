@@ -10,21 +10,35 @@ exports.createProduct = (req, res, next) => {
     res.status(400).send({ error: 'Product name connot be blank!' });
   }
 
-  const product = {
-    prodName: req.body.prodName,
-    seller: req.body.seller,
-    price: req.body.price,
-    description: req.body.description,
-    category: req.body.category,
-  };
+  // make sure the product Zipcode isn't blank
+  if (req.body.zipcode.trim().length === 0) {
+    res.status(400).send({ error: 'Zipcode cannot be blank!' });
+  }
 
-  Product.create(product)
-    .then((product1) => {
-      res.send({ productId: product1._id });
-    })
-    .catch((err) => {
-      next(err);
-    });
+  function zipcodeIsValid(zipcode) {
+    return /^[0-9]{5}(?:-[0-9]{4})?$/.test(zipcode);
+  }
+
+  if (!zipcodeIsValid(req.body.zipcode.trim())) {
+    res.status(400).send({ error: 'Please enter a valid zipcode' });
+  } else {
+    const product = {
+      prodName: req.body.prodName,
+      seller: req.body.seller,
+      price: req.body.price,
+      description: req.body.description,
+      category: req.body.category,
+      zipcode: req.body.zipcode,
+    };
+
+    Product.create(product)
+      .then((product1) => {
+        res.send({ productId: product1._id });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
 };
 
 exports.searchProduct = (req, res, next) => {
