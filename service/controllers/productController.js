@@ -16,6 +16,7 @@ exports.createProduct = (req, res, next) => {
     price: req.body.price,
     description: req.body.description,
     category: req.body.category,
+    zipcode: req.body.zipcode,
   };
 
   Product.create(product)
