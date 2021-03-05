@@ -52,6 +52,7 @@ export default function FileUploader() {
                     <Button
                         variant="primary"
                         as= "span"
+                        className= "mb-3"
                     >
                         Choose a featured image:
             </Button>
@@ -65,11 +66,12 @@ export default function FileUploader() {
                 variant="primary"
                 disabled={!selectedFile}
                 onClick={upload}
+                className= "mb-3"
             >
                 Upload
             </Button>
 
-            <ProgressBar variant="primary" now={uploadProgress} />
+            <ProgressBar variant="primary" now={uploadProgress} className= "mb-3"/>
 
             { error ? <div> Whoops! </div> : null}
         </>

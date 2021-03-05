@@ -14,6 +14,7 @@ const productsRouter = require('./routes/productsRouter');
 const transRouter = require('./routes/transactionsRouter');
 const usersRouter = require('./routes/usersRouter');
 const conversationRouter = require('./routes/conversationRouter');
+const uploadRouter = require('./routes/uploadRouter');
 
 // Setting up mongoose connection
 
@@ -41,6 +42,7 @@ app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/transactions', transRouter);
 app.use('/api/v1/conversations', conversationRouter);
+app.use('/api/v1/uploads', uploadRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
