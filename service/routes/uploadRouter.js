@@ -1,7 +1,16 @@
 const express = require('express');
 const multer = require('multer');
 
-const upload = multer({ dest: 'uploads/' });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${file.fieldname}-${Date.now()}`);
+  },
+});
+const upload = multer({ storage });
+
 const uploadsRouter = express.Router();
 
 uploadsRouter.route('/')
@@ -13,7 +22,7 @@ uploadsRouter.route('/')
       if (!images) {
         res.status(400).send({
           status: false,
-          data: 'No photo is selected.',
+          data: 'No photos are selected.',
         });
       } else {
         const data = [];
