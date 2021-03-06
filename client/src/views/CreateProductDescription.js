@@ -13,6 +13,7 @@ const defaultFormValues = {
     seller: "",
     description: "",
     category: "",
+    zipcode: "",
 };
 
 
@@ -48,6 +49,7 @@ export default function CreateProduct() {
                 seller: user.sub,
                 description: productFormValues.description,
                 category: productFormValues.category,
+                zipcode: productFormValues.zipcode,
             },
         };
 
@@ -108,6 +110,18 @@ export default function CreateProduct() {
                             aria-label="With textarea"
                             name="description"
                             value={productFormValues.description}
+                            onChange={handleInputChange}
+                        />
+                    </InputGroup>
+
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text>Zipcode</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            aria-label="Zipcode"
+                            name="zipcode"
+                            value={productFormValues.zipcode}
                             onChange={handleInputChange}
                         />
                     </InputGroup>
