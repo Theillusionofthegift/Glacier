@@ -10,13 +10,13 @@ import {
 
 export default function FileUploader() {
 
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [imageFiles, setimageFiles] = useState([]);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [error, setError] = useState(null);
 
     const selectFile = (event) => {
         const { files } = event.target;
-        setSelectedFile(files[0]);
+        setimageFiles(files);
     };
 
     const progressUpdater = (event) => {
@@ -24,12 +24,12 @@ export default function FileUploader() {
     };
 
     const upload = () => {
-        console.log('file to upload ', selectedFile);
-        if (selectedFile) {
-            UseFileUpload('featImage', selectedFile, progressUpdater)
+        console.log('files to upload ', imageFiles);
+        if (imageFiles) {
+            UseFileUpload('images', imageFiles, progressUpdater)
                 .then((response) => {
                     console.log(response.data.message);
-                    setSelectedFile(null);
+                    setimageFiles([]);
                 })
                 .catch((err) => {
                     setError(err);
@@ -48,23 +48,25 @@ export default function FileUploader() {
                         style={{ display: 'none' }}
                         type="file"
                         onChange={selectFile}
+                        multiple
                     />
                     <Button
                         variant="primary"
                         as= "span"
                         className= "mb-3"
                     >
-                        Choose a featured image:
+                        Choose up to 3 images:
             </Button>
                 </label>
-
-                {selectedFile ? <h3>{selectedFile.name}</h3> : <h3>Select a File</h3>}
+                {imageFiles[0] ? <p>{imageFiles[0].name} <br/></p> : <p>Select a File</p>}
+                {imageFiles[1] ? <p>{imageFiles[1].name} <br/></p> : <p>Select a File</p>}
+                {imageFiles[2] ? <p>{imageFiles[2].name}</p> : <p>Select a File</p>}
 
             </Container>
 
             <Button
                 variant="primary"
-                disabled={!selectedFile}
+                disabled={!imageFiles}
                 onClick={upload}
                 className= "mb-3"
             >
