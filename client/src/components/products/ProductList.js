@@ -7,9 +7,9 @@ export default function ProductList(props) {
     const products = props.products
     return (
         <Container>
-            <Col >
-                <Row >
-                    {products.map((product) => (<Product  key={product._id} products={product}/>))}
+            <Col  >
+                <Row xs={1} md={4} xl={12} >
+                    {products.map((product) => (<Product  key={product._id} products={product} />))}
                 </Row>
             </Col>
         </Container>

@@ -41,15 +41,15 @@ export default function CreateProfile() {
 
         const authToken = await getAccessTokenSilently();
         console.log( authToken)
+        const id = user.sub.split('|')
         const requestConfig = {
             url: "http://localhost:4000/api/v1/users",
             method: "POST",
             headers: { "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`, 
+                        Authorization: `Bearer ${authToken}`, 
             },
-
             data: {
-                auth0Id: user.sub,
+                auth0Id: id[1],
                 userName: profileFormValues.userName,
                 email: user.email,
                 firstName: profileFormValues.firstName,
