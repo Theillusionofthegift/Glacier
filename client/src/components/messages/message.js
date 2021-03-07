@@ -4,12 +4,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios'
 
 function Message(props) {
-    const id = props.user.split('|');
     const [currentUser, setUserName ] = useState(null);  
 
     useEffect(() => {
         const config = {
-          url: `http://localhost:4000/api/v1/users/${id[1]}`,
+          url: `http://localhost:4000/api/v1/users/${props.user}`,
           method: 'GET',
           headers: { "Content-Type": "application/json" },
         }

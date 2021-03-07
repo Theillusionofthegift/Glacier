@@ -23,7 +23,10 @@ function App() {
           <SearchView />
         </Route>
         <Route path="/conversations/all">
-          < ConversationView />
+          <ConversationView />
+        </Route>
+        <Route path="/conversations/:id">
+          <MessageView />
         </Route>
         <Route path="/conversations/">
           <MessageView />
