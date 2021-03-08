@@ -63,7 +63,8 @@ function ViewProduct(props) {
 
             </div>
 
-            <MapView className="mx-auto"/>
+            <MapView className="mx-auto" lat={40.714224}
+            lng={-73.961452}/>
         </Container>
     );
 }
