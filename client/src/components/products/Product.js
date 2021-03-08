@@ -5,7 +5,6 @@ import { Card } from 'react-bootstrap'
 import logo from '../../images/product.png'
 import './Product-style.css'
 
-
 function Product(props) {
   const summary = props.products.description.substr(0,60) + "...";
   return (
