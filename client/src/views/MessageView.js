@@ -14,7 +14,7 @@ import Loading from '../components/loading/Loading'
 function MessageView() {
     const { user } = useAuth0();
     const defaultMessageValues = {
-        user: user.sub,
+        user: user.sub.split('|')[1],
         message: ""
     };
 

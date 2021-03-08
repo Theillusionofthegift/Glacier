@@ -27,7 +27,7 @@ function ConversationView() {
 
 
         return (
-            <Container className="pt-5">
+            <Container style={{marginTop: "5em"}}>
                 { loading ? <Loading /> : <ConversationsList convos={conversations} user={id[1]}/>}
             </Container>
         );

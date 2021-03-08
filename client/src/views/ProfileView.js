@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import Profile from '../components/profile/Profile'
 import ProfileProducts from '../components/profile/ProfileProducts';
+import { Container } from 'react-bootstrap';
 
 export default function ProfileView() {
   const [ profile, setProfile ] = useState({});
@@ -34,10 +35,10 @@ export default function ProfileView() {
   
   if (profile) {
     return (
-      <> 
+      <Container style={{marginTop:"5em"}}> 
             <Profile user= {profile} /> 
             <ProfileProducts user={profile} />
-      </>
+      </Container>
         )
   } else {
     return <div>Loading...</div>

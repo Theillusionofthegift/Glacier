@@ -30,8 +30,8 @@ function ViewProduct(props) {
     },[])
 
     return(
-        <Container>
-            <Container className="mt-3">
+        <Container style={{marginTop: "5em"}}>  
+            <Container>
                 <Carousel >
                     <Carousel.Item>
                         <img className="d-block w-50 mx-auto" src={image} alt='productView1'/>
@@ -82,7 +82,7 @@ function ViewProduct(props) {
 
             </div>
 
-            <MapView className="mx-auto"/>
+            <MapView />
         </Container>
     );
 }
