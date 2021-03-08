@@ -60,11 +60,10 @@ function ViewProduct(props) {
                 </div>
             <div className="detailedDescription">
                 <p>{props.product.description}</p>
-
             </div>
 
-            <MapView className="mx-auto" lat={40.714224}
-            lng={-73.961452}/>
+            <MapView className="mx-auto" zipcode={props.product.zipcode}/>
+            
         </Container>
     );
 }
