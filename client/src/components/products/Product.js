@@ -8,8 +8,8 @@ import './Product-style.css'
 function Product(props) {
   const summary = props.products.description.substr(0,60) + "...";
   return (
-    <Card style={{ width: '18rem' }} className="mx-3">
-      <Card.Img variant="top" src={logo} />
+    <Card className="mx-3 mt-3">
+      <Card.Img src={logo} />
       <Card.Body>
         <Card.Title>{props.products.prodName}  ${props.products.price}</Card.Title>
         <Card.Text>

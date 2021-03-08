@@ -11,7 +11,7 @@ export default function LogoBar(props) {
   const { isAuthenticated } = useAuth0();
   return ( 
     <>
-      <Navbar bg="primary" variant="dark">
+      <Navbar bg="primary" variant="dark" style={{position: "fixed", top: "0",width: "100%", zIndex:100}}>
         <Navbar.Brand as={Link} to="/" className='px-5'>
           <img alt="" src = {logo} width="30" height="30" className="d-inline-block align-top"></img> {' '} Glacier
         </Navbar.Brand>

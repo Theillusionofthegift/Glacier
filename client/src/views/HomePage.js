@@ -8,10 +8,11 @@ function HomePage() {
   return (
     <>
       <CatDropDown />
-      <Container style={{ margin: "auto"}} fluid>
+      <MessageIcon />
+      <Container className="mt-5">
         <ProductProvider />
       </Container>
-      <MessageIcon />
+      
     </>
   );
 }
