@@ -6,7 +6,6 @@ import logo from '../../images/product.png'
 import { useAuth0 } from '@auth0/auth0-react'
 
 import './Product-style.css'
-import SellerButtons from './SellerButtons';
 
 function Product(props) {
   const user = useAuth0();
