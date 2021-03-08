@@ -35,20 +35,6 @@ function ViewProduct(props) {
                             <p>Short Description Here</p>
                         </Carousel.Caption>
                     </Carousel.Item>
-                    <Carousel.Item>
-                        <img className="d-block w-50 mx-auto" src={image} alt='productView3'/>
-                        <Carousel.Caption>
-                            <h3>Fourth View</h3>
-                            <p>Short Description Here</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img className="d-block w-50 mx-auto" src={image} alt='productView3'/>
-                        <Carousel.Caption>
-                            <h3>Fifth View</h3>
-                            <p>Short Description Here</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
                 </Carousel>
                 
             </Container>
