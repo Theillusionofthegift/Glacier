@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import UseFileUpload from './MultiFileUpload';
+import UseFileUpload from './FileUpload';
 import {
     Container,
     Button,
@@ -10,13 +10,13 @@ import {
 
 export default function FileUploader() {
 
-    const [imageFiles, setimageFiles] = useState([]);
+    const [imageFile, setimageFile] = useState(null);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [error, setError] = useState(null);
 
     const selectFile = (event) => {
         const { files } = event.target;
-        setimageFiles(files);
+        setimageFile(files);
     };
 
     const progressUpdater = (event) => {
@@ -24,12 +24,12 @@ export default function FileUploader() {
     };
 
     const upload = () => {
-        console.log('files to upload ', imageFiles);
-        if (imageFiles) {
-            UseFileUpload('images', imageFiles, progressUpdater)
+        console.log('files to upload ', imageFile);
+        if (imageFile) {
+            UseFileUpload('profile', imageFile.item(0), progressUpdater)
                 .then((response) => {
                     console.log(response.data.message);
-                    setimageFiles([]);
+                    setimageFile([]);
                 })
                 .catch((err) => {
                     setError(err);
@@ -55,18 +55,16 @@ export default function FileUploader() {
                         as= "span"
                         className= "mb-3"
                     >
-                        Choose up to 3 images:
+                        Choose an image:
             </Button>
                 </label>
-                {imageFiles[0] ? <p>{imageFiles[0].name} <br/></p> : <p>Select a File</p>}
-                {imageFiles[1] ? <p>{imageFiles[1].name} <br/></p> : <p>Select a File</p>}
-                {imageFiles[2] ? <p>{imageFiles[2].name}</p> : <p>Select a File</p>}
+                {imageFile ? <p>{imageFile.name} <br/></p> : <p>Select a File</p>}
 
             </Container>
 
             <Button
                 variant="primary"
-                disabled={!imageFiles}
+                disabled={!imageFile}
                 onClick={upload}
                 className= "mb-3"
             >

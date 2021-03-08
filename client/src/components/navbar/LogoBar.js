@@ -19,9 +19,9 @@ export default function LogoBar(props) {
 
         <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <AuthenticationButton />
           { isAuthenticated ? <Nav.Link as={Link} to="/sell">Sell</Nav.Link> : ''}
           { isAuthenticated ? <Nav.Link as={Link} to="/profile">Profile</Nav.Link> : '' }
+          <AuthenticationButton />
         </Nav>
 
 
