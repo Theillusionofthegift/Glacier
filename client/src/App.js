@@ -28,9 +28,6 @@ function App() {
         <Route path="/conversations/:id">
           <MessageView />
         </Route>
-        <Route path="/conversations/">
-          <MessageView />
-        </Route>
         <Route path="/product/:id">
           <ViewProductDetail />
         </Route>

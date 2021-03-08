@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useParams } from 'react-router-dom'
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
 import Container from 'react-bootstrap/Container'
 import axios from "axios";
@@ -31,14 +32,13 @@ function MessageView() {
         console.log(messageValues);
     };
 
+    const { id } = useParams();
     useEffect(() => {
 
-        const id = window.location.pathname.split('/');
         const config = {
-            url: `http://localhost:4000/api/v1/conversations/${id[2]}`,
+            url: `http://localhost:4000/api/v1/conversations/${id}`,
             method: 'GET',
         }
-
 
         axios(config).then((response) => {
             setMessages(response.data)

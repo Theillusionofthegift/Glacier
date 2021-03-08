@@ -13,7 +13,7 @@ function Message(props) {
           headers: { "Content-Type": "application/json" },
         }
         axios(config).then((response) => {
-          setUserName(response.data[0]);
+          setUserName(response.data);
         }).catch((err) => {
           console.log('error in ViewProductDetail useEffect');
         })
