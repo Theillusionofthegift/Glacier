@@ -67,7 +67,7 @@ export default function CreateProduct() {
         return <Redirect to="/" />;
     } else {
         return (
-            <Container fluid className="my-5" style={{ width: "45%" }}>
+            <Container fluid style={{ width: "45%", marginTop: "5em" }}>
                 <Container style={{textAlign: "center", marginBottom: "3em"}}>
                     <h1>Sell Your Item</h1>
                 </Container>

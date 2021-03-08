@@ -3,9 +3,10 @@ import ViewProduct from '../components/viewProduct/ViewProductDetail'
 
 function ViewProductPage() {
     return (
-        <div className="viewProduct">
+        <>
             <ViewProduct />
-        </div>
+        </>
+
     )
 }
 

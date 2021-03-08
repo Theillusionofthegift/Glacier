@@ -1,17 +1,19 @@
 import './HomePage.css';
 import CatDropDown from '../components/navbar/DropDown'
 import ProductProvider from '../components/products/ProductProvider'
+import { Container } from 'react-bootstrap'
+import MessageIcon from '../components/messages/MessageIcon'
 
 function HomePage() {
   return (
-    <div>
-      <div className="App">
-        <CatDropDown />
-      </div>
-      <div className= "product">
-        <ProductProvider />      
-      </div>
-    </div>
+    <>
+      <CatDropDown />
+      <MessageIcon />
+      <Container className="mt-5">
+        <ProductProvider />
+      </Container>
+      
+    </>
   );
 }
 
