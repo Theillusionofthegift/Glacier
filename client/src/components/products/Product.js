@@ -1,22 +1,20 @@
-import { React, useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { React} from 'react'
+import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Card } from 'react-bootstrap'
 import logo from '../../images/product.png'
-import { useAuth0 } from '@auth0/auth0-react'
-import axios from 'axios'
 import './Product-style.css'
-import SellerButtons from './SellerButtons';
+
 
 function Product(props) {
+  const summary = props.products.description.substr(0,60) + "...";
   return (
-
     <Card style={{ width: '18rem' }} className="mx-3">
       <Card.Img variant="top" src={logo} />
       <Card.Body>
         <Card.Title>{props.products.prodName}  ${props.products.price}</Card.Title>
         <Card.Text>
-          {props.products.description}
+          {summary}
         </Card.Text>
       </Card.Body>
       <Card.Body>
