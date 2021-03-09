@@ -22,13 +22,15 @@ export class MapContainer extends Component {
         zoom={14}
         style={mapStyles}
         initialCenter={
-          {
-            lat: 47.620422, // turn this.props.zipcode into lat and lng
-            lng: -122.349358
+          { 
+            lat: this.props.lat, // turn this.props.geocodedLocation into lat and lng
+            lng: this.props.lng
           }
         }>
 
         <Marker 
+            lat={this.props.lat}
+            lng={this.props.lng}
             name={'Template Marker'}/>
         </Map>
     );
