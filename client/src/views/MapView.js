@@ -26,7 +26,7 @@ export class MapContainer extends Component {
         style={mapStyles}
         initialCenter={
           { 
-            lat: this.props.lat, // turn this.props.geocodedLocation into lat and lng
+            lat: this.props.lat, 
             lng: this.props.lng
           }
         }>

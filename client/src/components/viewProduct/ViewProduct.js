@@ -67,12 +67,8 @@ function ViewProduct(props) {
                 <p>{props.product.description}</p>
             </div>
 
-<<<<<<< HEAD
             <MapView className="mx-auto" geocodedLocation={props.product.geocodedLocation}/>
             
-=======
-            <MapView />
->>>>>>> main
         </Container>
     );
 }
