@@ -4,7 +4,10 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 const mapStyles = {
   width: '15%',
-  height: '35%'
+  height: '35%',
+  marginLeft: "auto",
+  marginRight: "auto",
+  display: "block"
 };
 
 /*

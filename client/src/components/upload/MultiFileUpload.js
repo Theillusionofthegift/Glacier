@@ -1,11 +1,14 @@
 import axios from 'axios';
 
-export default function UseFileUpload(key, file, uploadProgressHandler) {
+export default function UseFileUpload(key, files, uploadProgressHandler) {
   const formData = new FormData();
-  formData.append(key, file)
   
+  for (let i = 0; i < files.length; i++){
+    formData.append(key, files[i])
+  }
+
   const axiosConfig = {
-    url: 'http://localhost:4000/api/v1/uploads/profile',
+    url: 'http://localhost:4000/api/v1/uploads/products',
     method: 'post',
     headers: {
       'Content-Type': 'multipart/form-data',

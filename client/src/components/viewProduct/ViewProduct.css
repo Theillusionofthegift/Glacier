@@ -1,13 +1,13 @@
 .basicDescription{
     display:flex;
     justify-content:center;
-    margin: 50px;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .detailedDescription{
     display:flex;
     justify-content:center;
-    margin: 50px;
 }
 
 .carousel{
@@ -15,5 +15,5 @@
     justify-content:center;
 }
 .messageButton{
-    margin-left: 30px;
+    margin-left: 1em;
 }

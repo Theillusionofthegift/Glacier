@@ -5,10 +5,9 @@ const conversationContoller = require('../controllers/conversationController');
 const conversationRouter = express.Router();
 const Conversation = require('../models/conversations');
 
+
 conversationRouter.route('/?')
-
   .get(conversationContoller.findConversation, conversationContoller.createConversation);
-
 
 conversationRouter.route('/:id')
   // find Conversation by _id
@@ -32,6 +31,20 @@ conversationRouter.route('/:id')
             res.sendStatus(201);
           }
         });
+      } else {
+        res.sendStatus(404);
+      }
+    });
+  })
+
+  .delete((req, res, next) => {
+    Conversation.findByIdAndDelete(req.params.id, (err, conversation) => {
+      if (err) {
+        next(err);
+      }
+      // found the conversation
+      if (conversation) {
+        res.send(conversation);
       } else {
         res.sendStatus(404);
       }

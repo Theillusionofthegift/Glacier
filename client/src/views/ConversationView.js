@@ -7,13 +7,14 @@ import Loading from '../components/loading/Loading'
 
 function ConversationView() {
     const { user } = useAuth0();
+    const id = user.sub.split('|');
 
     const [conversations, setConvserations ] = useState({});
     const [loading, setLoading ] = useState(true);
 
     useEffect(() => {
         const config = {
-          url: `http://localhost:4000/api/v1/conversations/?user=${user.sub}`,
+          url: `http://localhost:4000/api/v1/conversations/?user=${id[1]}`,
           method: 'GET',
         }
         axios(config).then((response) => {
@@ -26,8 +27,8 @@ function ConversationView() {
 
 
         return (
-            <Container className="pt-5">
-                { loading ? <Loading /> : <ConversationsList convos={conversations}/>}
+            <Container style={{marginTop: "5em"}}>
+                { loading ? <Loading /> : <ConversationsList convos={conversations} user={id[1]}/>}
             </Container>
         );
     

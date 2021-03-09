@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
-import { InputGroup, FormControl, Button, Form } from 'react-bootstrap';
+import { InputGroup, FormControl, Button, Container } from 'react-bootstrap';
+import ProfileUploader from '../components/upload/ProfileUploader'
 import profile from '../images/userProfile.jpg';
-import './outfit.css';
 
 const defaultFormValues = {
     auto0Id: "",
@@ -18,12 +18,12 @@ const defaultFormValues = {
 export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
-    const {user, getAccessTokenSilently} = useAuth0();
+    const { user, getAccessTokenSilently } = useAuth0();
 
     async function getToken() {
         const authToken = await getAccessTokenSilently();
         console.log('auth token ', authToken);
-        }
+    }
     const token = getToken();
     console.log(token);
     const handleInputChange = (event) => {
@@ -40,13 +40,14 @@ export default function CreateProfile() {
         event.preventDefault();
 
         const authToken = await getAccessTokenSilently();
-        console.log( authToken)
+        console.log(authToken)
         const id = user.sub.split('|')
         const requestConfig = {
             url: "http://localhost:4000/api/v1/users",
             method: "POST",
-            headers: { "Content-Type": "application/json",
-                        Authorization: `Bearer ${authToken}`, 
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${authToken}`,
             },
             data: {
                 auth0Id: id[1],
@@ -72,10 +73,10 @@ export default function CreateProfile() {
         return <Redirect to="/" />;
     } else {
         return (
-            < >
-                <h1 className="title">Profile</h1>
+            <Container style={{marginTop:"5em"}}>
+                <h1 style={{textAlign:"center"}}>Create Profile</h1>
                 <img className="image" src={profile} alt='profile' />
-                <div className="outfit">
+                <Container>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">Username</InputGroup.Text>
@@ -132,14 +133,10 @@ export default function CreateProfile() {
                         />
                     </InputGroup>
 
-                    <div className="mb-3">
-                        <Form.File id="formcheck-api-regular">
-                            <Form.File.Label>Profile Picture</Form.File.Label>
-                            <Form.File.Input />
-                        </Form.File>
-                    </div>
-                    <Button type="submit" onClick={handleSubmit}>Update</Button>
-                </div>
-            </>);
+                    <ProfileUploader />
+
+                    <Button type="submit" onClick={handleSubmit}>Submit</Button>
+                </Container>
+            </Container>);
     }
 }
