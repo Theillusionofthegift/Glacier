@@ -15,7 +15,10 @@ const productSchema = new mongoose.Schema({
   summary: String,
   description: String,
   category: String,
-  zipcode: {type: locationSchema, required: true}, 
+  zipcode: { type: locationSchema, required: true },
+  productImage1:{ type: String, required: true },
+  productImage2:{ type: String, required: true },
+  productImage3:{ type: String, required: true },
 });
 
 const Product = mongoose.model('product', productSchema);

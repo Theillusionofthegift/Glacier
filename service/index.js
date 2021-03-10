@@ -37,6 +37,7 @@ db.on('close', () => { console.log('MongoDB connection closed'); });
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
 
 app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/users', usersRouter);
