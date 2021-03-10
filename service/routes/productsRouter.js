@@ -3,8 +3,6 @@ const express = require('express');
 const productsRouter = express.Router();
 const Product = require('../models/product');
 const productController = require('../controllers/productController');
-const multer = require('multer');
-const upload = multer({dest: '/uploads/'});
 
 productsRouter.route('/')
   .get(productController.searchProduct)
