@@ -13,13 +13,11 @@ exports.createProduct = async (req, res, next) => {
 
   // make sure the product Zipcode isn't blank
   if (req.body.zipcode.trim().length === 0) {
-    console.log("zipcode", req.body.zipcode);
     res.status(400).send({ error: 'Please enter a valid zipcode' });
   } else {
     let geocodedLocation;
     try {
       geocodedLocation = await getLocation(req.body.zipcode);
-      console.log("this is the geocoded location:", geocodedLocation);
     } catch (err) {
       res.status(400);
       res.send({ error: 'Invalid Location' });

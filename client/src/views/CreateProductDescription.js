@@ -38,7 +38,6 @@ export default function CreateProduct() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(productFormValues.zipcode);
         const requestConfig = {
             url: "http://localhost:4000/api/v1/products",
             method: "post",

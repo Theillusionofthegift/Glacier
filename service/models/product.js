@@ -15,7 +15,7 @@ const productSchema = new mongoose.Schema({
   summary: String,
   description: String,
   category: String,
-  zipcode: {type: locationSchema, required: true}, // is the zipcode still a string here?
+  zipcode: {type: locationSchema, required: true}, 
 });
 
 const Product = mongoose.model('product', productSchema);

@@ -23,7 +23,6 @@ function ViewProduct(props) {
       }
       axios(config).then((response) => {
         setConvoPath(response.data._id)
-        console.log(response.data._id)
       }).catch((err) => {
         console.log('error in ViewProductDetail useEffect');
       })
@@ -66,8 +65,8 @@ function ViewProduct(props) {
             <div className="detailedDescription">
                 <p>{props.product.description}</p>
             </div>
-
-            <MapView className="mx-auto" geocodedLocation={props.product.geocodedLocation}/>
+            
+            <MapView className="mx-auto" lat={props.product.zipcode.latitude} lng={props.product.zipcode.longitude}/>
             
         </Container>
     );

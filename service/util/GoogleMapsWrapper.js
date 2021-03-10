@@ -11,7 +11,6 @@ exports.getLocation = async (zipcode) => {
   const response = await axios.get(requestURL);
   if (response.data.status === 'OK') {
     const geocodeResult = response.data.results[0];
-    console.log(geocodeResult);
     const location = {
       readable: geocodeResult.formatted_address,
       latitude: geocodeResult.geometry.location.lat,
