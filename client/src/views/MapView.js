@@ -34,7 +34,8 @@ export class MapContainer extends Component {
         <Marker 
             lat={this.props.lat}
             lng={this.props.lng}
-            name={'Template Marker'}/>
+            name={'Template Marker'}
+            label={{fontWeight: 'bold', text:this.props.readable}}/>
         </Map>
     );
   }
