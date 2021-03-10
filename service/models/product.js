@@ -10,6 +10,9 @@ const productSchema = new mongoose.Schema({
   description: String,
   category: String,
   zipcode: { type: Number, required: true },
+  productImage1:{ type: String, required: true },
+  productImage2:{ type: String, required: true },
+  productImage3:{ type: String, required: true },
 });
 
 const Product = mongoose.model('product', productSchema);
