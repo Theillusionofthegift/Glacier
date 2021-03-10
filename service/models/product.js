@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const locationSchema = new mongoose.Schema({
+  readable: String,
   latitude: Number,
   longitude: Number,
 })
@@ -14,7 +15,7 @@ const productSchema = new mongoose.Schema({
   summary: String,
   description: String,
   category: String,
-  zipcode: {type: locationSchema, required: true},
+  zipcode: {type: locationSchema, required: true}, // is the zipcode still a string here?
 });
 
 const Product = mongoose.model('product', productSchema);
