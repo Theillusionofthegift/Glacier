@@ -14,12 +14,15 @@ const productsRouter = require('./routes/productsRouter');
 const transRouter = require('./routes/transactionsRouter');
 const usersRouter = require('./routes/usersRouter');
 const conversationRouter = require('./routes/conversationRouter');
-const uploadRouter = require('./routes/uploadRouter');
+// const uploadRouter = require('./routes/uploadRouter');
 
 // Setting up mongoose connection
 
-const user = process.env.MONGO_USER;
-const password = process.env.MONGO_PASS;
+console.log('Now the value for FOO is:', process.env.USER);
+console.log('Now the value for FOO is:', process.env.PASS);
+
+const user = process.env.USER;
+const password = process.env.PASS;
 const mongoDB = `mongodb+srv://${user}:${password}@cluster0.qkr4a.mongodb.net/Glacier?retryWrites=true&w=majority`;
 mongoose
   .connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -42,7 +45,7 @@ app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/transactions', transRouter);
 app.use('/api/v1/conversations', conversationRouter);
-app.use('/api/v1/uploads', uploadRouter);
+// app.use('/api/v1/uploads', uploadRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
