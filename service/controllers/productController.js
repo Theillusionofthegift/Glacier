@@ -1,6 +1,7 @@
 const Product = require('../models/product');
+const { getLocation } = require('../util/GoogleMapsWrapper');
 
-exports.createProduct = (req, res, next) => {
+exports.createProduct = async (req, res, next) => {
   // make sure price is greater than zero
   if (req.body.price <= 0 || req.body.price === undefined) {
     res.status(400).send({ error: 'Price must be greater than zero' });
@@ -12,23 +13,23 @@ exports.createProduct = (req, res, next) => {
 
   // make sure the product Zipcode isn't blank
   if (req.body.zipcode.trim().length === 0) {
-    res.status(400).send({ error: 'Zipcode cannot be blank!' });
-  }
-
-  function zipcodeIsValid(zipcode) {
-    return /^[0-9]{5}(?:-[0-9]{4})?$/.test(zipcode);
-  }
-
-  if (!zipcodeIsValid(req.body.zipcode.trim())) {
     res.status(400).send({ error: 'Please enter a valid zipcode' });
   } else {
+    let geocodedLocation;
+    try {
+      geocodedLocation = await getLocation(req.body.zipcode);
+    } catch (err) {
+      res.status(400);
+      res.send({ error: 'Invalid Location' });
+    }
+      
     const product = {
       prodName: req.body.prodName,
       seller: req.body.seller,
       price: req.body.price,
       description: req.body.description,
       category: req.body.category,
-      zipcode: req.body.zipcode,
+      zipcode: geocodedLocation,
     };
 
     Product.create(product)

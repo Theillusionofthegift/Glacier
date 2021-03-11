@@ -37,6 +37,7 @@ export default function CreateProduct() {
     };
 
     const handleSubmit = (event) => {
+        const id = user.sub.split('|')
         event.preventDefault();
         const requestConfig = {
             url: "http://localhost:4000/api/v1/products",
@@ -45,7 +46,7 @@ export default function CreateProduct() {
             data: {
                 prodName: productFormValues.prodName,
                 price: productFormValues.price,
-                seller: user.sub,
+                seller: id[1],
                 description: productFormValues.description,
                 category: productFormValues.category,
                 zipcode: productFormValues.zipcode,

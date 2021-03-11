@@ -39,9 +39,10 @@ export default function CreateProfile() {
     };
 
     const handleSubmit = (event) => {
+        const id = user.sub.split('|')[1];
         event.preventDefault();
         const requestConfig = {
-            url: `http://localhost:4000/api/v1/users/${user.sub}`,
+            url: `http://localhost:4000/api/v1/users/${id}`,
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
