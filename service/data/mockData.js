@@ -60,16 +60,6 @@ exports.userList = [{
   lastName: "last",
   bio: "test bio",
   __v: 0
-},{
-  userType: "user",
-  active: true,
-  auth0Id: "114285589784471963527",
-  userName: "",
-  email: "kristin.jue@gmail.com",
-  firstName: "",
-  lastName: "",
-  bio: "",
-  __v: 0
 }];
 
 exports.productList = [{
@@ -83,7 +73,6 @@ exports.productList = [{
     readable: "Pasadena, CA 91108, USA",
     latitude: 34.1247921,
     longitude: -118.1181199
-  },-03-10T08:34:23.860Z"
   },
   __v: 0
 },{
@@ -97,7 +86,6 @@ exports.productList = [{
     readable: "Seattle, WA 98125, USA",
     latitude: 47.7170204,
     longitude: -122.3009337
-  },21-03-10T22:35:55.870Z"
   },
   __v: 0
 },{
@@ -121,9 +109,9 @@ exports.productList = [{
   description: "Very Fast Very Speedy",
   category: "Motorcycles",
   zipcode: {
-    "readable": "Seattle, WA 98103, USA",
-    "latitude": 47.6600087,
-    "longitude": -122.3425575
+    readable: "Seattle, WA 98103, USA",
+    latitude: 47.6600087,
+    longitude: -122.3425575
   },
   "__v": 0
 },{
