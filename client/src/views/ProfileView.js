@@ -14,10 +14,8 @@ export default function ProfileView() {
   useEffect( () => {
     async function getToken() {
       const authToken = await getAccessTokenSilently();
-      console.log('auth token ', authToken);
       }
     const token = getToken();
-    console.log(token);
     const config = {
         url: `http://localhost:4000/api/v1/users/${id[1]}`,
         method: 'GET',
