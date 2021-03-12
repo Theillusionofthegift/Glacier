@@ -13,7 +13,7 @@ export default function ProfileView() {
   
   useEffect( () => {
     async function getToken() {
-      const authToken = await getAccessTokenSilently();
+      return await getAccessTokenSilently();
       }
     const token = getToken();
     const config = {
