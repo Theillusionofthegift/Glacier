@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, InputGroup, FormControl, Button } from 'react-bootstrap';
 import UserDisplay from '../components/users/UserDisplay'
+import { Redirect } from 'react-router';
+import {useAuth0} from '@auth0/auth0-react'
 
 export default function ProfileView() {
 
     const [searchString, setSearchString] = useState('');
     const [success, setSuccess] = useState(false);
     const [userList, setUserList] = useState([]);
+    const [admin, setAdmin] = useState(false);
+
+    const {permissions} = useAuth0()
+    useEffect(() => {
+        if(permissions.contains('adimin'))
+        {
+            setAdmin(true);
+        }
+
+    },[])
 
     const handleInputChange = (event) => {
         const { value } = event.target;
@@ -36,28 +48,33 @@ export default function ProfileView() {
             });
     };
 
+    if(admin) {
+        return (
+            <Container style={{ marginTop: "5em" }}>
+                <>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="basic-addon1">Product's Name</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            placeholder="Search By User Name"
+                            aria-label="User Search"
+                            aria-describedby="User Search"
+                            name="userSearch"
+                            value={searchString}
+                            onChange={handleInputChange}
+                        />
+                    </InputGroup>
+                    <Button type="submit" onClick={handleSubmit}>Submit form</Button>
+                </>
+                <>
+                    {success ? <UserDisplay userList={userList} /> : ''}
+                </>
+            </Container>
+        )
+    } else {
+        return <Redirect to="/" />
+    }
 
-    return (
-        <Container style={{ marginTop: "5em" }}>
-            <>
-                <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                        <InputGroup.Text id="basic-addon1">Product's Name</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                        placeholder="Search By User Name"
-                        aria-label="User Search"
-                        aria-describedby="User Search"
-                        name="userSearch"
-                        value={searchString}
-                        onChange={handleInputChange}
-                    />
-                </InputGroup>
-                <Button type="submit" onClick={handleSubmit}>Submit form</Button>
-            </>
-            <>
-                {success ? <UserDisplay userList={userList} /> : ''}
-            </>
-        </Container>
-    )
+
 }
