@@ -57,7 +57,7 @@ export default function Conversations(props) {
                 <Card.Header >{user.userName}</Card.Header>
                 <Card.Body>
                     {handleUsers()}
-                    <Card.Link as={Link} to={``}>Update</Card.Link>
+                    <Card.Link as={Link} to={`/users/update/`}>Update</Card.Link>
                     <Card.Link as={Button} onClick={handleDelete}>Delete</Card.Link>
                     <Card.Link as={Button} onClick={handleLock}>Lock</Card.Link>
                 </Card.Body>
