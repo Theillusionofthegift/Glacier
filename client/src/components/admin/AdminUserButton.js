@@ -18,7 +18,7 @@ export default  function AdminUserButton() {
                 setAdmin(true)
             }
         }).catch((err) => {
-            console.log(`error in ProfileView useEffect`);
+            console.log(`error in AdminButton useEffect`);
         })
     }, [])
 
