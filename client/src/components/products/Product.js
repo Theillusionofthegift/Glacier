@@ -17,7 +17,7 @@ function Product(props) {
         </Card.Text>
       </Card.Body>
       <Card.Body>
-        <Card.Link as={Link} to={`/product/${props.products._id}`}>Product Description</Card.Link>
+        <Card.Link as={Link} to={`/product/${props.products._id}`} style={{fontSize: 18}}>Product Description</Card.Link>
         {/* user ? <SellerButtons products={props.products} /> : "" */}
 
       </Card.Body>

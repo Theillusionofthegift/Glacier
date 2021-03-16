@@ -24,7 +24,7 @@ const LoginButton = () => {
           redirectUri: 'http://localhost:3000/users/new'
         });
       }}
-      >
+      style={{fontSize: 18}}>
       Sign Up
     </Button>
   </>

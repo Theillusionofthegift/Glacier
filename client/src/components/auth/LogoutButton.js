@@ -13,7 +13,7 @@ const LogoutButton = () => {
           returnTo: window.location.origin,
         })
       }
-      size="lg">
+      style={{fontSize: 18}}>
       Log Out
     </Button>
   );

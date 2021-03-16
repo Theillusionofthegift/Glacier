@@ -12,14 +12,14 @@ export default function LogoBar(props) {
     <>
       <Navbar bg="primary" variant="dark" style={{position: "fixed", top: "0",width: "100%", zIndex:100}}>
         <Navbar.Brand as={Link} to="/" className='px-5'>
-          <Image alt="" src = {logo} width="30" height="30" className="d-inline-block align-top" roundedCircle/> {' '} Glacier
+          <Image alt="" src = {logo} width="30" height="30" className="d-inline-block align-top" roundedCircle style={{fontSize: 10}}/> {' '} Glacier
         </Navbar.Brand>
 
 
         <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
-          <Nav.Link as={Link} to="/">Home</Nav.Link>
-          { isAuthenticated ? <Nav.Link as={Link} to="/sell" size="lg">Sell</Nav.Link> : ''}
-          { isAuthenticated ? <Nav.Link as={Link} to="/profile" size="lg">Profile</Nav.Link> : '' }
+          <Nav.Link as={Link} to="/" style={{fontSize: 18}}>Home</Nav.Link>
+          { isAuthenticated ? <Nav.Link as={Link} to="/sell" style={{fontSize: 18}}>Sell</Nav.Link> : ''}
+          { isAuthenticated ? <Nav.Link as={Link} to="/profile" style={{fontSize: 18}}>Profile</Nav.Link> : '' }
           <AuthenticationButton />
         </Nav>
 
