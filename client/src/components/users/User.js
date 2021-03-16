@@ -35,7 +35,7 @@ export default function Conversations(props) {
 
     const handleLock = () => {
         const config = {
-            url: `http://localhost:4000/api/v1/users/${user._id}`,
+            url: `http://localhost:4000/api/v1/users/${user.auth0Id.split('|')[0]}`,
             method: "PUT",
             data: {
                 active: false,

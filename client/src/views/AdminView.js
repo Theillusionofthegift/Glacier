@@ -6,7 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 export default function ProfileView() {
 
-    const [searchString, setSearchString] = useState('');
+    const [searchString, setSearchString] = useState("");
     const [success, setSuccess] = useState(false);
     const [userList, setUserList] = useState([]);
     const [admin, setAdmin] = useState(null);
@@ -31,11 +31,7 @@ export default function ProfileView() {
 
     const handleInputChange = (event) => {
         const { value } = event.target;
-        console.log(`value ${value}`);
-        setSearchString({
-            searchString,
-            value,
-        });
+        setSearchString(value);
     };
 
     const handleSubmit = (event) => {
@@ -68,7 +64,7 @@ export default function ProfileView() {
                             placeholder="Search By User Name"
                             aria-label="User Search"
                             aria-describedby="User Search"
-                            name="userSearch"
+                            name="searchString"
                             value={searchString}
                             onChange={handleInputChange}
                         />
