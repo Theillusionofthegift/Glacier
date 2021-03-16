@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import {Link} from 'react-router-dom'
-import jwt from 'jwt-decode' // import dependency
+import axios from 'axios' // import dependency
 
 export default  function AdminUserButton() {
-    const [authToken ,setAuthToken ] = useState({});
-    const {getAccessTokenSilently} = useAuth0();
+    const [admin, setAdmin] = useState(false);
+    const { user } = useAuth0();
+    const id = user.sub.split('|')[1]
 
-    useEffect( () => {
-        async function getToken() {
-            return await getAccessTokenSilently();
+    useEffect(() => {
+        const config = {
+            url: `http://localhost:4000/api/v1/users/${id}`,
+            method: 'GET',
         }
-        const token = getToken();
-        console.log(token)
-        const {value} = token
-        console.log(value)
-        const user = jwt(token['<value>'])
-        setAuthToken(user)
-        console.log(user)
-    },[])
+        axios(config).then((response) => {
+            if(response.data.userType === 'admin') {
+                setAdmin(true)
+            }
+        }).catch((err) => {
+            console.log(`error in ProfileView useEffect`);
+        })
+    }, [])
 
 
-    if(authToken) {
+    if(admin) {
         return(<Link to="/admin">Admin</Link>)
     }   else {
         return '';

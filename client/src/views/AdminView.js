@@ -11,7 +11,7 @@ export default function ProfileView() {
     const [success, setSuccess] = useState(false);
     const [userList, setUserList] = useState([]);
     const [admin, setAdmin] = useState(false);
-    const { user } = useAuth0;
+    const { user } = useAuth0();
     const id = user.sub.split('|')[1]
 
 
