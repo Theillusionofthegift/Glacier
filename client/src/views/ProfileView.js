@@ -10,7 +10,6 @@ import Loading from '../components/loading/Loading'
 export default function ProfileView() {
   const [ profile, setProfile ] = useState({});
   const {user, getAccessTokenSilently} = useAuth0();
-
   const id = user.sub.split('|')
   
   useEffect( () => {
@@ -34,7 +33,7 @@ export default function ProfileView() {
   },[])
   
   if (profile) {
-    if (profile.user.active) {
+    if (profile) {
     return (
       <Container style={{marginTop:"5em"}}> 
             <Profile user= {profile} /> 
