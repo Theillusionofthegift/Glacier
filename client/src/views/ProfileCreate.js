@@ -82,7 +82,6 @@ export default function CreateProfile() {
                             <InputGroup.Text id="basic-addon1">Username</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                            placeholder="Username"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                             name="userName"
@@ -96,7 +95,6 @@ export default function CreateProfile() {
                             <InputGroup.Text>First Name</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                            placeholder="First Name"
                             aria-label="First Name"
                             aria-describedby="basic-addon1"
                             name="firstName"
@@ -110,7 +108,6 @@ export default function CreateProfile() {
                             <InputGroup.Text>Last Name</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                            placeholder="Last Name"
                             aria-label="Last Name"
                             aria-describedby="basic-addon1"
                             name="lastName"
@@ -124,7 +121,6 @@ export default function CreateProfile() {
                             <InputGroup.Text>Bio</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                            placeholder="Bio"
                             aria-label="Bio"
                             aria-describedby="basic-addon1"
                             name="bio"

@@ -24,7 +24,7 @@ const LoginButton = () => {
           redirectUri: 'http://localhost:3000/users/new'
         });
       }}
-    >
+      >
       Sign Up
     </Button>
   </>

@@ -3,7 +3,7 @@ import {Button,
         Container } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 import image from '../../images/product.jpg';
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
 import './ViewProduct.css';
 import MapView from '../../views/MapView';

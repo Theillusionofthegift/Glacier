@@ -77,7 +77,6 @@ export default function CreateProduct() {
                         <InputGroup.Text id="basic-addon1">Product's Name</InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
-                        placeholder="Product's Name"
                         aria-label="Product's Name"
                         aria-describedby="basic-addon1"
                         name="prodName"
