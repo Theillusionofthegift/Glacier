@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, InputGroup, FormControl, Button } from 'react-bootstrap';
 import UserDisplay from '../components/users/UserDisplay'
-import { Redirect } from 'react-router';
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function ProfileView() {
@@ -10,7 +9,7 @@ export default function ProfileView() {
     const [searchString, setSearchString] = useState('');
     const [success, setSuccess] = useState(false);
     const [userList, setUserList] = useState([]);
-    const [admin, setAdmin] = useState(false);
+    const [admin, setAdmin] = useState(null);
     const { user } = useAuth0();
     const id = user.sub.split('|')[1]
 
@@ -21,8 +20,9 @@ export default function ProfileView() {
             method: 'GET',
         }
         axios(config).then((response) => {
-            if(response.data.userType === 'admin') {
-                setAdmin(true)
+            console.log(response.data[0].userType)
+            if(response.data[0].userType === 'admin') {
+                setAdmin(true);
             }
         }).catch((err) => {
             console.log(`error in ProfileView useEffect`);
@@ -81,7 +81,7 @@ export default function ProfileView() {
             </Container>
         )
     } else {
-        return <Redirect to="/" />
+        return <div>You are not a admin</div>
     }
 
 

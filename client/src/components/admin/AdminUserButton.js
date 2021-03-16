@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import {Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 import axios from 'axios' // import dependency
 
 export default  function AdminUserButton() {
@@ -14,7 +15,8 @@ export default  function AdminUserButton() {
             method: 'GET',
         }
         axios(config).then((response) => {
-            if(response.data.userType === 'admin') {
+            console.log(response.data[0].userType)
+            if(response.data[0].userType === 'admin') {
                 setAdmin(true)
             }
         }).catch((err) => {
@@ -24,7 +26,7 @@ export default  function AdminUserButton() {
 
 
     if(admin) {
-        return(<Link to="/admin">Admin</Link>)
+        return(<Button as={Link} to="/admin">Admin</Button>)
     }   else {
         return '';
     }
