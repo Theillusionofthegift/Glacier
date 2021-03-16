@@ -11,8 +11,8 @@ export default function LogoBar(props) {
   return ( 
     <>
       <Navbar bg="primary" variant="dark" style={{position: "fixed", top: "0",width: "100%", zIndex:100}}>
-        <Navbar.Brand as={Link} to="/" className='px-5'>
-          <Image alt="" src = {logo} width="30" height="30" className="d-inline-block align-top" roundedCircle style={{fontSize: 10}}/> {' '} Glacier
+        <Navbar.Brand as={Link} to="/" className='px-5' style={{fontSize: 24}}>
+          <Image alt="" src = {logo} width="40" height="40" className="d-inline-block align-top" roundedCircle /> {' '} Glacier
         </Navbar.Brand>
 
 
