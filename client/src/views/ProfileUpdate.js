@@ -128,7 +128,7 @@ export default function CreateProfile() {
 
                     <ProfileUploader />
 
-                    <Button type="submit" onClick={handleSubmit}>Update</Button>
+                    <Button type="submit" onClick={handleSubmit} style={{fontSize: 18}}>Update</Button>
                 </Container>
             </Container>
         )
