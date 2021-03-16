@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, InputGroup, FormControl, Button } from 'react-bootstrap';
 import UserDisplay from '../components/users/UserDisplay'
+import ProductDisplay from '../components/products/ProductDisplay'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function ProfileView() {
 
-    const [searchString, setSearchString] = useState("");
-    const [success, setSuccess] = useState(false);
+    const [searchStringUser, setSearchStringUser] = useState("");
+    const [searchStringProducts, setSearchStringProducts] = useState("");
+    const [successUser, setSuccessUser] = useState(false);
+    const [successProd, setSuccessProd] = useState(false);
     const [userList, setUserList] = useState([]);
+    const [prodList, setProdList] = useState([]);
     const [admin, setAdmin] = useState(null);
     const { user } = useAuth0();
     const id = user.sub.split('|')[1]
@@ -22,29 +26,54 @@ export default function ProfileView() {
         axios(config).then((response) => {
             console.log(response.data[0].userType)
             if(response.data[0].userType === 'admin') {
-                setAdmin(true);
+                setAdmin(response.data);
             }
         }).catch((err) => {
             console.log(`error in ProfileView useEffect`);
         })
     }, [])
 
-    const handleInputChange = (event) => {
+    const handleInputChangeUser = (event) => {
         const { value } = event.target;
-        setSearchString(value);
+        setSearchStringUser(value);
     };
 
-    const handleSubmit = (event) => {
+    const handleInputChangeProducts = (event) => {
+        const { value } = event.target;
+        setSearchStringProducts(value);
+    };
+
+    const handleSubmitUser = (event) => {
         event.preventDefault();
         const requestConfig = {
-            url: `http://localhost:4000/api/v1/users/?userName=${searchString}`,
+            url: `http://localhost:4000/api/v1/users/?userName=${searchStringUser}`,
             method: "GET",
         };
 
         axios(requestConfig)
             .then((response) => {
-                setSuccess(true);
+                setSuccessProd(false);
+                setSuccessUser(true);
                 setUserList(response.data)
+                console.log(`Item Created ${response.data}`);
+            })
+            .catch((err) => {
+                console.log(`We should really handle the error: ${err}`);
+            });
+    };
+
+    const handleSubmitProducts = (event) => {
+        event.preventDefault();
+        const requestConfig = {
+            url: `http://localhost:4000/api/v1/products/?prodName=${searchStringProducts}`,
+            method: "GET",
+        };
+
+        axios(requestConfig)
+            .then((response) => {
+                setSuccessUser(false);
+                setSuccessProd(true);
+                setProdList(response.data)
                 console.log(`Item Created ${response.data}`);
             })
             .catch((err) => {
@@ -55,7 +84,8 @@ export default function ProfileView() {
     if (admin) {
         return (
             <Container style={{ marginTop: "5em" }}>
-                <>
+                <h1 style={{textAlign:"center", marginBottom: "1em"}}>Admin View</h1>
+                <Container>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">Searh Users</InputGroup.Text>
@@ -65,15 +95,33 @@ export default function ProfileView() {
                             aria-label="User Search"
                             aria-describedby="User Search"
                             name="searchString"
-                            value={searchString}
-                            onChange={handleInputChange}
+                            value={searchStringUser}
+                            onChange={handleInputChangeUser}
                         />
                     </InputGroup>
-                    <Button type="submit" onClick={handleSubmit}>Submit</Button>
-                </>
+                    <Button type="submit" onClick={handleSubmitUser}>Submit</Button>
+                </Container>
+                <Container style={{marginTop:"2em"}}>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="searchProducts">Searh Products</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            placeholder="Search By Products Name"
+                            aria-label="Products Search"
+                            aria-describedby="Products Search"
+                            name="searchStringProducts"
+                            value={searchStringProducts}
+                            onChange={handleInputChangeProducts}
+                        />
+                    </InputGroup>
+                    <Button type="submit" onClick={handleSubmitProducts}>Submit</Button>
+                </Container>
                 <>
-                    {success ? <UserDisplay userList={userList} /> : ''}
+                    {successUser ? <UserDisplay userList={userList} /> : ''}
+                    {successProd ? <ProductDisplay userList={prodList} /> : ''}
                 </>
+
             </Container>
         )
     } else {
