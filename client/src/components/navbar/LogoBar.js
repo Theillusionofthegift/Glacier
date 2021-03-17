@@ -1,5 +1,9 @@
 import { React } from 'react'
 import {Navbar, Image} from 'react-bootstrap'
+<<<<<<< HEAD
+=======
+import AdminUserButton from '../admin/AdminUserButton'
+>>>>>>> main
 import Nav from 'react-bootstrap/Nav'
 import {Link} from 'react-router-dom'
 import AuthenticationButton from '../../components/auth/AuthenticationButton'
@@ -17,9 +21,17 @@ export default function LogoBar(props) {
 
 
         <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
+<<<<<<< HEAD
           <Nav.Link as={Link} to="/" style={{fontSize: 18}}>Home</Nav.Link>
           { isAuthenticated ? <Nav.Link as={Link} to="/sell" style={{fontSize: 18}}>Sell</Nav.Link> : ''}
           { isAuthenticated ? <Nav.Link as={Link} to="/profile" style={{fontSize: 18}}>Profile</Nav.Link> : '' }
+=======
+          <Nav.Link as={Link} to="/">Home</Nav.Link>
+          { isAuthenticated ? <Nav.Link as={Link} to="/sell">Sell</Nav.Link> : ''}
+          { isAuthenticated ? <Nav.Link as={Link} to="/profile">Profile</Nav.Link> : '' }
+          { isAuthenticated ? <AdminUserButton /> : '' }
+
+>>>>>>> main
           <AuthenticationButton />
         </Nav>
 

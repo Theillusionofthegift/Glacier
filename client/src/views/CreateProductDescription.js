@@ -69,7 +69,7 @@ export default function CreateProduct() {
     } else {
         return (
             <Container fluid style={{ width: "45%", marginTop: "5em" }}>
-                <Container style={{textAlign: "center", marginBottom: "3em"}}>
+                <Container style={{ textAlign: "center", marginBottom: "3em" }}>
                     <h1>Sell Your Item</h1>
                 </Container>
                 <InputGroup className="mb-3">
@@ -78,7 +78,7 @@ export default function CreateProduct() {
                     </InputGroup.Prepend>
                     <FormControl
                         aria-label="Product's Name"
-                        aria-describedby="basic-addon1"
+                        aria-describedby="text"
                         name="prodName"
                         value={productFormValues.prodName}
                         onChange={handleInputChange}
@@ -106,7 +106,7 @@ export default function CreateProduct() {
                     </InputGroup.Prepend>
                     <FormControl
                         as="textarea"
-                        aria-label="With textarea"
+                        aria-label="Item Description"
                         name="description"
                         value={productFormValues.description}
                         onChange={handleInputChange}
@@ -127,12 +127,13 @@ export default function CreateProduct() {
 
                 <Form.Group>
                     <Form.Control
+                        aria-label="Category"
                         placeholder="Category"
                         as="select"
                         name="category"
                         value={productFormValues.categories}
                         onChange={handleInputChange}>
-                        <option>Categories</option>    
+                        <option>Categories</option>
                         <option>Appliances</option>
                         <option>Arts and crafts</option>
                         <option>Audio Equipment</option>

@@ -1,6 +1,6 @@
 
 import React from "react";
-import {Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import LogoBar from "./components/navbar/LogoBar";
 import HomePage from './views/HomePage';
 import ViewProductDetail from './components/viewProduct/ViewProductDetail'
@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileView from "./views/ProfileView";
 import ConversationView from "./views/ConversationView";
 import SearchView from './views/SearchView'
+import AdminVeiw from './views/AdminView'
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
     <>
       <LogoBar />
       <Switch>
+        <Route path="/admin">
+          <AdminVeiw />
+        </Route>
         <Route path="/?search">
           <SearchView />
         </Route>
@@ -47,9 +51,9 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
-   
 
-      </>
+
+    </>
 
   );
 }
