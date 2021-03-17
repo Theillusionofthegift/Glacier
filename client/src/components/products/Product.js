@@ -7,7 +7,6 @@ import SellerButtons from './SellerButtons'
 
 function Product(props) {
   const summary = props.products.description.substr(0,60) + "...";
-<<<<<<< HEAD
   return (
     <Card className="mx-3 mt-3">
       <Card.Img src={logo} />
@@ -20,22 +19,6 @@ function Product(props) {
       <Card.Body>
         <Card.Link as={Link} to={`/product/${props.products._id}`} style={{fontSize: 18}}>Product Description</Card.Link>
         {/* user ? <SellerButtons products={props.products} /> : "" */}
-=======
-  if(props.seller){
-    return (
-      <Card className="mx-3 mt-3">
-        <Card.Img src={logo} />
-        <Card.Body>
-          <Card.Title>{props.products.prodName}  ${props.products.price}</Card.Title>
-          <Card.Text>
-            {summary}
-          </Card.Text>
-        </Card.Body>
-        <Card.Body>
-          <Card.Link as={Link} to={`/product/${props.products._id}`}>Product Description</Card.Link>
-          <hr />
-          <SellerButtons products={props.products} />
->>>>>>> main
 
         </Card.Body>
       </Card>
