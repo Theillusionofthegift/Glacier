@@ -1,6 +1,6 @@
 import { React } from 'react'
 import {Navbar, Image} from 'react-bootstrap'
-import SearchInput from '../search/SearchInput'
+import AdminUserButton from '../admin/AdminUserButton'
 import Nav from 'react-bootstrap/Nav'
 import {Link} from 'react-router-dom'
 import AuthenticationButton from '../../components/auth/AuthenticationButton'
@@ -21,6 +21,8 @@ export default function LogoBar(props) {
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           { isAuthenticated ? <Nav.Link as={Link} to="/sell">Sell</Nav.Link> : ''}
           { isAuthenticated ? <Nav.Link as={Link} to="/profile">Profile</Nav.Link> : '' }
+          { isAuthenticated ? <AdminUserButton /> : '' }
+
           <AuthenticationButton />
         </Nav>
 

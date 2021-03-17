@@ -19,6 +19,8 @@ export default function Profile(props) {
             <Tab eventKey="profile" title="Profile">
                 <h1>UserName: {props.user.userName}</h1>
                 <h1>Full Name: {props.user.lastName}, {props.user.firstName}</h1>
+                <h1>Bio:</h1> 
+                <p>{props.user.bio}</p>
             </Tab>
             <Tab eventKey="contact" title="Contact Info">
                 <h1>Email: {user.email}</h1>
