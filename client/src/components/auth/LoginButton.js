@@ -9,23 +9,23 @@ const LoginButton = () => {
     <Button
       className="mx-1"
       variant="primary"
+      style={{fontSize: 18, fontWeight: 'bold'}}
       onClick={() => {
         loginWithRedirect();
       }}
-      style={{fontSize: 18, fontWeight: 'bold'}}
     >
       Login
     </Button>
     <Button
       className="mx-1"
       variant="primary"
+      style={{fontSize: 18, fontWeight: 'bold'}}
       onClick={() => {
         loginWithRedirect({ 
           screen_hint: 'signup',
           redirectUri: 'http://localhost:3000/users/new'
         });
-      }}
-      style={{fontSize: 18, fontWeight: 'bold'}}>
+      }}>
       Sign Up
     </Button>
   </>
