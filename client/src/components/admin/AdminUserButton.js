@@ -26,7 +26,7 @@ export default  function AdminUserButton() {
 
 
     if(admin) {
-        return(<Button as={Link} to="/admin">Admin</Button>)
+        return(<Button as={Link} to="/admin" style={{fontSize: 18, fontWeight: 'bold'}}>Admin</Button>)
     }   else {
         return '';
     }

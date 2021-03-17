@@ -12,6 +12,7 @@ const LoginButton = () => {
       onClick={() => {
         loginWithRedirect();
       }}
+      style={{fontSize: 18, fontWeight: 'bold'}}
     >
       Login
     </Button>
@@ -24,7 +25,7 @@ const LoginButton = () => {
           redirectUri: 'http://localhost:3000/users/new'
         });
       }}
-      style={{fontSize: 18}}>
+      style={{fontSize: 18, fontWeight: 'bold'}}>
       Sign Up
     </Button>
   </>
