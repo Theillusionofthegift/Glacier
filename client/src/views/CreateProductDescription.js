@@ -50,6 +50,9 @@ export default function CreateProduct() {
                 description: productFormValues.description,
                 category: productFormValues.category,
                 zipcode: productFormValues.zipcode,
+                image1: `/uploads/${productFormValues.prodName}-${id[1]}-1`,
+                image2: `/uploads/${productFormValues.prodName}-${id[1]}-2`,
+                images3: `/uploads/${productFormValues.prodName}-${id[1]}-3`,
             },
         };
 
