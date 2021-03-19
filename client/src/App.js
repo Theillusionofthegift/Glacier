@@ -13,13 +13,17 @@ import ProfileView from "./views/ProfileView";
 import ConversationView from "./views/ConversationView";
 import SearchView from './views/SearchView'
 import AdminVeiw from './views/AdminView'
-
+import LockedComponent from './components/lock/LockedComponet'
+import LockedPage from './components/lock/LockedPage'
 
 function App() {
   return (
     <>
       <LogoBar />
       <Switch>
+        <Route path="/locked">
+          <LockedPage />
+        </Route>
         <Route path="/admin">
           <AdminVeiw />
         </Route>
@@ -27,25 +31,39 @@ function App() {
           <SearchView />
         </Route>
         <Route path="/conversations/all">
-          <ConversationView />
+          <LockedComponent >
+            <ConversationView />
+          </LockedComponent>
         </Route>
         <Route path="/conversations/:id">
-          <MessageView />
+          <LockedComponent >
+            <MessageView />
+          </LockedComponent>
         </Route>
         <Route path="/product/:id">
-          <ViewProductDetail />
+          <LockedComponent >
+            <ViewProductDetail />
+          </LockedComponent>
         </Route>
         <Route path="/sell">
-          <CreateProduct />
+          <LockedComponent >
+            <CreateProduct />
+          </LockedComponent>
         </Route>
         <Route path="/users/new">
-          <ProfileCreate />
+          <LockedComponent >
+            <ProfileCreate />
+          </LockedComponent>
         </Route>
         <Route path="/users/update">
-          <ProfileUpdate />
+          <LockedComponent >
+            <ProfileUpdate />
+          </LockedComponent>
         </Route>
         <Route path="/profile">
-          <ProfileView />
+          <LockedComponent >
+            <ProfileView />
+          </LockedComponent>
         </Route>
         <Route path="/">
           <HomePage />
