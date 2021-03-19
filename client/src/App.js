@@ -31,9 +31,7 @@ function App() {
           <SearchView />
         </Route>
         <Route path="/conversations/all">
-          <LockedComponent >
             <ConversationView />
-          </LockedComponent>
         </Route>
         <Route path="/conversations/:id">
           <LockedComponent >
