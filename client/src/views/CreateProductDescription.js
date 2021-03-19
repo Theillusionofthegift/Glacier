@@ -22,6 +22,7 @@ export default function CreateProduct() {
     const [productFormValues, setProductFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
     const { user } = useAuth0();
+    const id = user.sub.split('|');
 
 
 
@@ -37,7 +38,7 @@ export default function CreateProduct() {
     };
 
     const handleSubmit = (event) => {
-        const id = user.sub.split('|')
+
         event.preventDefault();
         const requestConfig = {
             url: "http://localhost:4000/api/v1/products",
@@ -176,7 +177,7 @@ export default function CreateProduct() {
 
                 </Form.Group>
 
-                <FileUploader />
+                <FileUploader fileName={`${productFormValues.prodName}-${id[1]}`}/>
                 <Button type="submit" onClick={handleSubmit}>Submit form</Button>
             </Container>
         )
