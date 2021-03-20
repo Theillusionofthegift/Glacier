@@ -16,8 +16,7 @@ const uploadsRouter = express.Router();
 
 uploadsRouter.route('/products')
   .post(upload.array('images', 3), async (req, res) => {
-    const imagesPaths = req.files.map((file) => { return file.path; });
-    imagesPaths[0].filename = 'silly';
+    const imagesPaths = req.files.map((file) => file.path);
     Product.findByIdAndUpdate(req.body.productId, { images: imagesPaths }, (err, prod) => {
       if (err) { console.log(err); }
     });
