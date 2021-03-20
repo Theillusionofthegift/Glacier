@@ -88,10 +88,9 @@ export default function ProfileView() {
                 <Container>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Search Users</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1">Search By User Name</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                            placeholder="Search By User Name"
                             aria-label="User Search"
                             aria-describedby="User Search"
                             name="searchString"
@@ -104,10 +103,9 @@ export default function ProfileView() {
                 <Container style={{marginTop:"2em"}}>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Text id="searchProducts">Search Products</InputGroup.Text>
+                            <InputGroup.Text id="searchProducts">Search By Product Name</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                            placeholder="Search By Products Name"
                             aria-label="Products Search"
                             aria-describedby="Products Search"
                             name="searchStringProducts"
