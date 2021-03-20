@@ -2,10 +2,11 @@ import { React} from 'react'
 import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Card } from 'react-bootstrap'
-import logo from '../../images/product.png'
 import SellerButtons from './SellerButtons'
 
+
 function Product(props) {
+  const logo = require(`../../../../service/${props.products.images[0]}`);
   const summary = props.products.description.substr(0,60) + "...";
   if(props.seller){
     return (
