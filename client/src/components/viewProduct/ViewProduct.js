@@ -9,6 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import './ViewProduct.css';
 import MapView from '../../views/MapView';
 import axios from 'axios'
+import placeHolder from '../../images/product.jpg'
 
 function ViewProduct(props) {
     const { isAuthenticated } = useAuth0();
@@ -31,15 +32,22 @@ function ViewProduct(props) {
 
     const paths = props.product.images;
     const createCarousel = () => {
-        paths.forEach((path) => {
-            const image = `../../../../service/${path}`
-            return(
-            <Carousel.Item>
-                <img className="d-block w-50 mx-auto" src={image} alt='productView' />
-            </Carousel.Item>
-            )
-        })
-        
+        if (paths.length !== 0) {
+            paths.forEach((path) => {
+                const image = `../../../../service/${path}`
+                return (
+                    <Carousel.Item>
+                        <img className="d-block w-50 mx-auto" src={image} alt='productView' />
+                    </Carousel.Item>
+                )
+            })
+        } else {
+            return (
+                <Carousel.Item>
+                    <img className="d-block w-50 mx-auto" src={placeHolder} alt='productView' />
+                </Carousel.Item>)
+        }
+
     }
 
     return (
