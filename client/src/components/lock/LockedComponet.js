@@ -31,6 +31,7 @@ export default function LockedComponent({ children }) {
   } else {
     return children
   }
+  
 
 
 }

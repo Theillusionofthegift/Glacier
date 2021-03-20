@@ -37,8 +37,8 @@ export default function UpdateButtonSet() {
 
                 <Button
                 as={Link}
-                to="/user/delete/"
                 onClick={handleDelete}
+                to="/"
                 variant= "primary"
                 className= "ml-3"
                 
