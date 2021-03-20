@@ -20,7 +20,6 @@ uploadsRouter.route('/products')
     imagesPaths[0].filename = 'silly';
     Product.findByIdAndUpdate(req.body.productId, { images: imagesPaths }, (err, prod) => {
       if (err) { console.log(err); }
-      console.log(prod);
     });
     res.send(204);
   });

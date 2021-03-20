@@ -24,11 +24,9 @@ export default function FileUploader(props) {
     };
 
     const upload = () => {
-        console.log(props.prodId);
         if (imageFiles) {
             UseFileUpload('images', imageFiles, progressUpdater, props.prodId)
                 .then((response) => {
-                    console.log(response.data.message);
                     setimageFiles([]);
                 })
                 .catch((err) => {
