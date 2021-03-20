@@ -28,7 +28,6 @@ function Product(props) {
           <Card.Link as={Link} to={`/product/${props.products._id}`}>Product Description</Card.Link>
           <hr />
           <SellerButtons products={props.products} />
-
         </Card.Body>
       </Card>
     );
@@ -44,8 +43,6 @@ function Product(props) {
         </Card.Body>
         <Card.Body>
           <Card.Link as={Link} to={`/product/${props.products._id}`}>Product Description</Card.Link>
-          {/* user ? <SellerButtons products={props.products} /> : "" */}
-
         </Card.Body>
       </Card>
 
