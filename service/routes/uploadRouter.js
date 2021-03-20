@@ -18,9 +18,14 @@ uploadsRouter.route('/products')
   .post(upload.array('images', 3), async (req, res) => {
     const imagesPaths = req.files.map((file) => file.path);
     Product.findByIdAndUpdate(req.body.productId, { images: imagesPaths }, (err, prod) => {
-      if (err) { console.log(err); }
+      if (err) {
+        res.send(500);
+      } else if (prod) {
+        res.status(204).send(prod);
+      } else {
+        res.send(404);
+      }
     });
-    res.send(204);
   });
 
 uploadsRouter.route('/profile')
@@ -39,6 +44,5 @@ uploadsRouter.route('/profile')
       next(err);
     }
   });
-
 
 module.exports = uploadsRouter;
