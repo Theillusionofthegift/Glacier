@@ -8,9 +8,9 @@ import SellerButtons from './SellerButtons'
 function Product(props) {
   let prodImage;
   if (props.products.images.length !== 0) {
-    prodImage = require(`../../../../service/${props.products.images[0]}`);
+    prodImage = `../../../../service/${props.products.images[0]}`;
   } else {
-    prodImage = require('../../images/product.jpg');
+    prodImage = '../../images/product.jpg';
   }
 
   const summary = props.products.description.substr(0, 60) + "...";
