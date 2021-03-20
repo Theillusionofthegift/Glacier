@@ -18,9 +18,6 @@ const uploadRouter = require('./routes/uploadRouter');
 
 // Setting up mongoose connection
 
-console.log('Now the value for FOO is:', process.env.USER);
-console.log('Now the value for FOO is:', process.env.PASS);
-
 const user = process.env.MONGO_USER;
 const password = process.env.MONGO_PASS;
 const mongoDB = `mongodb+srv://${user}:${password}@cluster0.qkr4a.mongodb.net/Glacier?retryWrites=true&w=majority`;
