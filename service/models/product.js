@@ -16,9 +16,7 @@ const productSchema = new mongoose.Schema({
   description: String,
   category: String,
   zipcode: { type: locationSchema, required: true },
-  image1: { type: String },
-  image2: { type: String },
-  image3: { type: String },
+  images: [String],
 });
 
 const Product = mongoose.model('product', productSchema);

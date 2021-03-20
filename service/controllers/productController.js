@@ -22,7 +22,7 @@ exports.createProduct = async (req, res, next) => {
       res.status(400);
       res.send({ error: 'Invalid Location' });
     }
-      
+
     const product = {
       prodName: req.body.prodName,
       seller: req.body.seller,

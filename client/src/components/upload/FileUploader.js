@@ -8,7 +8,7 @@ import {
 
 
 
-export default function FileUploader() {
+export default function FileUploader(props) {
 
     const [imageFiles, setimageFiles] = useState([]);
     const [uploadProgress, setUploadProgress] = useState(0);
@@ -24,9 +24,9 @@ export default function FileUploader() {
     };
 
     const upload = () => {
-        console.log('files to upload ', imageFiles);
+        console.log(props.prodId);
         if (imageFiles) {
-            UseFileUpload('images', imageFiles, progressUpdater)
+            UseFileUpload('images', imageFiles, progressUpdater, props.prodId)
                 .then((response) => {
                     console.log(response.data.message);
                     setimageFiles([]);
