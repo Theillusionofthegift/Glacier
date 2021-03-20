@@ -8,7 +8,7 @@ import SellerButtons from './SellerButtons'
 function Product(props) {
   let prodImage;
   if (props.products.images.length !== 0) {
-    prodImage = `http://localhost:4000${props.products.images[0]}`;
+    prodImage = `http://localhost:4000/${props.products.images[0]}`;
   } else {
     prodImage = require('../../images/product.jpg');
   }

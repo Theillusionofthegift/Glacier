@@ -34,7 +34,7 @@ function ViewProduct(props) {
     const createCarousel = () => {
         if (paths.length !== 0) {
             paths.forEach((path) => {
-                const image = `../../../../service/${path}`
+                const image = `http://localhost:4000${path}`
                 return (
                     <Carousel.Item>
                         <img className="d-block w-50 mx-auto" src={image} alt='productView' />
