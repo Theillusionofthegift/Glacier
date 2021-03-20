@@ -17,7 +17,7 @@ function Product(props) {
   if (props.seller) {
     return (
       <Card className="mx-3 mt-3">
-        <Card.Img src={prodImage} />
+        <Card.Img src={prodImage} style={{ height:"200px"}}/>
         <Card.Body>
           <Card.Title>{props.products.prodName}  ${props.products.price}</Card.Title>
           <Card.Text>
@@ -34,7 +34,7 @@ function Product(props) {
   } else {
     return (
       <Card className="mx-3 mt-3">
-        <Card.Img src={prodImage} />
+        <Card.Img src={prodImage} style={{ height:"200px"}} />
         <Card.Body>
           <Card.Title>{props.products.prodName}  ${props.products.price}</Card.Title>
           <Card.Text>
