@@ -41,6 +41,9 @@ app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
 
+// Static Files
+app.use('/uploads', express.static('uploads'));
+
 app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/transactions', transRouter);
