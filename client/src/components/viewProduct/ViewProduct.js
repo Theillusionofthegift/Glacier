@@ -32,15 +32,16 @@ function ViewProduct(props) {
 
     const paths = props.product.images;
     const createCarousel = () => {
-        if (paths.length !== 0) {
+        if (paths) {
+            let list = []
             paths.forEach((path) => {
-                const image = `http://localhost:4000${path}`
-                return (
-                    <Carousel.Item>
+                const image = `http://localhost:4000/${path}`
+                   list.push( <Carousel.Item>
                         <img className="d-block w-50 mx-auto" src={image} alt='productView' />
-                    </Carousel.Item>
-                )
+                    </Carousel.Item>)
+                
             })
+            return list;
         } else {
             return (
                 <Carousel.Item>
