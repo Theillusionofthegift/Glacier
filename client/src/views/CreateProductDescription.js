@@ -173,7 +173,7 @@ export default function CreateProduct() {
                 </Form.Group>
 
                 <FileUploader />
-                <Button type="submit" onClick={handleSubmit} style={{fontSize: 18}}>Submit form</Button>
+                <Button type="submit" onClick={handleSubmit} style={{fontSize: "1.5em"}}>Submit form</Button>
             </Container>
         )
     }
