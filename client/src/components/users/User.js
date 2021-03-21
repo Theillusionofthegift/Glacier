@@ -47,7 +47,7 @@ export default function Conversations(props) {
               console.log(`Updated ${response}`)
             })
             .catch((err) => {
-              console.log("Whoops, something when wrong")
+              console.log("Whoops, something went wrong")
             });
     }
 
