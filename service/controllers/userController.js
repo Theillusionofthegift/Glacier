@@ -34,3 +34,19 @@ exports.createUser = (req, res, next) => {
       });
   }
 };
+
+exports.updateUser = (req, res, next) => {
+  const options = { validate: true };
+  User.find({ auth0Id: req.params.id }, options, (err, id) => {
+    if (err) { next(err); }
+    User.findByIdAndUpdate(id, req.body, options, (err, user) => {
+      if (err) {
+        next(err);
+      } else if (user) {
+        res.send({ userId: user._id });
+      } else {
+        res.sendStatus(404);
+      }
+    });
+  });
+};

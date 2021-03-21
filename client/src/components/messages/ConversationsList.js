@@ -7,7 +7,7 @@ export default function ConversationsList(props) {
     const conversations = props.convos
     return (
         <Container>
-            {conversations.map((convo) => (<Conversations key={convo._id} convo={convo} user={props.user}/>))}
+            {conversations.map((convo) => (<Conversations key={convo._id} convo={convo} />))}
         </Container>
     );
 }

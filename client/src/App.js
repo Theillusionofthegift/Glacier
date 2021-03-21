@@ -15,6 +15,7 @@ import AdminVeiw from './views/AdminView'
 import LockedComponent from './components/lock/LockedComponet'
 import LockedPage from './components/lock/LockedPage'
 import UploadView from "./views/UploadView";
+import ProfileUploaderView from './views/ProfileUploaderView'
 
 function App() {
   return (
@@ -55,6 +56,9 @@ function App() {
         </Route>
         <Route path="/users/new">
           <ProfileCreate />
+        </Route>
+        <Route path="/users/upload/:id">
+          <ProfileUploaderView />
         </Route>
         <Route path="/users/update">
           <LockedComponent >

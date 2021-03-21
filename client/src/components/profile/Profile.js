@@ -11,11 +11,11 @@ import ProfileProducts from '../profile/ProfileProducts'
 
 export default function Profile(props) {
     const { user } = useAuth0();
-
+    const picture = `http://localhost:4000/${props.user.image}`
     if (props.user._id) {
         return (
             <Container className="mt-3">
-                <Image src={user.picture} alt="User Picture" fluid />
+                <Image src={picture} alt="User Picture" style={{maxHeight:"10em"}}fluid />
                 <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
                     <Tab eventKey="profile" title="Profile">
                         <h1>UserName: {props.user.userName}</h1>
