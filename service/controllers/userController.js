@@ -50,3 +50,19 @@ exports.updateUser = (req, res, next) => {
     });
   });
 };
+
+exports.searchUser = (req, res, next) => {
+  if (req.query.userName) {
+    User.find({ userName: req.query.userName }, (err, search) => {
+      if (err) {
+        next('Something Went Wrong!');
+      } else {
+        res.send(search);
+      }
+    });
+  } else {
+    User.find({ }, (err, products) => {
+      if (err) { next('Something Went Wrong!'); } else { res.send(products); }
+    });
+  }
+};
