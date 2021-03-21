@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import LogoBar from "./components/navbar/LogoBar";
@@ -32,7 +31,7 @@ function App() {
           <SearchView />
         </Route>
         <Route path="/conversations/all">
-            <ConversationView />
+          <ConversationView />
         </Route>
         <Route path="/conversations/:id">
           <LockedComponent >
@@ -55,9 +54,7 @@ function App() {
           </LockedComponent>
         </Route>
         <Route path="/users/new">
-          <LockedComponent >
-            <ProfileCreate />
-          </LockedComponent>
+          <ProfileCreate />
         </Route>
         <Route path="/users/update">
           <LockedComponent >

@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Card } from 'react-bootstrap'
 import SellerButtons from './SellerButtons'
+import placeHolder from '../../images/product.png'
 
 
 function Product(props) {
   let prodImage;
-  if (props.products.images.length !== 0) {
+  if (props.products.images[0] !== undefined) {
     prodImage = `http://localhost:4000/${props.products.images[0]}`;
   } else {
-    prodImage = require('../../images/product.jpg');
+    prodImage = placeHolder;
   }
-
+  
   const summary = props.products.description.substr(0, 60) + "...";
   if (props.seller) {
     return (
