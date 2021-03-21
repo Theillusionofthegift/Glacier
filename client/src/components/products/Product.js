@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Card } from 'react-bootstrap'
 import SellerButtons from './SellerButtons'
-import placeHolder from '../../images/product.png'
+import placeHolder from '../../images/product.jpg'
 
 
 function Product(props) {
