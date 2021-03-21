@@ -15,7 +15,7 @@ const defaultFormValues = {
     zipcode: "",
 };
 
-export default function CreateProduct() {
+export default function UpdateProduct() {
 
     const [productFormValues, setProductFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
@@ -32,11 +32,11 @@ export default function CreateProduct() {
     };
 
     const handleSubmit = (event) => {
-        const id = user.sub.split('|')
+        const id = user.sub.split('|');
         event.preventDefault();
         const requestConfig = {
-            url: "http://localhost:4000/api/v1/products",
-            method: "post",
+            url: `http://localhost:4000/api/v1/products/`,
+            method: "put",
             headers: { "Content-Type": "application/json" },
             data: {
                 prodName: productFormValues.prodName,
@@ -51,7 +51,7 @@ export default function CreateProduct() {
         axios(requestConfig)
             .then((response) => {
                 setSuccess(true);
-                console.log(`Item Created ${response.data}`);
+                console.log(`Item Updated ${response.data}`);
             })
             .catch((err) => {
                 console.log(`We should really handle the error: ${err}`);

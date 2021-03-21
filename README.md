@@ -10,7 +10,6 @@ Our app will be a clone of OfferUp and is a project for our AD320 class.
 * DYLAN J EASTRIDGE 
 * AARON ALLEN 
 * KRISTIN J JUE 
-* BIKRAMJIT SINGH 
 * JIA JUN HUANG 
 
 ## Features:

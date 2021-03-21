@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
-import { InputGroup, FormControl, Button, Form, Container } from 'react-bootstrap';
+import { InputGroup, FormControl, Button, Container } from 'react-bootstrap';
 import profile from '../images/userProfile.jpg';
 import ProfileUploader from '../components/upload/ProfileUploader'
 
