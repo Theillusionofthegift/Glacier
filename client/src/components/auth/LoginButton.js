@@ -9,7 +9,7 @@ const LoginButton = () => {
     <Button
       className="mx-1"
       variant="primary"
-      style={{fontSize: 18, fontWeight: 'bold'}}
+      style={{fontSize: "1.5em", fontWeight: 'bold'}}
       onClick={() => {
         loginWithRedirect();
       }}
@@ -19,7 +19,7 @@ const LoginButton = () => {
     <Button
       className="mx-1"
       variant="primary"
-      style={{fontSize: 18, fontWeight: 'bold'}}
+      style={{fontSize: "1.5em", fontWeight: 'bold'}}
       onClick={() => {
         loginWithRedirect({ 
           screen_hint: 'signup',

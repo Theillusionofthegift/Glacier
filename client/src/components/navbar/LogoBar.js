@@ -18,9 +18,9 @@ export default function LogoBar(props) {
 
 
         <Nav className="ml-auto" variant="pills" defaultActiveKey="/home">
-          <Nav.Link as={Link} to="/" style={{fontSize: 18, fontWeight: 'bold'}}>Home</Nav.Link>
-          { isAuthenticated ? <Nav.Link as={Link} to="/sell" style={{fontSize: 18, fontWeight: 'bold'}}>Sell</Nav.Link> : ''}
-          { isAuthenticated ? <Nav.Link as={Link} to="/profile" style={{fontSize: 18, fontWeight: 'bold'}}>Profile</Nav.Link> : '' }
+          <Nav.Link as={Link} to="/" style={{fontSize: "1.5em", fontWeight: 'bold'}}>Home</Nav.Link>
+          { isAuthenticated ? <Nav.Link as={Link} to="/sell" style={{fontSize: "1.5em", fontWeight: 'bold'}}>Sell</Nav.Link> : ''}
+          { isAuthenticated ? <Nav.Link as={Link} to="/profile" style={{fontSize: "1.5em", fontWeight: 'bold'}}>Profile</Nav.Link> : '' }
           { isAuthenticated ? <AdminUserButton /> : '' }
 
           <AuthenticationButton />

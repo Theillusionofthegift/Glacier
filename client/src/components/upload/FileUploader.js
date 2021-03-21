@@ -54,7 +54,7 @@ export default function FileUploader() {
                         variant="primary"
                         as= "span"
                         className= "mb-3"
-                        style={{fontSize: 18}}
+                        style={{fontSize: "1.5em"}}
                     >
                         Choose up to 3 images:
             </Button>
@@ -70,7 +70,7 @@ export default function FileUploader() {
                 disabled={!imageFiles}
                 onClick={upload}
                 className= "mb-3"
-                style={{fontSize: 18}}
+                style={{fontSize: "1.5em"}}
             >
                 Upload
             </Button>

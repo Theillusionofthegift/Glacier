@@ -30,7 +30,7 @@ export default function UpdateButtonSet() {
                 to="/users/update/"
                 variant= "primary"
                 className="ml-3"
-                style={{fontSize: 18}}
+                style={{fontSize: "1.5em"}}
                 >
                 Update Profile
                 </Button>
@@ -41,7 +41,7 @@ export default function UpdateButtonSet() {
                 variant= "primary"
                 className= "ml-3"
                 onClick={handleDelete}
-                style={{fontSize: 18}}
+                style={{fontSize: "1.5em"}}
                 >
                 Delete Account
                 </Button>
