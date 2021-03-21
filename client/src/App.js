@@ -15,6 +15,7 @@ import SearchView from './views/SearchView'
 import AdminVeiw from './views/AdminView'
 import LockedComponent from './components/lock/LockedComponet'
 import LockedPage from './components/lock/LockedPage'
+import UploadView from "./views/UploadView";
 
 function App() {
   return (
@@ -46,6 +47,11 @@ function App() {
         <Route path="/sell">
           <LockedComponent >
             <CreateProduct />
+          </LockedComponent>
+        </Route>
+        <Route path="/products/upload/:id">
+          <LockedComponent>
+            <UploadView />
           </LockedComponent>
         </Route>
         <Route path="/users/new">
