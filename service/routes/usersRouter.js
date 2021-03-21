@@ -12,12 +12,11 @@ const domain = process.env.REACT_APP_AUTH_0_DOMAIN;
 const audience = process.env.REACT_APP_AUTH_0_AUDIENCE;
 const issuer = process.env.REACT_APP_AUTH_0_ISSUER;
 
-usersRouter.route('/')
+usersRouter.route('/?')
   .get((req, res, next) => {
-    User.find({}, (err, users) => {
-      if (err) {
-        next('Something Went Wrong!');
-      } else { res.send(users); }
+    User.find({ userName: req.query.userName }, (err, user) => {
+      if (err) { next(err) }
+      res.send(user);
     });
   });
 
@@ -36,6 +35,15 @@ usersRouter.route('/:id')
       User.findByIdAndDelete(id, (err, user) => {
         if (err) { next(err); } else if (user) { res.send(user); } else { res.sendStatus(404); }
       });
+    });
+  });
+
+usersRouter.route('/')
+  .get((req, res, next) => {
+    User.find({}, (err, users) => {
+      if (err) {
+        next('Something Went Wrong!');
+      } else { res.send(users); }
     });
   });
 
