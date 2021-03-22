@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
 import { InputGroup, FormControl, Button, Form, Container } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Button';
 
 
 
@@ -61,7 +62,7 @@ export default function CreateProduct() {
                 setSuccess(true);
             })
             .catch((err) => {
-                console.log(`We should really handle the error: ${err}`);
+                  alert('Make sure you have filled in every field, before submitting!'); // (3)
             });
 
             
@@ -176,6 +177,8 @@ export default function CreateProduct() {
                     </Form.Control>
 
                 </Form.Group>
+
+
                 <Button type="submit" onClick={handleSubmit}>Submit form</Button>
             </Container>
         )
