@@ -11,14 +11,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileView from "./views/ProfileView";
 import ConversationView from "./views/ConversationView";
 import SearchView from './views/SearchView'
-<<<<<<< HEAD
-=======
 import AdminVeiw from './views/AdminView'
 import LockedComponent from './components/lock/LockedComponet'
 import LockedPage from './components/lock/LockedPage'
 import UploadView from "./views/UploadView";
 import ProfileUploaderView from './views/ProfileUploaderView'
->>>>>>> 5efbdade99605b1306531dca60d1fb2ffdf6ba40
 
 function App() {
   return (

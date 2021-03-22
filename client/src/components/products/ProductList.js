@@ -5,7 +5,7 @@ import Product from "./Product";
 
 export default function ProductList(props) {
     const products = props.products
-<<<<<<< HEAD
+
     return (
         <Container>
             <Col style={{margin: "100px"}}>
@@ -15,7 +15,7 @@ export default function ProductList(props) {
             </Col>
         </Container>
     );
-=======
+
     if (props.seller) {
         return (
             <Container>
@@ -38,5 +38,4 @@ export default function ProductList(props) {
         );
     }
 
->>>>>>> 5efbdade99605b1306531dca60d1fb2ffdf6ba40
 }
