@@ -42,12 +42,7 @@ export default function UpdateButtonSet() {
                 onClick={handleDelete}
                 variant= "primary"
                 className= "ml-3"
-<<<<<<< HEAD
-                
-=======
-                onClick={handleDelete}
                 style={{fontSize: "1.5em"}}
->>>>>>> main
                 >
                 Delete Account
                 </Button>

@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
-import { InputGroup, FormControl, Button, Container } from 'react-bootstrap';
+import { InputGroup, FormControl, Button, Form, Container } from 'react-bootstrap';
 import profile from '../images/userProfile.jpg';
 import ProfileUploader from '../components/upload/ProfileUploader'
 
@@ -20,17 +20,7 @@ export default function CreateProfile() {
     const [success, setSuccess] = useState(false);
     const [userId, setUserId] = useState('');
     const { user, getAccessTokenSilently } = useAuth0();
-<<<<<<< HEAD
-
-    async function getToken() {
-        const authToken = await getAccessTokenSilently();
-        console.log('auth token ', authToken);
-    }
-    const token = getToken();
-
-=======
     
->>>>>>> main
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         console.log(`name ${name} and value ${value}`);
@@ -133,7 +123,9 @@ export default function CreateProfile() {
                         />
                     </InputGroup>
 
-                    <Button type="submit" onClick={handleSubmit}>Update</Button>
+                    <ProfileUploader />
+
+                    <Button type="submit" onClick={handleSubmit} style={{fontSize: "1.5em"}}>Update</Button>
                 </Container>
             </Container>
         )
