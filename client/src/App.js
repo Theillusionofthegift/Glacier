@@ -13,7 +13,6 @@ import ProfileView from "./views/ProfileView";
 import ConversationView from "./views/ConversationView";
 import SearchView from './views/SearchView'
 
-
 function App() {
   return (
     <>
