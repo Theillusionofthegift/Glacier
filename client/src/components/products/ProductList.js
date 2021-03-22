@@ -5,7 +5,6 @@ import Product from "./Product";
 
 export default function ProductList(props) {
     const products = props.products
-
     if (props.seller) {
         return (
             <Container>

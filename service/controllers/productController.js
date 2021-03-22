@@ -52,7 +52,7 @@ exports.searchProduct = (req, res, next) => {
       }
     });
   } else if (req.query.seller) {
-    Product.find({ seller: req.query.seller }, (err, search) => {
+    Product.find({ seller: req.query.seller, available: true }, (err, search) => {
       if (err) {
         next('Something Went Wrong!');
       } else {
@@ -60,7 +60,7 @@ exports.searchProduct = (req, res, next) => {
       }
     });
   } else if (req.query.prodName) {
-    Product.find({ prodName: req.query.prodName }, (err, search) => {
+    Product.find({ prodName: req.query.prodName, available: true }, (err, search) => {
       if (err) {
         next('Something Went Wrong!');
       } else {
