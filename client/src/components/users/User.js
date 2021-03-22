@@ -6,38 +6,28 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { useAuth0 } from '@auth0/auth0-react'
+import {useAuth0} from '@auth0/auth0-react'
 
 export default function Conversations(props) {
-  const otherUser = props.user
-  const { user } = useAuth0();
+  const user = props.user
+  const { getAccessTokenSilently } = useAuth0();
   const list = [];
-  const [convoPath, setConvoPath] = useState('');
-  const id = user.sub.split('|')[1];
-
-  useEffect(() => {
-    const config = {
-      url: `http://localhost:4000/api/v1/conversations/?seller=${otherUser}&buyer=${id[1]}`,
-      method: 'GET',
-    }
-    axios(config).then((response) => {
-      setConvoPath(response.data._id)
-    }).catch((err) => {
-      console.log('error in ViewProductDetail useEffect');
-    })
-  }, [])
 
   const handleUsers = () => {
-    for (const key in otherUser) {
-      list.push(<Card.Text>{`${key}: ${otherUser[key]}`}</Card.Text>);
+    for (const key in user) {
+      list.push(<Card.Text>{`${key}: ${user[key]}`}</Card.Text>);
     }
     return list;
   }
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    const authToken = await getAccessTokenSilently();
     const config = {
       url: `http://localhost:4000/api/v1/users/${user._id}`,
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,},
     };
 
     axios(config)
@@ -49,37 +39,55 @@ export default function Conversations(props) {
       });
   }
 
-  const handleLock = () => {
-    const config = {
-      url: `http://localhost:4000/api/v1/users/${user.auth0Id.split('|')[0]}`,
-      method: "PUT",
-      data: {
-        active: false,
+  const handleLock = async () => {
+    const authToken = await getAccessTokenSilently();
+    let config
+    if (user.active) {
+      config = {
+        url: `http://localhost:4000/api/v1/users/${user.auth0Id.split('|')[0]}`,
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,},
+          data: {
+            active: false,
+          }
+        }
+      } else {
+        config = {
+          url: `http://localhost:4000/api/v1/users/${user.auth0Id.split('|')[0]}`,
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,},
+          data: {
+            active: true,
+          }
+        };
       }
-    };
 
-    axios(config)
-      .then((response) => {
-        console.log(`Updated ${response}`)
-      })
-      .catch((err) => {
-        console.log("Whoops, something when wrong")
-      });
+
+      axios(config)
+        .then((response) => {
+          console.log(`Updated`)
+        })
+        .catch((err) => {
+          console.log("Whoops, something when wrong")
+        });
+    }
+
+    return (
+      <Container style={{ marginTop: "2em" }}>
+        <Card className="mb-2">
+          <Card.Header >{user.userName}</Card.Header>
+          <Card.Body>
+            {handleUsers()}
+            <Card.Link as={Link} to={`/users/update/`}>Update</Card.Link>
+            <Card.Link as={Button} onClick={handleDelete}>Delete</Card.Link>
+            <Card.Link as={Button} onClick={handleLock}>Lock</Card.Link>
+          </Card.Body>
+        </Card>
+      </Container>
+    );
+
   }
-
-  return (
-    <Container style={{ marginTop: "2em" }}>
-      <Card className="mb-2">
-        <Card.Header >{user.userName}</Card.Header>
-        <Card.Body>
-          {handleUsers()}
-          <Button variant="outline-primary" className="mr-3"as={Link} to={`/users/update/`}>Update</Button>
-          <Card.Link as={Button} onClick={handleDelete}>Delete</Card.Link>
-          <Card.Link as={Button} onClick={handleLock}>Lock</Card.Link>
-          <Button variant="outline-primary" className="ml-3"as={Link} to={`/conversations/${convoPath}`}>Message</Button>
-        </Card.Body>
-      </Card>
-    </Container>
-  );
-
-}
