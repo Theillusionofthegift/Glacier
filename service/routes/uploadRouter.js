@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const Product = require('../models/product');
+const User = require('../models/users');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -29,20 +30,17 @@ uploadsRouter.route('/products')
   });
 
 uploadsRouter.route('/profile')
-  .post(upload.single('profile'), (req, res, next) => {
-    try {
-      const featuredImage = req.file;
-      // by this point the file has been saved or an error has occurred.
-      // if req.file exists, the save was successful
-      if (!featuredImage) {
-        res.status(400);
-        res.send({ error: 'No file selected' });
+  .post(upload.single('profile'), async (req, res) => {
+    const imagePath = req.file.path;
+    User.findByIdAndUpdate(req.body.userId, { image: imagePath }, (err, prod) => {
+      if (err) {
+        res.send(500);
+      } else if (prod) {
+        res.status(204).send(prod);
       } else {
-        res.send({ message: 'Success' });
+        res.send(404);
       }
-    } catch (err) {
-      next(err);
-    }
+    });
   });
 
 module.exports = uploadsRouter;

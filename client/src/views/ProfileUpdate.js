@@ -18,7 +18,9 @@ const defaultFormValues = {
 export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
+    const [userId, setUserId] = useState('');
     const { user, getAccessTokenSilently } = useAuth0();
+<<<<<<< HEAD
 
     async function getToken() {
         const authToken = await getAccessTokenSilently();
@@ -26,6 +28,9 @@ export default function CreateProfile() {
     }
     const token = getToken();
 
+=======
+    
+>>>>>>> main
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         console.log(`name ${name} and value ${value}`);
@@ -33,10 +38,10 @@ export default function CreateProfile() {
             ...profileFormValues,
             [name]: value,
         });
-        console.log(profileFormValues);
     };
 
-    const handleSubmit = (event) => {
+    const  handleSubmit = async (event) => {
+        const authToken = await getAccessTokenSilently();
         const id = user.sub.split('|')[1];
         event.preventDefault();
         const requestConfig = {
@@ -44,9 +49,10 @@ export default function CreateProfile() {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${authToken}`,
             },
             data: {
+                auth0Id: id,
                 userName: profileFormValues.userName,
                 firstName: profileFormValues.firstName,
                 lastName: profileFormValues.lastName,
@@ -56,6 +62,8 @@ export default function CreateProfile() {
 
         axios(requestConfig)
             .then((response) => {
+                setUserId(response.data.userId)
+                console.log(response.data)
                 setSuccess(true);
                 console.log(`Profile updated ${response.data}`);
             })
@@ -64,20 +72,20 @@ export default function CreateProfile() {
             });
     };
 
+    const redirectString = `/users/upload/${userId}`
+
     if (success) {
-        return <Redirect to="/" />;
+        return <Redirect to={redirectString} />;
     } else {
         return (
             <Container style={{marginTop: "5em"}}>
                 <h1 style={{textAlign: "center"}}>Update Profile</h1>
-                <img className="image" src={profile} alt='profile' />
                 <Container style={{width: "80%"}}>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">Username</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                            placeholder="Username"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                             name="userName"
@@ -91,7 +99,6 @@ export default function CreateProfile() {
                             <InputGroup.Text>First Name</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                            placeholder="First Name"
                             aria-label="First Name"
                             aria-describedby="basic-addon1"
                             name="firstName"
@@ -105,7 +112,6 @@ export default function CreateProfile() {
                             <InputGroup.Text>Last Name</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                            placeholder="Last Name"
                             aria-label="Last Name"
                             aria-describedby="basic-addon1"
                             name="lastName"
@@ -119,7 +125,6 @@ export default function CreateProfile() {
                             <InputGroup.Text>Bio</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
-                            placeholder="Bio"
                             aria-label="Bio"
                             aria-describedby="basic-addon1"
                             name="bio"
@@ -127,8 +132,6 @@ export default function CreateProfile() {
                             onChange={handleInputChange}
                         />
                     </InputGroup>
-
-                    <ProfileUploader />
 
                     <Button type="submit" onClick={handleSubmit}>Update</Button>
                 </Container>

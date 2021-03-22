@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import LogoBar from "./components/navbar/LogoBar";
@@ -16,7 +15,11 @@ import AdminVeiw from './views/AdminView'
 import LockedComponent from './components/lock/LockedComponet'
 import LockedPage from './components/lock/LockedPage'
 import UploadView from "./views/UploadView";
+<<<<<<< HEAD
 import UpdateProduct from "./views/UpdateProductDescription";
+=======
+import ProfileUploaderView from './views/ProfileUploaderView'
+>>>>>>> main
 
 function App() {
   return (
@@ -33,7 +36,7 @@ function App() {
           <SearchView />
         </Route>
         <Route path="/conversations/all">
-            <ConversationView />
+          <ConversationView />
         </Route>
         <Route path="/conversations/:id">
           <LockedComponent >
@@ -61,7 +64,14 @@ function App() {
           </LockedComponent>
         </Route>
         <Route path="/users/new">
+<<<<<<< HEAD
             <ProfileCreate />
+=======
+          <ProfileCreate />
+        </Route>
+        <Route path="/users/upload/:id">
+          <ProfileUploaderView />
+>>>>>>> main
         </Route>
         <Route path="/users/update">
           <LockedComponent >

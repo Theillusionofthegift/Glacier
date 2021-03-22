@@ -44,10 +44,19 @@ export default function ProfileView() {
 
     const handleSubmitUser = (event) => {
         event.preventDefault();
-        const requestConfig = {
-            url: `http://localhost:4000/api/v1/users/?userName=${searchStringUser}`,
-            method: "GET",
-        };
+        let requestConfig
+        if(searchStringUser === ''){
+            requestConfig = {
+                url: `http://localhost:4000/api/v1/users/`,
+                method: "GET",
+            };
+        } else {
+            requestConfig = {
+                url: `http://localhost:4000/api/v1/users/?userName=${searchStringUser}`,
+                method: "GET",
+            };
+        }
+        
 
         axios(requestConfig)
             .then((response) => {
@@ -63,10 +72,19 @@ export default function ProfileView() {
 
     const handleSubmitProducts = (event) => {
         event.preventDefault();
-        const requestConfig = {
-            url: `http://localhost:4000/api/v1/products/?prodName=${searchStringProducts}`,
-            method: "GET",
-        };
+        let requestConfig
+        if(searchStringProducts === ''){
+            requestConfig = {
+                url: `http://localhost:4000/api/v1/products/`,
+                method: "GET",
+            };
+        } else {
+            requestConfig = {
+                url: `http://localhost:4000/api/v1/products/?prodName=${searchStringProducts}`,
+                method: "GET",
+            };
+        }
+        
 
         axios(requestConfig)
             .then((response) => {
