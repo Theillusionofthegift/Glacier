@@ -1,8 +1,5 @@
 import { React, useEffect, useState } from "react";
-import {
-    Button,
-    Container
-} from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
@@ -36,10 +33,10 @@ function ViewProduct(props) {
             let list = []
             paths.forEach((path) => {
                 const image = `http://localhost:4000/${path}`
-                   list.push( <Carousel.Item>
-                        <img className="d-block w-50 mx-auto" src={image} alt='productView' />
-                    </Carousel.Item>)
-                
+                list.push(<Carousel.Item>
+                    <img className="d-block w-50 mx-auto" src={image} alt='productView' />
+                </Carousel.Item>)
+
             })
             return list;
         } else {

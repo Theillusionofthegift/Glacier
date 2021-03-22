@@ -25,18 +25,18 @@ export class MapContainer extends Component {
         zoom={14}
         style={mapStyles}
         initialCenter={
-          { 
-            lat: this.props.lat, 
+          {
+            lat: this.props.lat,
             lng: this.props.lng
           }
         }>
 
-        <Marker 
-            lat={this.props.lat}
-            lng={this.props.lng}
-            name={'Template Marker'}
-            label={{fontWeight: 'bold', text:this.props.readable}}/>
-        </Map>
+        <Marker
+          lat={this.props.lat}
+          lng={this.props.lng}
+          name={'Template Marker'}
+          label={{ fontWeight: 'bold', text: this.props.readable }} />
+      </Map>
     );
   }
 }

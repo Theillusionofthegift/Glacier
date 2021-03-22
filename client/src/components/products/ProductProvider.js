@@ -31,7 +31,7 @@ class ProductProvider extends React.Component {
     const requestConfig = {
       url: "http://localhost:4000/api/v1/products/",
       method: "get",
-      headers: { "Content-Type": "application/json"}
+      headers: { "Content-Type": "application/json" }
     };
 
     axios(requestConfig)
