@@ -59,7 +59,7 @@ export default function CreateProfile() {
                 console.log(`Profile updated ${response.data}`);
             })
             .catch((err) => {
-                console.log(`We should handle the error: ${err}`);
+                alert('Make sure you have filled in every field, before submitting!');
             });
     };
 
