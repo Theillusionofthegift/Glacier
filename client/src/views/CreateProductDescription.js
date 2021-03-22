@@ -62,7 +62,7 @@ export default function CreateProduct() {
                 setSuccess(true);
             })
             .catch((err) => {
-                  alert('Make sure you have filled in every field, before submitting!'); // (3)
+                  alert('Make sure you have filled in every field in correct format before submitting!'); // (3)
             });
 
             
