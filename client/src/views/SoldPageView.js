@@ -42,7 +42,7 @@ export default function SoldPageView() {
 
         axios(requestConfig)
             .then((response) => {
-                setBuyerId(response[0]._id)
+                setBuyerId(response._id)
                 console.log(`User Found`);
             })
             .catch((err) => {
@@ -69,7 +69,7 @@ export default function SoldPageView() {
         };
 
         const requestConfig1 = {
-            url: "http://localhost:4000/api/v1/transactions",
+            url: `http://localhost:4000/api/v1/products/${id}`,
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -107,7 +107,7 @@ export default function SoldPageView() {
                 <Container>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
-                        <InputGroup.Text id="basic-addon1">Product's Name</InputGroup.Text>
+                        <InputGroup.Text id="basic-addon1">Buyer</InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
                         aria-label="Product's Name"
