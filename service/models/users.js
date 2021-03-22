@@ -19,6 +19,7 @@ const userSchema = new mongoose.Schema({
   dateJoined: { type: Date, default: Date.now },
   active: { type: Boolean, default: true },
   bio: String,
+  image: String,
 });
 
 const User = mongoose.model('user', userSchema);

@@ -4,20 +4,19 @@ import axios from 'axios';
 import Profile from '../components/profile/Profile'
 import ProfileProducts from '../components/profile/ProfileProducts';
 import { Container } from 'react-bootstrap';
+import { Redirect } from 'react-router';
+import Loading from '../components/loading/Loading'
 
 export default function ProfileView() {
   const [ profile, setProfile ] = useState({});
   const {user, getAccessTokenSilently} = useAuth0();
-
   const id = user.sub.split('|')
   
   useEffect( () => {
     async function getToken() {
-      const authToken = await getAccessTokenSilently();
-      console.log('auth token ', authToken);
+      return await getAccessTokenSilently();
       }
     const token = getToken();
-    console.log(token);
     const config = {
         url: `http://localhost:4000/api/v1/users/${id[1]}`,
         method: 'GET',
@@ -34,14 +33,17 @@ export default function ProfileView() {
   },[])
   
   if (profile) {
+    if (profile) {
     return (
       <Container style={{marginTop:"5em"}}> 
             <Profile user= {profile} /> 
-            <ProfileProducts user={profile} />
       </Container>
         )
+    } else {
+      return <Redirect to="/" />
+    }
   } else {
-    return <div>Loading...</div>
+    return <Loading />
   }
 
 }

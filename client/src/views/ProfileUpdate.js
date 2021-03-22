@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
-import { InputGroup, FormControl, Button, Form } from 'react-bootstrap';
+import { InputGroup, FormControl, Button, Form, Container } from 'react-bootstrap';
 import profile from '../images/userProfile.jpg';
-import './outfit.css';
+import ProfileUploader from '../components/upload/ProfileUploader'
 
 const defaultFormValues = {
     auto0Id: "",
@@ -18,16 +18,9 @@ const defaultFormValues = {
 export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
-    const {user, getAccessTokenSilently} = useAuth0();
-    console.log(user);
-
-    async function getToken() {
-        const authToken = await getAccessTokenSilently();
-        console.log('auth token ', authToken);
-        }
-    const token = getToken();
-    console.log(token);
-
+    const [userId, setUserId] = useState('');
+    const { user, getAccessTokenSilently } = useAuth0();
+    
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         console.log(`name ${name} and value ${value}`);
@@ -35,21 +28,22 @@ export default function CreateProfile() {
             ...profileFormValues,
             [name]: value,
         });
-        console.log(profileFormValues);
     };
 
-    const handleSubmit = (event) => {
+    const  handleSubmit = async (event) => {
+        const authToken = await getAccessTokenSilently();
+        const id = user.sub.split('|')[1];
         event.preventDefault();
         const requestConfig = {
-            url: `http://localhost:4000/api/v1/users/${user.sub}`,
+            url: `http://localhost:4000/api/v1/users/${id}`,
             method: "PUT",
-            headers: { "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`, 
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${authToken}`,
             },
             data: {
-                auth0Id: user.sub,
+                auth0Id: id,
                 userName: profileFormValues.userName,
-                email: user.email,
                 firstName: profileFormValues.firstName,
                 lastName: profileFormValues.lastName,
                 bio: profileFormValues.bio,
@@ -58,6 +52,8 @@ export default function CreateProfile() {
 
         axios(requestConfig)
             .then((response) => {
+                setUserId(response.data.userId)
+                console.log(response.data)
                 setSuccess(true);
                 console.log(`Profile updated ${response.data}`);
             })
@@ -66,14 +62,15 @@ export default function CreateProfile() {
             });
     };
 
+    const redirectString = `/users/upload/${userId}`
+
     if (success) {
-        return <Redirect to="/" />;
+        return <Redirect to={redirectString} />;
     } else {
         return (
-            <div className="wrapper">
-                <h1 className="title">Update Profile</h1>
-                <img className="image" src={profile} alt='profile' />
-                <div className="outfit">
+            <Container style={{marginTop: "5em"}}>
+                <h1 style={{textAlign: "center"}}>Update Profile</h1>
+                <Container style={{width: "80%"}}>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">Username</InputGroup.Text>
@@ -130,15 +127,9 @@ export default function CreateProfile() {
                         />
                     </InputGroup>
 
-                    <div className="mb-3">
-                        <Form.File id="formcheck-api-regular">
-                            <Form.File.Label>Profile Picture</Form.File.Label>
-                            <Form.File.Input />
-                        </Form.File>
-                    </div>
                     <Button type="submit" onClick={handleSubmit}>Update</Button>
-                </div>
-            </div>
+                </Container>
+            </Container>
         )
     }
 }

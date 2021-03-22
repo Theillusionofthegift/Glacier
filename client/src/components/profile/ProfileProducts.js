@@ -31,7 +31,7 @@ export default function ProfileProducts(props) {
             <Container className="mx-auto">
               <br />
               <h1>Items you're selling</h1>
-              <ProductList products={products} /> 
+              <ProductList products={products} seller={true} /> 
             </Container>
     );
     }

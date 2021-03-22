@@ -3,8 +3,8 @@ import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
 import { InputGroup, FormControl, Button, Form, Container } from 'react-bootstrap';
-import './outfit.css';
-import FileUploader from "../components/upload/FileUploader";
+
+
 
 const defaultFormValues = {
     prodName: "",
@@ -21,7 +21,9 @@ export default function CreateProduct() {
 
     const [productFormValues, setProductFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
+    const [prodId, setProdId] = useState('');
     const { user } = useAuth0();
+    const id = user.sub.split('|');
 
 
 
@@ -37,6 +39,7 @@ export default function CreateProduct() {
     };
 
     const handleSubmit = (event) => {
+
         event.preventDefault();
         const requestConfig = {
             url: "http://localhost:4000/api/v1/products",
@@ -45,7 +48,7 @@ export default function CreateProduct() {
             data: {
                 prodName: productFormValues.prodName,
                 price: productFormValues.price,
-                seller: user.sub,
+                seller: id[1],
                 description: productFormValues.description,
                 category: productFormValues.category,
                 zipcode: productFormValues.zipcode,
@@ -54,21 +57,24 @@ export default function CreateProduct() {
 
         axios(requestConfig)
             .then((response) => {
+                setProdId(response.data.productId)
                 setSuccess(true);
-                console.log(`Item Created ${response.data}`);
             })
             .catch((err) => {
                 console.log(`We should really handle the error: ${err}`);
             });
+
+            
     };
 
+    const redirectString = `/products/upload/${prodId}`
 
     if (success) {
-        return <Redirect to="/" />;
+        return <Redirect to={redirectString} />;
     } else {
         return (
             <Container fluid style={{ width: "45%", marginTop: "5em" }}>
-                <Container style={{textAlign: "center", marginBottom: "3em"}}>
+                <Container style={{ textAlign: "center", marginBottom: "3em" }}>
                     <h1>Sell Your Item</h1>
                 </Container>
                 <InputGroup className="mb-3">
@@ -78,7 +84,7 @@ export default function CreateProduct() {
                     <FormControl
                         placeholder="Product's Name"
                         aria-label="Product's Name"
-                        aria-describedby="basic-addon1"
+                        aria-describedby="text"
                         name="prodName"
                         value={productFormValues.prodName}
                         onChange={handleInputChange}
@@ -106,7 +112,7 @@ export default function CreateProduct() {
                     </InputGroup.Prepend>
                     <FormControl
                         as="textarea"
-                        aria-label="With textarea"
+                        aria-label="Item Description"
                         name="description"
                         value={productFormValues.description}
                         onChange={handleInputChange}
@@ -127,12 +133,13 @@ export default function CreateProduct() {
 
                 <Form.Group>
                     <Form.Control
+                        aria-label="Category"
                         placeholder="Category"
                         as="select"
                         name="category"
                         value={productFormValues.categories}
                         onChange={handleInputChange}>
-                        <option>Categories</option>    
+                        <option>Categories</option>
                         <option>Appliances</option>
                         <option>Arts and crafts</option>
                         <option>Audio Equipment</option>
@@ -170,8 +177,6 @@ export default function CreateProduct() {
                     </Form.Control>
 
                 </Form.Group>
-
-                <FileUploader />
                 <Button type="submit" onClick={handleSubmit}>Submit form</Button>
             </Container>
         )

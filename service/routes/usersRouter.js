@@ -13,30 +13,13 @@ const audience = process.env.REACT_APP_AUTH_0_AUDIENCE;
 const issuer = process.env.REACT_APP_AUTH_0_ISSUER;
 
 usersRouter.route('/')
-  .get((req, res, next) => {
-    User.find({}, (err, users) => {
-      if (err) {
-        next('Something Went Wrong!');
-      } else { res.send(users); }
-    });
-  });
+  .get(userController.searchUser);
 
 usersRouter.route('/:id')
   .get((req, res, next) => {
-    const options = { validate: true };
     User.find({ auth0Id: req.params.id }, (err, id) => {
       if (err) { next(err); }
       res.send(id);
-    });
-  })
-
-  .put((req, res, next) => {
-    const options = { validate: true };
-    User.find({ auth0Id: req.params.id }, options, (err, id) => {
-      if (err) { next(err); }
-      User.findByIdAndUpdate(id, req.body, options, (err, user) => {
-        if (err) { next(err); } else if (user) { res.send(user); } else { res.sendStatus(404); }
-      });
     });
   })
 
@@ -80,22 +63,14 @@ usersRouter.route('/')
 usersRouter.route('/:id')
 
   .put((req, res, next) => {
-    const { permissions } = req.user;
-    if (req.body.auth0Id === req.user.sub || permissions.includes('manage:users')) {
-      const options = { validate: true };
-      User.find({ auth0Id: req.params.id }, (err, id) => {
-        if (err) {
-          next('Something Went Wrong!');
-        } else {
-          User.findByIdAndUpdate(id, options, (err, user) => {
-            res.send(user);
-          });
-        }
-      });
+    const { permissions, sub } = req.user;
+    const id = sub.split('|');
+    if (req.body.auth0Id === id[1] || permissions.includes('manage:users')) {
+      next();
     } else {
       // user is not owner of the account or does not have admin priviledges
       res.sendStatus(403);
     }
-  });
+  }, userController.updateUser);
 
 module.exports = usersRouter;

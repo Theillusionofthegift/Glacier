@@ -1,6 +1,5 @@
-
 import React from "react";
-import {Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import LogoBar from "./components/navbar/LogoBar";
 import HomePage from './views/HomePage';
 import ViewProductDetail from './components/viewProduct/ViewProductDetail'
@@ -12,12 +11,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileView from "./views/ProfileView";
 import ConversationView from "./views/ConversationView";
 import SearchView from './views/SearchView'
+<<<<<<< HEAD
+=======
+import AdminVeiw from './views/AdminView'
+import LockedComponent from './components/lock/LockedComponet'
+import LockedPage from './components/lock/LockedPage'
+import UploadView from "./views/UploadView";
+import ProfileUploaderView from './views/ProfileUploaderView'
+>>>>>>> 5efbdade99605b1306531dca60d1fb2ffdf6ba40
 
 function App() {
   return (
     <>
       <LogoBar />
       <Switch>
+        <Route path="/locked">
+          <LockedPage />
+        </Route>
+        <Route path="/admin">
+          <AdminVeiw />
+        </Route>
         <Route path="/?search">
           <SearchView />
         </Route>
@@ -25,30 +38,48 @@ function App() {
           <ConversationView />
         </Route>
         <Route path="/conversations/:id">
-          <MessageView />
+          <LockedComponent >
+            <MessageView />
+          </LockedComponent>
         </Route>
         <Route path="/product/:id">
-          <ViewProductDetail />
+          <LockedComponent >
+            <ViewProductDetail />
+          </LockedComponent>
         </Route>
         <Route path="/sell">
-          <CreateProduct />
+          <LockedComponent >
+            <CreateProduct />
+          </LockedComponent>
+        </Route>
+        <Route path="/products/upload/:id">
+          <LockedComponent>
+            <UploadView />
+          </LockedComponent>
         </Route>
         <Route path="/users/new">
           <ProfileCreate />
         </Route>
+        <Route path="/users/upload/:id">
+          <ProfileUploaderView />
+        </Route>
         <Route path="/users/update">
-          <ProfileUpdate />
+          <LockedComponent >
+            <ProfileUpdate />
+          </LockedComponent>
         </Route>
         <Route path="/profile">
-          <ProfileView />
+          <LockedComponent >
+            <ProfileView />
+          </LockedComponent>
         </Route>
         <Route path="/">
           <HomePage />
         </Route>
       </Switch>
-   
 
-      </>
+
+    </>
 
   );
 }

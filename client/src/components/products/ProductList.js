@@ -5,6 +5,7 @@ import Product from "./Product";
 
 export default function ProductList(props) {
     const products = props.products
+<<<<<<< HEAD
     return (
         <Container>
             <Col style={{margin: "100px"}}>
@@ -14,4 +15,28 @@ export default function ProductList(props) {
             </Col>
         </Container>
     );
+=======
+    if (props.seller) {
+        return (
+            <Container>
+                <Col  >
+                    <Row xs={1} md={4} xl={12} >
+                        {products.map((product) => (<Product key={product._id} products={product} seller={true}/>))}
+                    </Row>
+                </Col>
+            </Container>
+        );
+    } else {
+        return (
+            <Container>
+                <Col  >
+                    <Row xs={1} md={4} xl={12} >
+                        {products.map((product) => (<Product key={product._id} products={product} />))}
+                    </Row>
+                </Col>
+            </Container>
+        );
+    }
+
+>>>>>>> 5efbdade99605b1306531dca60d1fb2ffdf6ba40
 }

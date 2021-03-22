@@ -1,12 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Button } from 'react-bootstrap'
-import { useAuth0 } from '@auth0/auth0-react'
+import { Card, Button, Container } from 'react-bootstrap'
 import axios from 'axios'
 
 export default function SellerButtons(props) {
-    const user = useAuth0();
-    const id = user.sub.spilt('|');
 
     const handleDelete = (event) => {
         event.preventDefault();
@@ -24,12 +21,14 @@ export default function SellerButtons(props) {
             });
     }
 
-    if (id[1] === props.product.seller) {
+    if (props.products.seller) {
         return (
-            <>
+            <Container>
                 <Card.Link as={Link} to={'/products/update'}>Update</Card.Link>
-                <Card.Link as={Button} onClick={handleDelete}>Delete</Card.Link>
-            </>
+                <Card.Link as={Link} onClick={handleDelete}>Delete</Card.Link>
+                <hr />
+                <Card.Link as={Link} to={`/products/sold/${props.products._id}`}>Mark Sold</Card.Link>
+            </Container>
         )
     }
 }
