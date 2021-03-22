@@ -15,7 +15,7 @@ function Message(props) {
     axios(config).then((response) => {
       setUserName(response.data[0]);
     }).catch((err) => {
-      console.log('error in ViewProductDetail useEffect');
+      console.log(err);
     })
   }, []);
 

@@ -4,8 +4,6 @@ import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
 import { InputGroup, FormControl, Button, Form, Container } from 'react-bootstrap';
 
-
-
 const defaultFormValues = {
     prodName: "",
     price: "",
@@ -15,8 +13,6 @@ const defaultFormValues = {
     zipcode: "",
 };
 
-
-
 export default function CreateProduct() {
 
     const [productFormValues, setProductFormValues] = useState(defaultFormValues);
@@ -25,21 +21,15 @@ export default function CreateProduct() {
     const { user } = useAuth0();
     const id = user.sub.split('|');
 
-
-
-
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(`name ${name} and value ${value}`);
         setProductFormValues({
             ...productFormValues,
             [name]: value,
         });
-        console.log(productFormValues);
     };
 
     const handleSubmit = (event) => {
-
         event.preventDefault();
         const requestConfig = {
             url: "http://localhost:4000/api/v1/products",
@@ -64,7 +54,7 @@ export default function CreateProduct() {
                 alert('Make sure you have filled in every field, before submitting!'); // (3)
             });
 
-            
+
     };
 
     const redirectString = `/products/upload/${prodId}`

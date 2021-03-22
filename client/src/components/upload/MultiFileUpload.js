@@ -2,11 +2,11 @@ import axios from 'axios';
 
 export default function UseFileUpload(key, files, uploadProgressHandler, puId) {
   const formData = new FormData();
-  
-  for (let i = 0; i < files.length; i++){
+
+  for (let i = 0; i < files.length; i++) {
     formData.append(key, files[i])
   }
-  formData.append("productId",puId);
+  formData.append("productId", puId);
 
   const axiosConfig = {
     url: 'http://localhost:4000/api/v1/uploads/products',

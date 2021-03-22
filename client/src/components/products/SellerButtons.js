@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Button, Container } from 'react-bootstrap'
+import { Card, Container } from 'react-bootstrap'
 import axios from 'axios'
 
 export default function SellerButtons(props) {
@@ -11,13 +11,13 @@ export default function SellerButtons(props) {
             url: `http://localhost:4000/api/v1/products/${props.products._id}`,
             method: "DELETE",
         };
-    
+
         axios(requestConfig)
             .then((response) => {
-                console.log(`Product Deleted ${response.data}`);
+                console.log(`Product Deleted`);
             })
             .catch((err) => {
-                console.log(`We should handle the error: ${err}`);
+                alert(`Whoops something went wrong!`);
             });
     }
 

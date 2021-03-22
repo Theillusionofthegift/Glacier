@@ -6,7 +6,7 @@ export default function UserDisplay(props) {
     const userList = props.userList
     return (
         <Container>
-            {userList.map((user,index) => <User key={index} user={user} />)}
+            {userList.map((user, index) => <User key={index} user={user} />)}
         </Container>
     );
 }

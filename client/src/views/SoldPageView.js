@@ -1,11 +1,6 @@
 import React, { useState, } from 'react'
 import { useParams, Redirect } from 'react-router-dom'
-import {
-    Container,
-    InputGroup,
-    Button,
-    FormControl,
-} from 'react-bootstrap'
+import { Container, InputGroup, Button, FormControl, } from 'react-bootstrap'
 import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -26,7 +21,6 @@ export default function SoldPageView() {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(`name ${name} and value ${value}`);
         setTransFormValues({
             ...transFormValues,
             [name]: value,
@@ -43,10 +37,9 @@ export default function SoldPageView() {
         axios(requestConfig)
             .then((response) => {
                 setBuyerId(response._id)
-                console.log(`User Found`);
             })
             .catch((err) => {
-                console.log(`We should handle the error: ${err}`);
+                console.log('Whoops something went wrong');
             });
     }
 
@@ -84,16 +77,15 @@ export default function SoldPageView() {
                 console.log(`Transaction created!`);
             })
             .catch((err) => {
-                console.log(`We should handle the error: ${err}`);
+                console.log('Whoops something went wrong!');
             });
 
         axios(requestConfig1)
             .then((response) => {
-                console.log(`Product Updated!`);
                 setSuccess(true);
             })
             .catch((err) => {
-                console.log(`We should handle the error: ${err}`);
+                console.log('Whoops something went wrong!');
             });
     };
 
@@ -105,18 +97,18 @@ export default function SoldPageView() {
             <Container style={{ marginTop: "5em" }}>
                 <h1 style={{ textAlign: "center" }}>Mark As Sold</h1>
                 <Container>
-                <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                        <InputGroup.Text id="basic-addon1">Buyer</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                        aria-label="Product's Name"
-                        aria-describedby="text"
-                        name="buyer"
-                        value={transFormValues.prodName}
-                        onChange={handleInputChange}
-                    />
-                </InputGroup>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="basic-addon1">Buyer</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            aria-label="Product's Name"
+                            aria-describedby="text"
+                            name="buyer"
+                            value={transFormValues.prodName}
+                            onChange={handleInputChange}
+                        />
+                    </InputGroup>
 
 
                     <InputGroup className="mb-3">
