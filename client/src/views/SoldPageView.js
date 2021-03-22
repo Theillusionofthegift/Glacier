@@ -105,18 +105,18 @@ export default function SoldPageView() {
             <Container style={{ marginTop: "5em" }}>
                 <h1 style={{ textAlign: "center" }}>Mark As Sold</h1>
                 <Container>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Buyer UserName</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl
-                            aria-label="Buyer UserName"
-                            aria-describedby="basic-addon1"
-                            name="userName"
-                            value={transFormValues.buyer}
-                            onChange={handleInputChange}
-                        />
-                    </InputGroup>
+                <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="basic-addon1">Product's Name</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                        aria-label="Product's Name"
+                        aria-describedby="text"
+                        name="buyer"
+                        value={transFormValues.prodName}
+                        onChange={handleInputChange}
+                    />
+                </InputGroup>
 
 
                     <InputGroup className="mb-3">
@@ -125,7 +125,7 @@ export default function SoldPageView() {
                         </InputGroup.Prepend>
                         <FormControl
                             aria-label="Amount per item(to the nearest dollar)"
-                            name="price"
+                            name="salePrice"
                             value={transFormValues.salePrice}
                             onChange={handleInputChange}
                         />
