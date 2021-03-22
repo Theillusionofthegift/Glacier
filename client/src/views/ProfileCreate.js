@@ -68,7 +68,6 @@ export default function CreateProfile() {
         return (
             <Container style={{ marginTop: "5em" }}>
                 <h1 style={{ textAlign: "center" }}>Create Profile</h1>
-                <img className="image" src={profile} alt='profile' />
                 <Container>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
