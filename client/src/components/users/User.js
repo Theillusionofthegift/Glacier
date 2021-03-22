@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Card,
-  Container,
-  Button
-} from 'react-bootstrap'
+import React from 'react';
+import { Card, Button, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import {useAuth0} from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Conversations(props) {
   const user = props.user
@@ -27,15 +23,16 @@ export default function Conversations(props) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${authToken}`,},
+        Authorization: `Bearer ${authToken}`,
+      },
     };
 
     axios(config)
       .then((response) => {
-        console.log(`Deleted ${response}`)
+        alert(`Deleted`)
       })
       .catch((err) => {
-        console.log("Whoops, something when wrong")
+        alert("Whoops, something when wrong")
       });
   }
 
@@ -48,23 +45,25 @@ export default function Conversations(props) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`,},
-          data: {
-            active: false,
-          }
+          Authorization: `Bearer ${authToken}`,
+        },
+        data: {
+          active: false,
         }
-      } else {
-        config = {
-          url: `http://localhost:4000/api/v1/users/${user.auth0Id.split('|')[0]}`,
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${authToken}`,},
-          data: {
-            active: true,
-          }
-        };
       }
+    } else {
+      config = {
+        url: `http://localhost:4000/api/v1/users/${user.auth0Id.split('|')[0]}`,
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        data: {
+          active: true,
+        }
+      };
+    }
 
     const handleDelete = () => {
         const config = {
@@ -81,37 +80,27 @@ export default function Conversations(props) {
             });
     }
 
-    const handleLock = () => {
-        const config = {
-            url: `http://localhost:4000/api/v1/users/${user.auth0Id.split('|')[0]}`,
-            method: "PUT",
-            data: {
-                active: false,
-            }
-          };
-      
-          axios(config)
-            .then((response) => {
-              console.log(`Updated ${response}`)
-            })
-            .catch((err) => {
-              console.log("Whoops, something went wrong")
-            });
-    }
-
-    return (
-      <Container style={{ marginTop: "2em" }}>
-        <Card className="mb-2">
-          <Card.Header >{user.userName}</Card.Header>
-          <Card.Body>
-            {handleUsers()}
-            <Card.Link as={Link} to={`/users/update/`}>Update</Card.Link>
-            <Card.Link as={Button} onClick={handleDelete}>Delete</Card.Link>
-            <Card.Link as={Button} onClick={handleLock}>Lock</Card.Link>
-          </Card.Body>
-        </Card>
-      </Container>
-    );
-    
+    axios(config)
+      .then((response) => {
+        alert(`Updated`)
+      })
+      .catch((err) => {
+        alert("Whoops, something when wrong")
+      });
   }
+
+  return (
+    <Container style={{ marginTop: "2em" }}>
+      <Card className="mb-2">
+        <Card.Header >{user.userName}</Card.Header>
+        <Card.Body>
+          {handleUsers()}
+          <Card.Link as={Link} to={`/users/update/`}>Update</Card.Link>
+          <Card.Link as={Button} onClick={handleDelete}>Delete</Card.Link>
+          <Card.Link as={Button} onClick={handleLock}>Lock</Card.Link>
+        </Card.Body>
+      </Card>
+    </Container>
+  );
+
 }

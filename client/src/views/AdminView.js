@@ -24,11 +24,11 @@ export default function ProfileView() {
             method: 'GET',
         }
         axios(config).then((response) => {
-            if(response.data[0].userType === 'admin') {
+            if (response.data[0].userType === 'admin') {
                 setAdmin(response.data);
             }
         }).catch((err) => {
-            console.log(`error in ProfileView useEffect`);
+            console.log("Whoops something went wrong!");
         })
     }, [])
 
@@ -45,7 +45,7 @@ export default function ProfileView() {
     const handleSubmitUser = (event) => {
         event.preventDefault();
         let requestConfig
-        if(searchStringUser === ''){
+        if (searchStringUser === '') {
             requestConfig = {
                 url: `http://localhost:4000/api/v1/users/`,
                 method: "GET",
@@ -56,24 +56,23 @@ export default function ProfileView() {
                 method: "GET",
             };
         }
-        
+
 
         axios(requestConfig)
             .then((response) => {
                 setSuccessProd(false);
                 setSuccessUser(true);
                 setUserList(response.data)
-                console.log(`Item Created ${response.data}`);
             })
             .catch((err) => {
-                console.log(`We should really handle the error: ${err}`);
+                alert(`Whoops something went wrong!`);
             });
     };
 
     const handleSubmitProducts = (event) => {
         event.preventDefault();
         let requestConfig
-        if(searchStringProducts === ''){
+        if (searchStringProducts === '') {
             requestConfig = {
                 url: `http://localhost:4000/api/v1/products/`,
                 method: "GET",
@@ -84,24 +83,23 @@ export default function ProfileView() {
                 method: "GET",
             };
         }
-        
+
 
         axios(requestConfig)
             .then((response) => {
                 setSuccessUser(false);
                 setSuccessProd(true);
                 setProdList(response.data)
-                console.log(`Item Created ${response.data}`);
             })
             .catch((err) => {
-                console.log(`We should really handle the error: ${err}`);
-            });
+                alert(`Whoops something went wrong!`);
+            })
     };
 
     if (admin) {
         return (
             <Container style={{ marginTop: "5em" }}>
-                <h1 style={{textAlign:"center", marginBottom: "1em"}}>Admin View</h1>
+                <h1 style={{ textAlign: "center", marginBottom: "1em" }}>Admin View</h1>
                 <Container>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
@@ -117,7 +115,7 @@ export default function ProfileView() {
                     </InputGroup>
                     <Button type="submit" onClick={handleSubmitUser}>Submit</Button>
                 </Container>
-                <Container style={{marginTop:"2em"}}>
+                <Container style={{ marginTop: "2em" }}>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="searchProducts">Search By Product Name</InputGroup.Text>

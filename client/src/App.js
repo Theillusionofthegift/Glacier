@@ -10,7 +10,6 @@ import ProfileUpdate from './views/ProfileUpdate'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileView from "./views/ProfileView";
 import ConversationView from "./views/ConversationView";
-import SearchView from './views/SearchView'
 import AdminVeiw from './views/AdminView'
 import LockedComponent from './components/lock/LockedComponet'
 import LockedPage from './components/lock/LockedPage'
@@ -29,9 +28,6 @@ function App() {
         </Route>
         <Route path="/admin">
           <AdminVeiw />
-        </Route>
-        <Route path="/?search">
-          <SearchView />
         </Route>
         <Route path="/conversations/all">
           <ConversationView />

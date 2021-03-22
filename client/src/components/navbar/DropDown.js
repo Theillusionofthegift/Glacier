@@ -4,7 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 export default function DropDown(props) {
   return (
-    <DropdownButton size="lg" id="cat" title="Categories" style={{position: "fixed", top: "3.5em", zIndex: "100"}}>
+    <DropdownButton size="lg" id="cat" title="Categories" style={{ position: "fixed", top: "3.5em", zIndex: "100" }}>
       <Dropdown.Item href="products/?search=Appliances">Appliances</Dropdown.Item>
       <Dropdown.Item href="products/?search=Art%Crafts">Arts and crafts</Dropdown.Item>
       <Dropdown.Item href="products/?search=Audio%Equipment">Audio Equipment</Dropdown.Item>

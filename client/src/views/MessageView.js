@@ -9,30 +9,18 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import Loading from '../components/loading/Loading'
 
-
+const defaultMessageValues = {
+    user: "",
+    message: ""
+};
 
 function MessageView() {
     const { user } = useAuth0();
-    const defaultMessageValues = {
-        user: user.sub.split('|')[1],
-        message: ""
-    };
-
+    const { id } = useParams();
     const [messageValues, setMessageValues] = useState(defaultMessageValues);
     const [messages, setMessages] = useState({});
     const [loading, setLoading] = useState(true);
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        console.log(`name ${name} and value ${value}`);
-        setMessageValues({
-            ...messageValues,
-            [name]: value,
-        });
-        console.log(messageValues);
-    };
-
-    const { id } = useParams();
     useEffect(() => {
 
         const config = {
@@ -44,9 +32,17 @@ function MessageView() {
             setMessages(response.data)
             setLoading(false);
         }).catch((err) => {
-            console.log('error in ViewProductDetail useEffect');
+            console.log(`Whoops something went wrong!`);
         })
     }, [loading]);
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setMessageValues({
+            ...messageValues,
+            [name]: value,
+        });
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -55,7 +51,7 @@ function MessageView() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             data: {
-                user: messageValues.user,
+                user: user.sub.split('|')[1],
                 message: messageValues.message
             }
         };
@@ -69,7 +65,6 @@ function MessageView() {
                 console.log(`We should really handle the error ${err}`);
             });
     };
-
 
     return (
         <Container className="pt-5">

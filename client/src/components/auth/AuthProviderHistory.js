@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 
 
-export default function AuthProviderHistory ({ children }) {
+export default function AuthProviderHistory({ children }) {
   const domain = process.env.REACT_APP_AUTH_0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH_0_CLIENT_ID;
   const audience = process.env.REACT_APP_AUTH_0_AUDIENCE;

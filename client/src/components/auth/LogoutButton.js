@@ -8,7 +8,7 @@ const LogoutButton = () => {
     <Button
       className="ml-auto"
       variant="primary"
-      style={{fontSize: "1.5em", fontWeight: 'bold'}}
+      style={{ fontSize: "1.5em", fontWeight: 'bold' }}
       onClick={() =>
         logout({
           returnTo: window.location.origin,
