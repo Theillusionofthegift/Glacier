@@ -10,7 +10,7 @@ export default function UpdateButtonSet() {
     const handleDelete = (event) => {
         event.preventDefault();
         const requestConfig = {
-            url: `http://localhost:4000/api/v1/users/${user.sub}`,
+            url: `http://localhost:4000/api/v1/users/${user.sub.split('|')[1]}`,
             method: "DELETE",
         };
 
