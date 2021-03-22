@@ -17,6 +17,7 @@ import LockedPage from './components/lock/LockedPage'
 import UploadView from "./views/UploadView";
 import UpdateProduct from "./views/UpdateProductDescription";
 import ProfileUploaderView from './views/ProfileUploaderView'
+import SoldPageView from './views/SoldPageView'
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
           <LockedComponent >
             <MessageView />
           </LockedComponent>
+        </Route>
+        <Route path="/products/sold/:id">
+          <SoldPageView />
         </Route>
         <Route path="/product/:id">
           <LockedComponent >
