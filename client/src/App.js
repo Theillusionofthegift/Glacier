@@ -54,7 +54,7 @@ function App() {
             <CreateProduct />
           </LockedComponent>
         </Route>
-        <Route path="/products/update/">
+        <Route path="/products/update/:id">
           <LockedComponent>
             <UpdateProduct />
           </LockedComponent>

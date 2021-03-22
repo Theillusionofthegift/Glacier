@@ -1,10 +1,10 @@
 import React, { useState } from "react"
-import { Redirect } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
 import { InputGroup, FormControl, Button, Form, Container } from 'react-bootstrap';
-import './outfit.css';
-import FileUploader from "../components/upload/FileUploader";
+
+
 
 const defaultFormValues = {
     prodName: "",
@@ -15,11 +15,19 @@ const defaultFormValues = {
     zipcode: "",
 };
 
-export default function UpdateProduct() {
+
+
+export default function CreateProduct() {
 
     const [productFormValues, setProductFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
+    const [prodId, setProdId] = useState('');
     const { user } = useAuth0();
+    const { id } = useParams();
+    const sellerId = user.sub.split('|')[1];
+
+
+
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -32,16 +40,15 @@ export default function UpdateProduct() {
     };
 
     const handleSubmit = (event) => {
-        const id = user.sub.split('|');
+
         event.preventDefault();
         const requestConfig = {
-            url: `http://localhost:4000/api/v1/products/`,
+            url: `http://localhost:4000/api/v1/products/${id}`,
             method: "put",
             headers: { "Content-Type": "application/json" },
             data: {
                 prodName: productFormValues.prodName,
                 price: productFormValues.price,
-                seller: id[1],
                 description: productFormValues.description,
                 category: productFormValues.category,
                 zipcode: productFormValues.zipcode,
@@ -50,29 +57,31 @@ export default function UpdateProduct() {
 
         axios(requestConfig)
             .then((response) => {
+                setProdId(response.data.productId)
                 setSuccess(true);
-                console.log(`Item Updated ${response.data}`);
             })
             .catch((err) => {
                 console.log(`We should really handle the error: ${err}`);
             });
+
+            
     };
 
+    const redirectString = `/products/upload/${prodId}`
 
     if (success) {
-        return <Redirect to="/" />;
+        return <Redirect to={redirectString} />;
     } else {
         return (
             <Container fluid style={{ width: "45%", marginTop: "5em" }}>
                 <Container style={{ textAlign: "center", marginBottom: "3em" }}>
-                    <h1>Sell Your Item</h1>
+                    <h1>Update Your Item</h1>
                 </Container>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
                         <InputGroup.Text id="basic-addon1">Product's Name</InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
-                        placeholder="Product's Name"
                         aria-label="Product's Name"
                         aria-describedby="text"
                         name="prodName"
@@ -167,8 +176,6 @@ export default function UpdateProduct() {
                     </Form.Control>
 
                 </Form.Group>
-
-                <FileUploader />
                 <Button type="submit" onClick={handleSubmit}>Submit form</Button>
             </Container>
         )
