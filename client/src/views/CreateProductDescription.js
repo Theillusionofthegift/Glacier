@@ -61,7 +61,7 @@ export default function CreateProduct() {
                 setSuccess(true);
             })
             .catch((err) => {
-                console.log(`We should really handle the error: ${err}`);
+                alert('Make sure you have filled in every field, before submitting!'); // (3)
             });
 
             
