@@ -18,11 +18,11 @@ const defaultFormValues = {
 export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
+    const [userId, setUserId] = useState('');
     const { user, getAccessTokenSilently } = useAuth0();
 
     async function getToken() {
         const authToken = await getAccessTokenSilently();
-        console.log('auth token ', authToken);
     }
     const token = getToken();
     console.log(token);
@@ -40,7 +40,6 @@ export default function CreateProfile() {
         event.preventDefault();
 
         const authToken = await getAccessTokenSilently();
-        console.log(authToken)
         const id = user.sub.split('|')
         const requestConfig = {
             url: "http://localhost:4000/api/v1/users",
@@ -61,6 +60,7 @@ export default function CreateProfile() {
 
         axios(requestConfig)
             .then((response) => {
+                setUserId(response.data.userId)
                 setSuccess(true);
                 console.log(`Profile updated ${response.data}`);
             })
@@ -69,8 +69,10 @@ export default function CreateProfile() {
             });
     };
 
+    const redirectString = `/users/upload/${userId}`
+
     if (success) {
-        return <Redirect to="/" />;
+        return <Redirect to={redirectString}/>;
     } else {
         return (
             <Container style={{marginTop:"5em"}}>
@@ -128,8 +130,6 @@ export default function CreateProfile() {
                             onChange={handleInputChange}
                         />
                     </InputGroup>
-
-                    <ProfileUploader />
 
                     <Button type="submit" onClick={handleSubmit}>Submit</Button>
                 </Container>

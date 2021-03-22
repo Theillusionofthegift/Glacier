@@ -18,16 +18,9 @@ const defaultFormValues = {
 export default function CreateProfile() {
     const [profileFormValues, setProfileFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
+    const [userId, setUserId] = useState('');
     const { user, getAccessTokenSilently } = useAuth0();
-    console.log(user);
-
-    async function getToken() {
-        const authToken = await getAccessTokenSilently();
-        console.log('auth token ', authToken);
-    }
-    const token = getToken();
-    console.log(token);
-
+    
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         console.log(`name ${name} and value ${value}`);
@@ -35,10 +28,10 @@ export default function CreateProfile() {
             ...profileFormValues,
             [name]: value,
         });
-        console.log(profileFormValues);
     };
 
-    const handleSubmit = (event) => {
+    const  handleSubmit = async (event) => {
+        const authToken = await getAccessTokenSilently();
         const id = user.sub.split('|')[1];
         event.preventDefault();
         const requestConfig = {
@@ -46,9 +39,10 @@ export default function CreateProfile() {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${authToken}`,
             },
             data: {
+                auth0Id: id,
                 userName: profileFormValues.userName,
                 firstName: profileFormValues.firstName,
                 lastName: profileFormValues.lastName,
@@ -58,6 +52,8 @@ export default function CreateProfile() {
 
         axios(requestConfig)
             .then((response) => {
+                setUserId(response.data.userId)
+                console.log(response.data)
                 setSuccess(true);
                 console.log(`Profile updated ${response.data}`);
             })
@@ -66,13 +62,14 @@ export default function CreateProfile() {
             });
     };
 
+    const redirectString = `/users/upload/${userId}`
+
     if (success) {
-        return <Redirect to="/" />;
+        return <Redirect to={redirectString} />;
     } else {
         return (
             <Container style={{marginTop: "5em"}}>
                 <h1 style={{textAlign: "center"}}>Update Profile</h1>
-                <img className="image" src={profile} alt='profile' />
                 <Container style={{width: "80%"}}>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
@@ -126,9 +123,7 @@ export default function CreateProfile() {
                         />
                     </InputGroup>
 
-                    <ProfileUploader />
-
-                    <Button type="submit" onClick={handleSubmit} style={{fontSize: "1.5em"}}>Update</Button>
+                    <Button type="submit" onClick={handleSubmit}>Update</Button>
                 </Container>
             </Container>
         )

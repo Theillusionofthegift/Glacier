@@ -22,7 +22,7 @@ exports.createProduct = async (req, res, next) => {
       res.status(400);
       res.send({ error: 'Invalid Location' });
     }
-      
+
     const product = {
       prodName: req.body.prodName,
       seller: req.body.seller,
@@ -53,6 +53,14 @@ exports.searchProduct = (req, res, next) => {
     });
   } else if (req.query.seller) {
     Product.find({ seller: req.query.seller }, (err, search) => {
+      if (err) {
+        next('Something Went Wrong!');
+      } else {
+        res.send(search);
+      }
+    });
+  } else if (req.query.prodName) {
+    Product.find({ prodName: req.query.prodName }, (err, search) => {
       if (err) {
         next('Something Went Wrong!');
       } else {

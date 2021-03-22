@@ -1,17 +1,23 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import {
     Card,
     Container,
     Button
 } from 'react-bootstrap'
-import {useAuth0} from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 
 export default function Conversations(props) {
-    const convoID = `/conversations/${props.convo._id}`
-    const {user} = useAuth0();
-    const convUser = props.convo.users.filter(use => use !== user.sub.split('|')[1])
+    const [currentUser, setUserName] = useState(null);
+    const convoID = `/conversations/${props.convo._id}`;
+    const { user } = useAuth0();
+    let convUser;
+    props.convo.users.forEach((use) => {
+        if (use !== user.sub.split('|')[1]) {
+            convUser = use;
+        }
+    });
 
     const handleDelete = (event) => {
         event.preventDefault();
@@ -19,7 +25,7 @@ export default function Conversations(props) {
             url: `http://localhost:4000/api/v1/conversations/${props.convo._id}`,
             method: "DELETE",
         };
-    
+
         axios(requestConfig)
             .then((response) => {
                 console.log(`Conversation Deleted ${response.data}`);
@@ -29,10 +35,23 @@ export default function Conversations(props) {
             });
     }
 
+    useEffect(() => {
+        const config = {
+            url: `http://localhost:4000/api/v1/users/${convUser}`,
+            method: 'GET',
+            headers: { "Content-Type": "application/json" },
+        }
+        axios(config).then((response) => {
+            setUserName(response.data[0].userName);
+        }).catch((err) => {
+            console.log('error in ViewProductDetail useEffect');
+        })
+    }, []);
+
     return (
         <Container>
             <Card className="mb-2">
-                <Card.Header >{convUser}</Card.Header>
+                <Card.Header >Conversation with {currentUser}</Card.Header>
                 <Card.Body>
                     <Button variant="outline-primary" as={Link} to={convoID} >Go To</Button>
                     <Button variant="primary" onClick={handleDelete}>Delete</Button>

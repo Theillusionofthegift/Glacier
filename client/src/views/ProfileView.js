@@ -37,7 +37,6 @@ export default function ProfileView() {
     return (
       <Container style={{marginTop:"5em"}}> 
             <Profile user= {profile} /> 
-            <ProfileProducts user={profile} />
       </Container>
         )
     } else {

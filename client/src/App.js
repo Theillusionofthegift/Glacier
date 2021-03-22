@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import LogoBar from "./components/navbar/LogoBar";
@@ -13,13 +12,19 @@ import ProfileView from "./views/ProfileView";
 import ConversationView from "./views/ConversationView";
 import SearchView from './views/SearchView'
 import AdminVeiw from './views/AdminView'
-
+import LockedComponent from './components/lock/LockedComponet'
+import LockedPage from './components/lock/LockedPage'
+import UploadView from "./views/UploadView";
+import ProfileUploaderView from './views/ProfileUploaderView'
 
 function App() {
   return (
     <>
       <LogoBar />
       <Switch>
+        <Route path="/locked">
+          <LockedPage />
+        </Route>
         <Route path="/admin">
           <AdminVeiw />
         </Route>
@@ -30,22 +35,40 @@ function App() {
           <ConversationView />
         </Route>
         <Route path="/conversations/:id">
-          <MessageView />
+          <LockedComponent >
+            <MessageView />
+          </LockedComponent>
         </Route>
         <Route path="/product/:id">
-          <ViewProductDetail />
+          <LockedComponent >
+            <ViewProductDetail />
+          </LockedComponent>
         </Route>
         <Route path="/sell">
-          <CreateProduct />
+          <LockedComponent >
+            <CreateProduct />
+          </LockedComponent>
+        </Route>
+        <Route path="/products/upload/:id">
+          <LockedComponent>
+            <UploadView />
+          </LockedComponent>
         </Route>
         <Route path="/users/new">
           <ProfileCreate />
         </Route>
+        <Route path="/users/upload/:id">
+          <ProfileUploaderView />
+        </Route>
         <Route path="/users/update">
-          <ProfileUpdate />
+          <LockedComponent >
+            <ProfileUpdate />
+          </LockedComponent>
         </Route>
         <Route path="/profile">
-          <ProfileView />
+          <LockedComponent >
+            <ProfileView />
+          </LockedComponent>
         </Route>
         <Route path="/">
           <HomePage />

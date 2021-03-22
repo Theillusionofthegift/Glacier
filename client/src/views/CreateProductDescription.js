@@ -3,8 +3,8 @@ import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
 import { InputGroup, FormControl, Button, Form, Container } from 'react-bootstrap';
-import './outfit.css';
-import FileUploader from "../components/upload/FileUploader";
+
+
 
 const defaultFormValues = {
     prodName: "",
@@ -21,7 +21,9 @@ export default function CreateProduct() {
 
     const [productFormValues, setProductFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
+    const [prodId, setProdId] = useState('');
     const { user } = useAuth0();
+    const id = user.sub.split('|');
 
 
 
@@ -37,7 +39,7 @@ export default function CreateProduct() {
     };
 
     const handleSubmit = (event) => {
-        const id = user.sub.split('|')
+
         event.preventDefault();
         const requestConfig = {
             url: "http://localhost:4000/api/v1/products",
@@ -55,17 +57,20 @@ export default function CreateProduct() {
 
         axios(requestConfig)
             .then((response) => {
+                setProdId(response.data.productId)
                 setSuccess(true);
-                console.log(`Item Created ${response.data}`);
             })
             .catch((err) => {
                 console.log(`We should really handle the error: ${err}`);
             });
+
+            
     };
 
+    const redirectString = `/products/upload/${prodId}`
 
     if (success) {
-        return <Redirect to="/" />;
+        return <Redirect to={redirectString} />;
     } else {
         return (
             <Container fluid style={{ width: "45%", marginTop: "5em" }}>
@@ -171,9 +176,7 @@ export default function CreateProduct() {
                     </Form.Control>
 
                 </Form.Group>
-
-                <FileUploader />
-                <Button type="submit" onClick={handleSubmit} style={{fontSize: "1.5em"}}>Submit form</Button>
+                <Button type="submit" onClick={handleSubmit}>Submit form</Button>
             </Container>
         )
     }

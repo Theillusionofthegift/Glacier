@@ -5,13 +5,15 @@ import {
     Button,
     ProgressBar
 } from 'react-bootstrap'
+import { Redirect } from 'react-router';
 
 
 
-export default function FileUploader() {
+export default function FileUploader(props) {
 
     const [imageFiles, setimageFiles] = useState([]);
     const [uploadProgress, setUploadProgress] = useState(0);
+    const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
 
     const selectFile = (event) => {
@@ -24,12 +26,11 @@ export default function FileUploader() {
     };
 
     const upload = () => {
-        console.log('files to upload ', imageFiles);
         if (imageFiles) {
-            UseFileUpload('images', imageFiles, progressUpdater)
+            UseFileUpload('images', imageFiles, progressUpdater, props.prodId)
                 .then((response) => {
-                    console.log(response.data.message);
                     setimageFiles([]);
+                    setSuccess(true);
                 })
                 .catch((err) => {
                     setError(err);
@@ -38,46 +39,49 @@ export default function FileUploader() {
         }
     };
 
-    return (
-        <>
-            <Container>
-                <label htmlFor="btn-upload">
-                    <input
-                        id="btn-upload"
-                        name="btn-upload"
-                        style={{ display: 'none' }}
-                        type="file"
-                        onChange={selectFile}
-                        multiple
-                    />
-                    <Button
-                        variant="primary"
-                        as= "span"
-                        className= "mb-3"
-                        style={{fontSize: "1.5em"}}
-                    >
-                        Choose up to 3 images:
-            </Button>
-                </label>
-                {imageFiles[0] ? <p>{imageFiles[0].name} <br/></p> : <p>Select a File</p>}
-                {imageFiles[1] ? <p>{imageFiles[1].name} <br/></p> : <p>Select a File</p>}
-                {imageFiles[2] ? <p>{imageFiles[2].name}</p> : <p>Select a File</p>}
+    if(success) {
+        return <Redirect to="/" />
+    } else {
+        return (
+            <>
+                <Container>
+                    <label htmlFor="btn-upload">
+                        <input
+                            id="btn-upload"
+                            name="btn-upload"
+                            style={{ display: 'none' }}
+                            type="file"
+                            onChange={selectFile}
+                            multiple
+                        />
+                        <Button
+                            variant="primary"
+                            as= "span"
+                            className= "mb-3"
+                        >
+                            Choose up to 3 images:
+                </Button>
+                    </label>
+                    {imageFiles[0] ? <p>{imageFiles[0].name} <br/></p> : <p>Select a File</p>}
+                    {imageFiles[1] ? <p>{imageFiles[1].name} <br/></p> : <p>Select a File</p>}
+                    {imageFiles[2] ? <p>{imageFiles[2].name}</p> : <p>Select a File</p>}
+    
+                </Container>
+    
+                <Button
+                    variant="primary"
+                    disabled={!imageFiles}
+                    onClick={upload}
+                    className= "mb-3"
+                >
+                    Upload
+                </Button>
+    
+                <ProgressBar variant="primary" now={uploadProgress} className= "mb-3"/>
+    
+                { error ? <div> Whoops! </div> : null}
+            </>
+        );
+    }
 
-            </Container>
-
-            <Button
-                variant="primary"
-                disabled={!imageFiles}
-                onClick={upload}
-                className= "mb-3"
-                style={{fontSize: "1.5em"}}
-            >
-                Upload
-            </Button>
-
-            <ProgressBar variant="primary" now={uploadProgress} className= "mb-3"/>
-
-            { error ? <div> Whoops! </div> : null}
-        </>
-    );
 }
