@@ -37,7 +37,7 @@ export default function UpdateProduct() {
         console.log(productFormValues);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
 
         event.preventDefault();
         const requestConfig = {
