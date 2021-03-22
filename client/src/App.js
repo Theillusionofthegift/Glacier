@@ -42,7 +42,9 @@ function App() {
           </LockedComponent>
         </Route>
         <Route path="/products/sold/:id">
-          <SoldPageView />
+          <LockedComponent >
+            <SoldPageView />
+          </LockedComponent>
         </Route>
         <Route path="/product/:id">
           <LockedComponent >

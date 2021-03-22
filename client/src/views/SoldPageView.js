@@ -46,7 +46,7 @@ export default function SoldPageView() {
                 console.log(`User Found`);
             })
             .catch((err) => {
-                console.log(`We should handle the error: ${err}`);
+                alert('Make sure you have filled in every field, before submitting!');
             });
     }
 

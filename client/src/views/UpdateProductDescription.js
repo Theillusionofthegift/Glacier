@@ -9,7 +9,6 @@ import { InputGroup, FormControl, Button, Form, Container } from 'react-bootstra
 const defaultFormValues = {
     prodName: "",
     price: "",
-    seller: "",
     description: "",
     category: "",
     zipcode: "",
@@ -17,14 +16,13 @@ const defaultFormValues = {
 
 
 
-export default function CreateProduct() {
+export default function UpdateProduct() {
 
     const [productFormValues, setProductFormValues] = useState(defaultFormValues);
     const [success, setSuccess] = useState(false);
     const [prodId, setProdId] = useState('');
     const { user } = useAuth0();
     const { id } = useParams();
-    const sellerId = user.sub.split('|')[1];
 
 
 
@@ -44,7 +42,7 @@ export default function CreateProduct() {
         event.preventDefault();
         const requestConfig = {
             url: `http://localhost:4000/api/v1/products/${id}`,
-            method: "put",
+            method: "PUT",
             headers: { "Content-Type": "application/json" },
             data: {
                 prodName: productFormValues.prodName,
