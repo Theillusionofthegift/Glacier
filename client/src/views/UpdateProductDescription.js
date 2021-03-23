@@ -11,7 +11,6 @@ const defaultFormValues = {
     price: "",
     description: "",
     category: "",
-    zipcode: "",
 };
 
 
@@ -49,7 +48,6 @@ export default function UpdateProduct() {
                 price: productFormValues.price,
                 description: productFormValues.description,
                 category: productFormValues.category,
-                zipcode: productFormValues.zipcode,
             },
         };
 
@@ -112,18 +110,6 @@ export default function UpdateProduct() {
                         aria-label="Item Description"
                         name="description"
                         value={productFormValues.description}
-                        onChange={handleInputChange}
-                    />
-                </InputGroup>
-
-                <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                        <InputGroup.Text>Zipcode</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                        aria-label="Zipcode"
-                        name="zipcode"
-                        value={productFormValues.zipcode}
                         onChange={handleInputChange}
                     />
                 </InputGroup>
