@@ -12,7 +12,7 @@ export default function LockedComponent({ children }) {
   let id = user.sub.split('|')[1];
 
   useEffect(() => {
-      const config = {
+    const config = {
       url: `http://localhost:4000/api/v1/users/${id}`,
       method: "GET",
     };
@@ -20,7 +20,7 @@ export default function LockedComponent({ children }) {
     axios(config).then((response) => {
       setLocked(!response.data[0].active);
     }).catch((err) => {
-      console.log(err);
+      alert(err);
     })
   }, [id])
 

@@ -6,7 +6,7 @@ export default function UserDisplay(props) {
     const prodList = props.userList
     return (
         <Container>
-            {prodList.map((user,index) => <Product key={index} user={user} />)}
+            {prodList.map((user, index) => <Product key={index} user={user} />)}
         </Container>
     );
 }

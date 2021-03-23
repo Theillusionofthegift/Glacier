@@ -17,10 +17,10 @@ export default function UpdateButtonSet() {
 
         axios(requestConfig)
             .then((response) => {
-                console.log(`User Deleted ${response.data}`);
+                alert(`User Deleted`);
             })
             .catch((err) => {
-                console.log(`We should handle the error: ${err}`);
+                alert("Whoops, something when wrong")
             });
     }
 

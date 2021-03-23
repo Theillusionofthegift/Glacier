@@ -2,9 +2,7 @@ import React, { useState } from "react"
 import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
-import { InputGroup, FormControl, Button, Form, Container } from 'react-bootstrap';
-import profile from '../images/userProfile.jpg';
-import ProfileUploader from '../components/upload/ProfileUploader'
+import { InputGroup, FormControl, Button, Container } from 'react-bootstrap';
 
 const defaultFormValues = {
     auto0Id: "",
@@ -20,17 +18,16 @@ export default function CreateProfile() {
     const [success, setSuccess] = useState(false);
     const [userId, setUserId] = useState('');
     const { user, getAccessTokenSilently } = useAuth0();
-    
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(`name ${name} and value ${value}`);
         setProfileFormValues({
             ...profileFormValues,
             [name]: value,
         });
     };
 
-    const  handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
         const authToken = await getAccessTokenSilently();
         const id = user.sub.split('|')[1];
         event.preventDefault();
@@ -53,12 +50,10 @@ export default function CreateProfile() {
         axios(requestConfig)
             .then((response) => {
                 setUserId(response.data.userId)
-                console.log(response.data)
                 setSuccess(true);
-                console.log(`Profile updated ${response.data}`);
             })
             .catch((err) => {
-                console.log(`We should handle the error: ${err}`);
+                alert('Make sure you have filled in every field, before submitting!');
             });
     };
 
@@ -68,9 +63,9 @@ export default function CreateProfile() {
         return <Redirect to={redirectString} />;
     } else {
         return (
-            <Container style={{marginTop: "5em"}}>
-                <h1 style={{textAlign: "center"}}>Update Profile</h1>
-                <Container style={{width: "80%"}}>
+            <Container style={{ marginTop: "5em" }}>
+                <h1 style={{ textAlign: "center" }}>Update Profile</h1>
+                <Container style={{ width: "80%" }}>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">Username</InputGroup.Text>

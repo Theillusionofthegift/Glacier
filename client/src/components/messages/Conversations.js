@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-import {
-    Card,
-    Container,
-    Button
-} from 'react-bootstrap'
+import { Card, Container, Button } from 'react-bootstrap'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 
@@ -28,10 +24,10 @@ export default function Conversations(props) {
 
         axios(requestConfig)
             .then((response) => {
-                console.log(`Conversation Deleted ${response.data}`);
+                alert(`Conversation Deleted`);
             })
             .catch((err) => {
-                console.log(`We should handle the error: ${err}`);
+                alert(`We should handle the error: ${err}`);
             });
     }
 

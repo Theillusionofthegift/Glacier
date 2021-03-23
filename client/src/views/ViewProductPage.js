@@ -6,8 +6,6 @@ function ViewProductPage() {
         <>
             <ViewProduct />
         </>
-
     )
 }
-
 export default ViewProductPage;
