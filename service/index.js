@@ -2,7 +2,7 @@
 const express = require('express');
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 require('dotenv').config({ path: './.env' });
 
@@ -47,7 +47,7 @@ app.use('/api/v1/transactions', transRouter);
 app.use('/api/v1/conversations', conversationRouter);
 app.use('/api/v1/uploads', uploadRouter);
 
-app.listen(proccess.env.PORT || PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`);
+app.listen( port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
 });
 
