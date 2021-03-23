@@ -24,7 +24,7 @@ export default function SellerButtons(props) {
     if (props.products.seller) {
         return (
             <Container>
-                <Card.Link as={Link} to={'/products/update'}>Update</Card.Link>
+                <Card.Link as={Link} to={`/products/update/${props.products._id}`}>Update</Card.Link>
                 <Card.Link as={Link} onClick={handleDelete}>Delete</Card.Link>
                 <hr />
                 <Card.Link as={Link} to={`/products/sold/${props.products._id}`}>Mark Sold</Card.Link>

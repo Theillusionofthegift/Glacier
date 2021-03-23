@@ -14,6 +14,7 @@ import AdminVeiw from './views/AdminView'
 import LockedComponent from './components/lock/LockedComponet'
 import LockedPage from './components/lock/LockedPage'
 import UploadView from "./views/UploadView";
+import UpdateProduct from "./views/UpdateProductDescription";
 import ProfileUploaderView from './views/ProfileUploaderView'
 import SoldPageView from './views/SoldPageView'
 
@@ -37,7 +38,9 @@ function App() {
           </LockedComponent>
         </Route>
         <Route path="/products/sold/:id">
-          <SoldPageView />
+          <LockedComponent >
+            <SoldPageView />
+          </LockedComponent>
         </Route>
         <Route path="/product/:id">
           <LockedComponent >
@@ -47,6 +50,11 @@ function App() {
         <Route path="/sell">
           <LockedComponent >
             <CreateProduct />
+          </LockedComponent>
+        </Route>
+        <Route path="/products/update/:id">
+          <LockedComponent>
+            <UpdateProduct />
           </LockedComponent>
         </Route>
         <Route path="/products/upload/:id">

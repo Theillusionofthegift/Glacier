@@ -65,6 +65,20 @@ export default function Conversations(props) {
       };
     }
 
+    const handleDelete = () => {
+        const config = {
+            url: `http://localhost:4000/api/v1/users/${user._id}`,
+            method: "DELETE",
+          };
+      
+          axios(config)
+            .then((response) => {
+              console.log(`Deleted ${response}`)
+            })
+            .catch((err) => {
+              console.log("Whoops, something went wrong")
+            });
+    }
 
     axios(config)
       .then((response) => {

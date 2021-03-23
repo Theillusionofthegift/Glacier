@@ -8,6 +8,7 @@ export default function UpdateButtonSet() {
     
     const {user} = useAuth0();
     const handleDelete = (event) => {
+        const id = user.sub.split('|')[1];
         event.preventDefault();
         const requestConfig = {
             url: `http://localhost:4000/api/v1/users/${user.sub.split('|')[1]}`,
@@ -37,10 +38,10 @@ export default function UpdateButtonSet() {
 
                 <Button
                 as={Link}
-                to="/user/delete/"
+                to="/"
+                onClick={handleDelete}
                 variant= "primary"
                 className= "ml-3"
-                onClick={handleDelete}
                 style={{fontSize: "1.5em"}}
                 >
                 Delete Account
