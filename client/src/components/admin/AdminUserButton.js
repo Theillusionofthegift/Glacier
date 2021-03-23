@@ -15,11 +15,7 @@ export default function AdminUserButton() {
             method: 'GET',
         }
         axios(config).then((response) => {
-<<<<<<< HEAD
-            if(response.data[0].userType === 'admin') {
-=======
             if (response.data[0].userType === 'admin') {
->>>>>>> main
                 setAdmin(true)
             }
         }).catch((err) => {

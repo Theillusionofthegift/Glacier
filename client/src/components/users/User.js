@@ -80,7 +80,6 @@ export default function Conversations(props) {
             });
     }
 
-<<<<<<< HEAD
     const handleLock = () => {
         const config = {
             url: `http://localhost:4000/api/v1/users/${user.auth0Id.split('|')[0]}`,
@@ -114,29 +113,4 @@ export default function Conversations(props) {
     );
     
   }
-=======
-    axios(config)
-      .then((response) => {
-        alert(`Updated`)
-      })
-      .catch((err) => {
-        alert("Whoops, something when wrong")
-      });
-  }
-
-  return (
-    <Container style={{ marginTop: "2em" }}>
-      <Card className="mb-2">
-        <Card.Header >{user.userName}</Card.Header>
-        <Card.Body>
-          {handleUsers()}
-          <Card.Link as={Link} to={`/users/update/`}>Update</Card.Link>
-          <Card.Link as={Button} onClick={handleDelete}>Delete</Card.Link>
-          <Card.Link as={Button} onClick={handleLock}>Lock</Card.Link>
-        </Card.Body>
-      </Card>
-    </Container>
-  );
-
->>>>>>> main
 }

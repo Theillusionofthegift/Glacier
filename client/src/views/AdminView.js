@@ -24,11 +24,7 @@ export default function ProfileView() {
             method: 'GET',
         }
         axios(config).then((response) => {
-<<<<<<< HEAD
-            if(response.data[0].userType === 'admin') {
-=======
             if (response.data[0].userType === 'admin') {
->>>>>>> main
                 setAdmin(response.data);
             }
         }).catch((err) => {
