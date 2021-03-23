@@ -38,7 +38,7 @@ Using npm:
     Our App using Auth0 API, Google Maps API, Geocoding API.
 
 ## Reference tool:
-    Our App use React and Axios Javascript libraries, and we also use Express and Bootstrap framework.
+    Our App use React and Axios Javascript libraries. We also use Express and Bootstrap framework, and MongoDB to store the data.
 ## Tests
 First, go to the service folder run ``` npm start ```.
 Then, go to the client folder run ``` npm start ```.
