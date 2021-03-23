@@ -3,16 +3,22 @@ import { Container, Image, Tabs, Tab } from 'react-bootstrap'
 import { useAuth0 } from '@auth0/auth0-react'
 import UpdateButtonSet from './UpdateButtonSet'
 import ProfileProducts from '../profile/ProfileProducts'
+import placeHolder from '../../images/userProfile.jpg'
 
 export default function Profile(props) {
-    
+        
     const { user } = useAuth0();
-    const picture = `http://localhost:4000/${props.user.image}`
+    let prodImage;
+    if (props.user.images !== undefined) {
+      prodImage = `http://localhost:4000/${props.user.image}`;
+    } else {
+      prodImage = placeHolder;
+    }
 
     if (props.user._id) {
         return (
             <Container className="mt-3">
-                <Image src={picture} alt="User Picture" style={{ maxHeight: "10em" }} fluid />
+                <Image src={prodImage} alt="User Picture" style={{ maxHeight: "10em" }} fluid />
                 <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
                     <Tab eventKey="profile" title="Profile">
                         <h1>UserName: {props.user.userName}</h1>
