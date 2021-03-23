@@ -132,7 +132,7 @@ export default function ProfileView() {
                 </Container>
                 <>
                     {successUser ? <UserDisplay userList={userList} /> : ''}
-                    {successProd ? <ProductDisplay userList={prodList} /> : ''}
+                    {successProd ? <ProductDisplay prodList={prodList} /> : ''}
                 </>
 
             </Container>
