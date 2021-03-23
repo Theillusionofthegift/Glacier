@@ -11,7 +11,7 @@ export default function UpdateButtonSet() {
         const id = user.sub.split('|')[1];
         event.preventDefault();
         const requestConfig = {
-            url: `http://localhost:4000/api/v1/users/${id}`,
+            url: `http://localhost:4000/api/v1/users/${user.sub.split('|')[1]}`,
             method: "DELETE",
         };
 

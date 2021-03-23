@@ -39,7 +39,7 @@ export default function SoldPageView() {
                 setBuyerId(response._id)
             })
             .catch((err) => {
-                alert('Make sure you have filled in every field, before submitting!');
+                console.log('Whoops something went wrong');
             });
     }
 
