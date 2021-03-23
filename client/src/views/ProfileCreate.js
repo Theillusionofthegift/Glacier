@@ -21,11 +21,6 @@ export default function CreateProfile() {
     const [userId, setUserId] = useState('');
     const { user, getAccessTokenSilently } = useAuth0();
 
-    async function getToken() {
-        const authToken = await getAccessTokenSilently();
-    }
-    const token = getToken();
-    console.log(token);
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         console.log(`name ${name} and value ${value}`);
@@ -33,7 +28,6 @@ export default function CreateProfile() {
             ...profileFormValues,
             [name]: value,
         });
-        console.log(profileFormValues);
     };
 
     const handleSubmit = async (event) => {
@@ -65,7 +59,7 @@ export default function CreateProfile() {
                 console.log(`Profile updated ${response.data}`);
             })
             .catch((err) => {
-                alert('Please fill in all necessary blanks !');
+                alert('Make sure you have filled in every field, before submitting!');
             });
     };
 
