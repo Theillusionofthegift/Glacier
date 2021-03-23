@@ -1,4 +1,3 @@
-import './HomePage.css';
 import CatDropDown from '../components/navbar/DropDown'
 import ProductProvider from '../components/products/ProductProvider'
 import { Container } from 'react-bootstrap'
@@ -9,10 +8,10 @@ function HomePage() {
     <>
       <CatDropDown />
       <MessageIcon />
-      <Container style={{marginTop:"5em"}}>
+      <Container style={{ marginTop: "5em" }}>
         <ProductProvider />
       </Container>
-      
+
     </>
   );
 }

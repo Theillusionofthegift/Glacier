@@ -13,12 +13,13 @@ function Product(props) {
   } else {
     prodImage = placeHolder;
   }
-  
+
   const summary = props.products.description.substr(0, 60) + "...";
+  
   if (props.seller) {
     return (
       <Card className="mx-3 mt-3">
-        <Card.Img src={prodImage} style={{ height:"200px"}}/>
+        <Card.Img src={prodImage} style={{ height: "200px" }} />
         <Card.Body>
           <Card.Title>{props.products.prodName}  ${props.products.price}</Card.Title>
           <Card.Text>
@@ -35,7 +36,7 @@ function Product(props) {
   } else {
     return (
       <Card className="mx-3 mt-3">
-        <Card.Img src={prodImage} style={{ height:"200px"}} />
+        <Card.Img src={prodImage} style={{ height: "200px" }} />
         <Card.Body>
           <Card.Title>{props.products.prodName}  ${props.products.price}</Card.Title>
           <Card.Text>

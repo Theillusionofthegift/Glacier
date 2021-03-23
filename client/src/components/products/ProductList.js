@@ -10,7 +10,7 @@ export default function ProductList(props) {
             <Container>
                 <Col  >
                     <Row xs={1} md={4} xl={12} >
-                        {products.map((product) => (<Product key={product._id} products={product} seller={true}/>))}
+                        {products.map((product) => (<Product key={product._id} products={product} seller={true} />))}
                     </Row>
                 </Col>
             </Container>

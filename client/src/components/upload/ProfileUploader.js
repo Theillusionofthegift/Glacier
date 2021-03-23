@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import UseFileUpload from './FileUpload';
-import {
-    Container,
-    Button,
-    ProgressBar
-} from 'react-bootstrap'
+import { Container, Button, ProgressBar } from 'react-bootstrap'
 import { Redirect } from 'react-router';
 
 
@@ -30,8 +26,6 @@ export default function ProfileFileUploader(props) {
         if (imageFile) {
             UseFileUpload('profile', imageFile.item(0), progressUpdater, props.userId)
                 .then((response) => {
-                    console.log(response.data.message);
-                    console.log(props.userId)
                     setimageFile([]);
                     setSuccess(true);
                 })

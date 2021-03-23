@@ -1,21 +1,18 @@
 import React from 'react';
-import {
-    Container,
-    Image,
-    Tabs,
-    Tab
-} from 'react-bootstrap'
+import { Container, Image, Tabs, Tab } from 'react-bootstrap'
 import { useAuth0 } from '@auth0/auth0-react'
 import UpdateButtonSet from './UpdateButtonSet'
 import ProfileProducts from '../profile/ProfileProducts'
 
 export default function Profile(props) {
+    
     const { user } = useAuth0();
     const picture = `http://localhost:4000/${props.user.image}`
+
     if (props.user._id) {
         return (
             <Container className="mt-3">
-                <Image src={picture} alt="User Picture" style={{maxHeight:"10em"}}fluid />
+                <Image src={picture} alt="User Picture" style={{ maxHeight: "10em" }} fluid />
                 <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
                     <Tab eventKey="profile" title="Profile">
                         <h1>UserName: {props.user.userName}</h1>

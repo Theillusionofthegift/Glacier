@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
 import { InputGroup, FormControl, Button, Container } from 'react-bootstrap';
-import ProfileUploader from '../components/upload/ProfileUploader'
 import profile from '../images/userProfile.jpg';
 
 const defaultFormValues = {
@@ -23,7 +22,6 @@ export default function CreateProfile() {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(`name ${name} and value ${value}`);
         setProfileFormValues({
             ...profileFormValues,
             [name]: value,
@@ -56,7 +54,6 @@ export default function CreateProfile() {
             .then((response) => {
                 setUserId(response.data.userId)
                 setSuccess(true);
-                console.log(`Profile updated ${response.data}`);
             })
             .catch((err) => {
                 alert('Make sure you have filled in every field, before submitting!');
@@ -66,12 +63,11 @@ export default function CreateProfile() {
     const redirectString = `/users/upload/${userId}`
 
     if (success) {
-        return <Redirect to={redirectString}/>;
+        return <Redirect to={redirectString} />;
     } else {
         return (
-            <Container style={{marginTop:"5em"}}>
-                <h1 style={{textAlign:"center"}}>Create Profile</h1>
-                <img className="image" src={profile} alt='profile' />
+            <Container style={{ marginTop: "5em" }}>
+                <h1 style={{ textAlign: "center" }}>Create Profile</h1>
                 <Container>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
