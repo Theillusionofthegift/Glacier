@@ -9,18 +9,30 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import Loading from '../components/loading/Loading'
 
-const defaultMessageValues = {
-    user: "",
-    message: ""
-};
+
 
 function MessageView() {
     const { user } = useAuth0();
-    const { id } = useParams();
+    const defaultMessageValues = {
+        user: user.sub.split('|')[1],
+        message: ""
+    };
+
     const [messageValues, setMessageValues] = useState(defaultMessageValues);
     const [messages, setMessages] = useState({});
     const [loading, setLoading] = useState(true);
 
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        console.log(`name ${name} and value ${value}`);
+        setMessageValues({
+            ...messageValues,
+            [name]: value,
+        });
+        console.log(messageValues);
+    };
+
+    const { id } = useParams();
     useEffect(() => {
 
         const config = {
@@ -32,17 +44,9 @@ function MessageView() {
             setMessages(response.data)
             setLoading(false);
         }).catch((err) => {
-            console.log(`Whoops something went wrong!`);
+            console.log('error in ViewProductDetail useEffect');
         })
     }, [loading]);
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setMessageValues({
-            ...messageValues,
-            [name]: value,
-        });
-    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -51,7 +55,7 @@ function MessageView() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             data: {
-                user: user.sub.split('|')[1],
+                user: messageValues.user,
                 message: messageValues.message
             }
         };
@@ -62,9 +66,10 @@ function MessageView() {
                 setLoading(true);
             })
             .catch((err) => {
-                console.log(`We should really handle the error ${err}`);
+                alert('somethings go wrong reload page!');
             });
     };
+
 
     return (
         <Container className="pt-5">
