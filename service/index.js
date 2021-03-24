@@ -4,8 +4,6 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 4000;
 
-
-const morgan = require('morgan');
 const cors = require('cors');
 
 const mongoose = require('mongoose');
@@ -33,7 +31,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.on('close', () => { console.log('MongoDB connection closed'); });
 
 // Middleware
-app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
 
