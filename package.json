@@ -3,7 +3,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm ./client/start",
     "service": "npm ./service/start",
-    "start": "concurrently \"npm client\" \"npm service\""
+    "start": "cd service/ && npm start",
+    "build": "cd react-ui/ && npm install && npm run build"
   },
   "dependencies": {
     "bootstrap": "^4.6.0",
