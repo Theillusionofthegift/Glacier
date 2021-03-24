@@ -4,7 +4,7 @@
     "client": "npm ./client/start",
     "service": "npm ./service/start",
     "start": "cd service/ && npm start",
-    "build": "cd react-ui/ && npm install && npm run build"
+    "build": "cd client/ && npm install && npm run build"
   },
   "dependencies": {
     "bootstrap": "^4.6.0",
