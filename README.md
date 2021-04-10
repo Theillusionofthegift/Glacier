@@ -1,6 +1,6 @@
 #Heading
 <h1 align="center">Glacier</h1>
-<img src="/client/src/images/glacier.png" width="300" height="300"/>
+<img src="/client/src/images/glacier.png" width="300" height="300" margin="auto/>
 
 ## Table of Contents
 * [General info](#general-info)
